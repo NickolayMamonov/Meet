@@ -16,6 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.theme.MainColorScheme
@@ -28,9 +29,11 @@ fun MainIcon(
     isClickable: Boolean,
     showBorder: Boolean = false,
     showClip: Boolean = false,
+    clipPercent: Int = 35,
+    sizeIcon: Dp = 48.dp,
     useContentScaleCrop: Boolean = false,
     modifier: Modifier = Modifier
-        .let { if (showClip) it.clip(RoundedCornerShape(35)) else it }
+        .let { if (showClip) it.clip(RoundedCornerShape(clipPercent)) else it }
         .let {
             if(showBorder) it.border(2.dp, MainColorScheme.neutralLine, shape = RoundedCornerShape(35)) else it
         }
@@ -48,7 +51,7 @@ fun MainIcon(
             contentDescription = "User Icon",
             contentScale = if(useContentScaleCrop) ContentScale.Crop else ContentScale.Fit,
             modifier = Modifier
-                .size(48.dp)
+                .size(sizeIcon)
 
 
         )

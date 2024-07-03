@@ -91,11 +91,11 @@ fun CustomTextButton(
 
 @Composable
 fun CustomOutlinedButton(
-    text: String,
+    text: String = "",
     onClick: () -> Unit,
     isEnabled: Boolean = true,
     icon: @Composable (() -> Unit)? = null,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
