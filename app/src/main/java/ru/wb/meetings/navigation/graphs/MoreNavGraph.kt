@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import dev.whysoezzy.testwbproject.navigation.Graph
 import dev.whysoezzy.testwbproject.navigation.MoreRouteScreen
+import ru.wb.meetings.ui.screens.more.DeveloperScreen
 import ru.wb.meetings.ui.screens.more.MyEventsScreen
 import ru.wb.meetings.ui.screens.more.ProfileScreen
 
@@ -20,6 +21,9 @@ fun NavGraphBuilder.moreNavGraph(rootNavController: NavHostController){
         }
         composable(route = MoreRouteScreen.Profile.route) {
             ProfileScreen(navController = rootNavController)
+        }
+        composable(route = MoreRouteScreen.Developer.route) {
+            DeveloperScreen(navController = rootNavController)
         }
     }
 

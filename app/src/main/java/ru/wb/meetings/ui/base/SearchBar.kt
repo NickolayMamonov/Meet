@@ -21,14 +21,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import ru.wb.meetings.R
 import ru.wb.meetings.ui.theme.MainColorScheme
 
-//val focusedColor = if (isFocused) MainColorScheme.neutralActive else MainColorScheme.neutralLine
-//val borderColor = if (isFocused) MainColorScheme.neutralActive else MainColorScheme.neutralLine
-//val textColor = if (isFocused) MainColorScheme.neutralBody else MainColorScheme.neutralWeak
 
 @Composable
 fun SearchBar(
@@ -45,8 +44,8 @@ fun SearchBar(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp) // добавляем отступы
-            .border(1.dp, borderColor, RoundedCornerShape(13)) // добавляем рамку
+            .padding(16.dp)
+            .border(1.dp, borderColor, RoundedCornerShape(13))
     ) {
         TextField(
             value = text,
@@ -80,7 +79,7 @@ fun SearchBar(
             interactionSource = interactionSource,
             placeholder = {
                 Text(
-                    "Поиск",
+                    stringResource(R.string.search),
                     color = textColor
                 )
             }

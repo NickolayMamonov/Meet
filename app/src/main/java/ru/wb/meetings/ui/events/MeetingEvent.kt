@@ -12,19 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.base.ChipGroup
 import ru.wb.meetings.ui.base.MainIcon
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
-
-data class Meetings(
-    val title: String,
-    val subTitle: String,
-    val isEnded: Boolean
-
-)
 
 @Composable
 fun MeetingEvent(
@@ -59,7 +53,7 @@ fun MeetingEvent(
                 if (isEnded) {
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "Закончилось",
+                        text = stringResource(R.string.ended),
                         style = MainTypographyTextStyle.metadata2,
                         color = MainColorScheme.neutralWeak,
                     )

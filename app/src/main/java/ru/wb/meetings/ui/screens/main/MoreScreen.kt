@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import dev.whysoezzy.testwbproject.navigation.MoreRouteScreen
@@ -53,8 +54,8 @@ fun MoreScreen(
                         clipPercent = 50,
                     )
                     Column {
-                        Text(text = "Ivan Ivanov", style = MainTypographyTextStyle.bodyText1, color = MainColorScheme.neutralActive)
-                        Text(text = "+7 999 999-99-99", style = MainTypographyTextStyle.metadata1, color = MainColorScheme.neutralDisabled)
+                        Text(text = stringResource(R.string.test_name), style = MainTypographyTextStyle.bodyText1, color = MainColorScheme.neutralActive)
+                        Text(text = stringResource(R.string.test_number), style = MainTypographyTextStyle.metadata1, color = MainColorScheme.neutralDisabled)
                     }
                 }
             }
@@ -83,7 +84,7 @@ fun MoreScreen(
                         image = painterResource(id = R.drawable.events),
                         sizeIcon = 24.dp,
                     )
-                    Text(text = "Мои встречи", style = MainTypographyTextStyle.bodyText1, color = MainColorScheme.neutralActive)
+                    Text(text = stringResource(id = R.string.my_meetings), style = MainTypographyTextStyle.bodyText1, color = MainColorScheme.neutralActive)
 
                 }
             }
@@ -94,6 +95,35 @@ fun MoreScreen(
                 image = painterResource(id = R.drawable.arrow_forward),
                 onClick = {
                     navController.navigate(MoreRouteScreen.MyEvents.route)
+                }
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(modifier = Modifier.weight(1f, fill = false)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    MainIcon(
+                        showBadge = false,
+                        isClickable = false,
+                        image = painterResource(id = R.drawable.events),
+                        sizeIcon = 24.dp,
+                    )
+                    Text(text = stringResource(R.string.developer_screen), style = MainTypographyTextStyle.bodyText1, color = MainColorScheme.neutralActive)
+
+                }
+            }
+            MainIcon(
+                showBadge = false,
+                isClickable = true,
+                sizeIcon = 12.dp,
+                image = painterResource(id = R.drawable.arrow_forward),
+                onClick = {
+                    navController.navigate(MoreRouteScreen.Developer.route)
                 }
             )
         }

@@ -1,23 +1,14 @@
 package ru.wb.meetings.ui.base
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -127,53 +118,53 @@ fun CustomOutlinedButton(
     }
 }
 
-data class ButtonProperties(
-    val text: String,
-    val onClick: () -> Unit,
-    val isEnabled: Boolean = true
-)
-
-@Composable
-fun ButtonColumns(
-    buttons1: List<ButtonProperties>,
-    buttons2: List<ButtonProperties>,
-    buttons3: List<ButtonProperties>,
-    modifier: Modifier = Modifier
-) {
-    LazyColumn {
-        items(buttons1.size) { index ->
-            Spacer(modifier = Modifier.height(32.dp))
-            Row {
-                CustomButton(
-                    text = buttons1[index].text,
-                    onClick = buttons1[index].onClick,
-                    isEnabled = buttons1[index].isEnabled,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .weight(1f)
-                        .fillMaxWidth()
-                )
-                CustomOutlinedButton(
-                    text = buttons2[index].text,
-                    onClick = buttons2[index].onClick,
-                    isEnabled = buttons2[index].isEnabled,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .weight(1f)
-                        .fillMaxWidth()
-                )
-                CustomTextButton(
-                    text = buttons3[index].text,
-                    onClick = buttons3[index].onClick,
-                    isEnabled = buttons3[index].isEnabled,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .weight(1f)
-                        .fillMaxWidth()
-                )
-            }
-        }
-    }
-}
-
+//data class ButtonProperties(
+//    val text: String,
+//    val onClick: () -> Unit,
+//    val isEnabled: Boolean = true
+//)
+//
+//@Composable
+//fun ButtonColumns(
+//    buttons1: List<ButtonProperties>,
+//    buttons2: List<ButtonProperties>,
+//    buttons3: List<ButtonProperties>,
+//    modifier: Modifier = Modifier
+//) {
+//    LazyColumn {
+//        items(buttons1.size) { index ->
+//            Spacer(modifier = Modifier.height(32.dp))
+//            Row {
+//                CustomButton(
+//                    text = buttons1[index].text,
+//                    onClick = buttons1[index].onClick,
+//                    isEnabled = buttons1[index].isEnabled,
+//                    modifier = Modifier
+//                        .padding(8.dp)
+//                        .weight(1f)
+//                        .fillMaxWidth()
+//                )
+//                CustomOutlinedButton(
+//                    text = buttons2[index].text,
+//                    onClick = buttons2[index].onClick,
+//                    isEnabled = buttons2[index].isEnabled,
+//                    modifier = Modifier
+//                        .padding(8.dp)
+//                        .weight(1f)
+//                        .fillMaxWidth()
+//                )
+//                CustomTextButton(
+//                    text = buttons3[index].text,
+//                    onClick = buttons3[index].onClick,
+//                    isEnabled = buttons3[index].isEnabled,
+//                    modifier = Modifier
+//                        .padding(8.dp)
+//                        .weight(1f)
+//                        .fillMaxWidth()
+//                )
+//            }
+//        }
+//    }
+//}
+//
 

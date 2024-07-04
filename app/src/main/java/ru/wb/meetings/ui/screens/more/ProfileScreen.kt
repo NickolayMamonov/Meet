@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import dev.whysoezzy.testwbproject.navigation.BottomNavigationBar
@@ -39,7 +40,7 @@ fun ProfileScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Профиль",
+                        text = stringResource(R.string.profile),
                         style = MainTypographyTextStyle.subheading1,
                         color = MainColorScheme.neutralActive
                     )
@@ -72,7 +73,7 @@ fun ProfileScreen(
             BottomNavigationBar(
                 items = bottomNavigationItemsList,
                 currentRoute = Graph.MoreGraph,
-                onClick = { item ->
+                onClick = {
                     navController.navigateUp()
                 }
             )
@@ -92,12 +93,12 @@ fun ProfileScreen(
                 sizeIcon = 128.dp,
             )
             Text(
-                text = "Иван Иванов",
+                text = stringResource(id = R.string.test_name),
                 style = MainTypographyTextStyle.heading2,
                 color = MainColorScheme.neutralActive
             )
             Text(
-                text = "+7 999 999-99-99",
+                text = stringResource(id = R.string.test_number),
                 style = MainTypographyTextStyle.bodyText2,
                 color = MainColorScheme.neutralDisabled
             )

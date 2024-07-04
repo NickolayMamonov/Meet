@@ -1,4 +1,4 @@
-package ru.wb.meetings.ui.screens
+package ru.wb.meetings.ui.screens.more
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.base.ChipGroup
 import ru.wb.meetings.ui.base.CustomButton
@@ -25,7 +26,9 @@ import ru.wb.meetings.ui.rows.TypographyRow
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 
 @Composable
-fun DeveloperScreen() {
+fun DeveloperScreen(
+    navController: NavController,
+) {
     Column {
         LazyColumn {
             item {
@@ -190,7 +193,7 @@ fun DeveloperScreen() {
                         isEnded = false
                     )
                     Row {
-                        MainIcon(showBadge = false, isClickable = false)
+                        MainIcon(showBadge = false, isClickable = false, modifier = Modifier.padding(top = 10.dp))
                         MainIcon(showBadge = true, isClickable = true, onClick = {
 
                         })

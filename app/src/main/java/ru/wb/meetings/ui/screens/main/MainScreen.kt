@@ -1,8 +1,8 @@
 package ru.wb.meetings.ui.screens.main
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -12,13 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.whysoezzy.testwbproject.navigation.BottomNavigationBar
-import dev.whysoezzy.testwbproject.navigation.EventsRouteScreen
 import dev.whysoezzy.testwbproject.navigation.MainRouteScreen
-import dev.whysoezzy.testwbproject.navigation.MoreRouteScreen
 import ru.wb.meetings.navigation.graphs.MainNavGraph
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
@@ -54,15 +54,32 @@ fun MainScreen(
             when (currentRoute) {
                 MainRouteScreen.Events.route -> {
                     TopAppBar(
-                        title = { Text(text = topBarTitle, style = MainTypographyTextStyle.subheading1, color = MainColorScheme.neutralActive) },
+                        title = {
+                            Text(
+                                text = topBarTitle,
+                                style = MainTypographyTextStyle.subheading1,
+                                color = MainColorScheme.neutralActive
+                            )
+                        },
                         actions = {
-                            Icon(imageVector = Icons.Default.Add, contentDescription = null)
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = null,
+                                modifier = Modifier.padding(8.dp)
+                            )
                         }
                     )
                 }
+
                 MainRouteScreen.Communities.route, MainRouteScreen.More.route -> {
                     TopAppBar(
-                        title = { Text(text = topBarTitle, style = MainTypographyTextStyle.subheading1, color = MainColorScheme.neutralActive) }
+                        title = {
+                            Text(
+                                text = topBarTitle,
+                                style = MainTypographyTextStyle.subheading1,
+                                color = MainColorScheme.neutralActive
+                            )
+                        }
                     )
                 }
             }
@@ -73,21 +90,13 @@ fun MainScreen(
                 currentRoute = currentRoute
             ) { currentNavigationItem ->
                 eventsNavController.navigate(currentNavigationItem.route) {
-                    // Pop up to the start destination of the graph to
-                    // avoid building up a large stack of destinations
-                    // on the back stack as users select items
+
                     eventsNavController.graph.startDestinationRoute?.let { startDestinationRoute ->
-                        // Pop up to the start destination, clearing the back stack
                         popUpTo(startDestinationRoute) {
-                            // Save the state of popped destinations
                             saveState = true
                         }
                     }
-
-                    // Configure navigation to avoid multiple instances of the same destination
                     launchSingleTop = true
-
-                    // Restore state when re-selecting a previously selected item
                     restoreState = true
                 }
             }

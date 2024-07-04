@@ -35,7 +35,11 @@ fun MainIcon(
     modifier: Modifier = Modifier
         .let { if (showClip) it.clip(RoundedCornerShape(clipPercent)) else it }
         .let {
-            if(showBorder) it.border(2.dp, MainColorScheme.neutralLine, shape = RoundedCornerShape(35)) else it
+            if (showBorder) it.border(
+                2.dp,
+                MainColorScheme.neutralLine,
+                shape = RoundedCornerShape(35)
+            ) else it
         }
 ) {
     Box(
@@ -49,7 +53,7 @@ fun MainIcon(
         Image(
             painter = image ?: painterResource(id = R.drawable.icon_person),
             contentDescription = "User Icon",
-            contentScale = if(useContentScaleCrop) ContentScale.Crop else ContentScale.Fit,
+            contentScale = if (useContentScaleCrop) ContentScale.Crop else ContentScale.Fit,
             modifier = Modifier
                 .size(sizeIcon)
 
@@ -76,8 +80,6 @@ fun MainIcon(
         }
 
     }
-
-
 }
 
 

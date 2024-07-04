@@ -13,17 +13,18 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ru.wb.meetings.R
 import ru.wb.meetings.ui.base.SearchBar
 import ru.wb.meetings.ui.events.MeetingEvent
 
 @Composable
 fun EventsScreen(innerPadding: PaddingValues) {
-    var selectedTabIndex by remember { mutableStateOf(0) }
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
     val allMeetingsList = listOf(
         MeetingEventModel("Встреча 1", "Описание 1", false),
         MeetingEventModel("Встреча 2", "Описание 2", true),
@@ -62,9 +63,10 @@ fun EventsScreen(innerPadding: PaddingValues) {
     }
 
 }
+
 enum class Tabs(val title: String) {
-    ALL_MEETINGS("Все встречи"),
-    ACTIVE("Активные")
+    ALL_MEETINGS(R.string.all_meetings.toString()),
+    ACTIVE(R.string.meeting_active.toString())
 }
 
 

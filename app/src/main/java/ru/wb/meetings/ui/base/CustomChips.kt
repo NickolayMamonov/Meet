@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
-import ru.wb.meetings.ui.theme.SFProDisplayFontFamily
 
 @Composable
 fun ChipGroup() {

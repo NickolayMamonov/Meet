@@ -11,7 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import ru.wb.meetings.R
 
 @Composable
 fun CommunitiesScreen(innerPadding: PaddingValues){
@@ -24,7 +26,7 @@ fun CommunitiesScreen(innerPadding: PaddingValues){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Communities Screen",
+            text = stringResource(R.string.communities_screen),
             fontSize = 40.sp,
             color = Color.Black
         )
