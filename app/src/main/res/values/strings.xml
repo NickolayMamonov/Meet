@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Meet</string>
+    <string name="not_liked_yet">Not liked yet!</string>
+    <string name="ended">Закончилось</string>
+    <string name="test_text_for_typography">The quick brown fox jumps over the lazy dog</string>
+    <string name="communities_screen">Communities Screen</string>
+    <string name="all_meetings">Все встречи</string>
+    <string name="meeting_active">Активные</string>
+    <string name="developer_screen">Developer Screen</string>
+    <string name="test_name">Иван Иванов</string>
+    <string name="test_number">+7 999 999-99-99</string>
+    <string name="my_meetings">Мои Встречи</string>
+    <string name="meeting_planned">Запланировано</string>
+    <string name="meeting_passed">Уже прошли</string>
+    <string name="profile">Профиль</string>
+    <string name="search">Поиск</string>
+
+</resources>
