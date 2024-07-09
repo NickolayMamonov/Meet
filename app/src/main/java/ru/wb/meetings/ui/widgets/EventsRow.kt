@@ -15,7 +15,7 @@ import ru.wb.meetings.R
 import ru.wb.meetings.ui.rows.OverlappingRow
 
 @Composable
-fun EventsRow(avatars: List<Painter>, modifier: Modifier = Modifier) {
+fun EventsRow(avatars: List<String>, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .padding(8.dp)
