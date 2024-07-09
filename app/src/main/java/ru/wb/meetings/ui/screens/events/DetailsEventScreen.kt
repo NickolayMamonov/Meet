@@ -16,12 +16,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import ru.wb.meetings.R
 import ru.wb.meetings.ui.base.ChipGroup
 import ru.wb.meetings.ui.base.CustomButton
 import ru.wb.meetings.ui.base.MainNetworkIcon
@@ -92,7 +94,7 @@ fun DetailsEventScreen(navController: NavController, id: String?, innerPadding: 
 
             Box(modifier = Modifier.fillMaxWidth()) {
                 CustomButton(
-                    text = "Пойду на встречу!",
+                    text = stringResource(R.string.go_to_event),
                     onClick = { /*TODO*/ },
                     modifier = Modifier
                         .fillMaxWidth()

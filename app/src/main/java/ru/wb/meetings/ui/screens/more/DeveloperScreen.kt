@@ -174,21 +174,7 @@ fun DeveloperScreen(
                         showClip = true,
                         useContentScaleCrop = true
                     )
-//                    EventsRow(avatars = avatars)
-//                    CommunityEvent(
-//                        title = "Designa",
-//                    )
                     Spacer(modifier = Modifier.height(8.dp))
-//                    MeetingEvent(
-//                        title = "Developer meeting",
-//                        subTitle = "13.09.2024 — Москва",
-//                        isEnded = true
-//                    )
-//                    MeetingEvent(
-//                        title = "Developer meeting",
-//                        subTitle = "13.09.2024 — Москва",
-//                        isEnded = false
-//                    )
                     Row {
                         MainIcon(
                             showBadge = false,

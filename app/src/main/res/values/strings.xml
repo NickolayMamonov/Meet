@@ -14,5 +14,7 @@
     <string name="meeting_passed">Уже прошли</string>
     <string name="profile">Профиль</string>
     <string name="search">Поиск</string>
+    <string name="community_events">Встречи сообщества</string>
+    <string name="go_to_event">Пойду на встречу!</string>
 
 </resources>

@@ -20,11 +20,7 @@ import ru.wb.meetings.ui.base.MainIcon
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 
-@Composable
-fun MoreElement() {
 
-
-}
 
 @Composable
 fun ProfileItem(
@@ -111,24 +107,5 @@ fun SettingsItem(
             image = painterResource(id = R.drawable.arrow_forward),
             sizeIcon = 12.dp,
         )
-//        Icon(
-//            modifier = Modifier.size(EventsTheme.sizes.sizeX12),
-//            painter = icon,
-//            tint = EventsTheme.colors.neutralActive,
-//            contentDescription = null
-//        )
-//        Text(
-//            modifier = Modifier
-//                .padding(start = EventsTheme.sizes.sizeX3)
-//                .weight(1f),
-//            text = name,
-//            style = EventsTheme.typography.bodyText1
-//        )
-//        Icon(
-//            modifier = Modifier.size(EventsTheme.sizes.sizeX12),
-//            painter = painterResource(id = R.drawable.icon_arr_right),
-//            tint = EventsTheme.colors.neutralActive,
-//            contentDescription = null
-//        )
     }
 }

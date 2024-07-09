@@ -10,10 +10,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import ru.wb.meetings.R
 import ru.wb.meetings.ui.widgets.MeetingEvent
 import ru.wb.meetings.ui.widgets.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
@@ -45,7 +47,7 @@ fun DetailsCommunityScreen(navController: NavController, id: String?, innerPaddi
             )
             Spacer(modifier = Modifier.height(32.dp))
             Text(
-                text = "Встречи сообщества",
+                text = stringResource(R.string.community_events),
                 style = MainTypographyTextStyle.bodyText1,
                 color = MainColorScheme.neutralWeak
             )
