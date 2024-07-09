@@ -1,4 +1,4 @@
-package ru.wb.meetings.ui.screens.main
+package ru.wb.meetings.ui.screens.communities
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

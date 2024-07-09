@@ -1,118 +1,93 @@
 package ru.wb.meetings.ui.screens.more
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import dev.whysoezzy.testwbproject.navigation.BottomNavigationBar
-import dev.whysoezzy.testwbproject.navigation.Graph
 import ru.wb.meetings.R
-import ru.wb.meetings.ui.base.MainIcon
-import ru.wb.meetings.ui.screens.main.MeetingEventModel
+import ru.wb.meetings.ui.widgets.MeetingEvent
+import ru.wb.meetings.ui.widgets.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
-import ru.wb.meetings.ui.utils.bottomNavigationItemsList
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyEventsScreen(
     navController: NavController,
+    innerPadding: PaddingValues
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = stringResource(R.string.my_meetings),
-                        style = MainTypographyTextStyle.subheading1,
-                        color = MainColorScheme.neutralActive
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
+    val allMeetingsList = listOf(
+        MeetingEventModel("1", "Встреча 1", "Описание 1", false),
+        MeetingEventModel("2", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("3", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("4", "Встреча 2", "Описание 2", false),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+    )
+    val activeMeetingsList = allMeetingsList.filter { !it.isEnded }
+    val inactiveMeetingsList = allMeetingsList.filter { it.isEnded }
+    val currentList = if (selectedTabIndex == 0) activeMeetingsList else inactiveMeetingsList
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(innerPadding)
+            .padding(horizontal = 20.dp)
+    ) {
+        item {
+            TabRow(
+                selectedTabIndex = selectedTabIndex,
+                contentColor = MainColorScheme.brandDefault,
+                indicator = { tabPositions ->
+                    SecondaryIndicator(
+                        modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
+                        color = MainColorScheme.brandDefault
                     )
                 },
-                navigationIcon = {
-                    MainIcon(
-                        showBadge = false,
-                        isClickable = true,
-                        sizeIcon = 12.dp,
-                        image = painterResource(id = R.drawable.arrow_back),
-                        onClick = {
-                            navController.navigateUp()
-                        }
+            ) {
+                Tabs.entries.forEachIndexed { index, tab ->
+                    Tab(
+                        text = {
+                            Text(
+                                stringResource(id = tab.title),
+                                style = MainTypographyTextStyle.bodyText1,
+                                color = MainColorScheme.brandDefault
+                            )
+                        },
+                        selected = selectedTabIndex == index,
+                        onClick = { selectedTabIndex = index }
                     )
                 }
-            )
-        },
-        bottomBar = {
-            BottomNavigationBar(
-                items = bottomNavigationItemsList,
-                currentRoute = Graph.MoreGraph,
-                onClick = {
-                    navController.navigateUp()
-                }
-            )
-        }
-    ) { innerPadding ->
-        var selectedTabIndex by remember { mutableIntStateOf(0) }
-        val allMeetingsList = listOf(
-            MeetingEventModel("Встреча 1", "Описание 1", false),
-            MeetingEventModel("Встреча 2", "Описание 2", true),
-            MeetingEventModel("Встреча 2", "Описание 2", true),
-            MeetingEventModel("Встреча 2", "Описание 2", false),
-            MeetingEventModel("Встреча 2", "Описание 2", true),
-        )
-        val activeMeetingsList = allMeetingsList.filter { !it.isEnded }
-        val inactiveMeetingsList = allMeetingsList.filter { it.isEnded }
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
-
-                TabRow(selectedTabIndex = selectedTabIndex) {
-                    Tabs.entries.forEachIndexed { index, tab ->
-                        Tab(
-                            text = { Text(tab.title) },
-                            selected = selectedTabIndex == index,
-                            onClick = { selectedTabIndex = index }
-                        )
-                    }
-                }
-                Spacer(modifier = Modifier.height(8.dp))
-                when (selectedTabIndex) {
-                    0 -> ru.wb.meetings.ui.screens.main.MeetingsList(activeMeetingsList)
-                    1 -> ru.wb.meetings.ui.screens.main.MeetingsList(inactiveMeetingsList)
-                }
-
-
             }
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+        items(currentList) { meeting ->
+            MeetingEvent(meeting = meeting, onClick = { id ->
+                navController.navigate("detailsEvent_screen/$id")
+            })
         }
     }
 }
 
 
-enum class Tabs(val title: String) {
-    PLANNED(R.string.meeting_planned.toString()),
-    PASSED(R.string.meeting_passed.toString())
+enum class Tabs(val title: Int) {
+    PLANNED(R.string.meeting_planned),
+    PASSED(R.string.meeting_passed)
 }
 
 

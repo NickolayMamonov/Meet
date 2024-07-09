@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import ru.wb.meetings.navigation.graphs.RootNavGraph
+import androidx.navigation.compose.rememberNavController
+import ru.wb.meetings.ui.screens.main.MainScreen
 import ru.wb.meetings.ui.theme.MeetTheme
 
 class MainActivity : ComponentActivity() {
@@ -14,8 +15,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
+            val navController = rememberNavController()
             MeetTheme {
-                RootNavGraph()
+                MainScreen(navController =navController )
             }
 
         }

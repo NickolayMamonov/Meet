@@ -1,4 +1,4 @@
-package ru.wb.meetings.ui.screens.main
+package ru.wb.meetings.ui.screens.events
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize

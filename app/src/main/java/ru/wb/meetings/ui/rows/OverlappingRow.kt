@@ -8,12 +8,13 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.ui.base.MainIcon
+import ru.wb.meetings.ui.base.MainSmallNetworkIcon
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 
 @Composable
 fun OverlappingRow(
-    avatars: List<Painter>,
+    avatars: List<String>,
     modifier: Modifier = Modifier,
     overlappingPercentage: Float,
 ) {
@@ -24,7 +25,7 @@ fun OverlappingRow(
         modifier = modifier,
         content = {
             avatars.take(5).forEach {avatar->
-                MainIcon(image = avatar, showBadge = false, isClickable = false, showBorder = true, showClip = true, useContentScaleCrop = true)
+                MainSmallNetworkIcon(image = avatar, showBadge = false, isClickable = false, showBorder = true, showClip = true, useContentScaleCrop = true)
             }
             if(avatars.size >5){
                 Text(text = "+${avatars.size - 5}",
