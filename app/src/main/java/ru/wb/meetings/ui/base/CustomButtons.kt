@@ -14,13 +14,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.ui.theme.MainColorScheme
+import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 
 @Composable
 fun CustomButton(
     text: String,
     onClick: () -> Unit,
     isEnabled: Boolean = true,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -114,7 +115,7 @@ fun CustomOutlinedButton(
         if (icon != null) {
             icon()
         }
-        Text(text = text)
+        Text(text = text, style = MainTypographyTextStyle.subheading2, color = MainColorScheme.neutralSecondaryBackground)
     }
 }
 

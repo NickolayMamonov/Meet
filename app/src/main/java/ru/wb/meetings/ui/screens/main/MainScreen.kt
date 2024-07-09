@@ -1,112 +1,149 @@
 package ru.wb.meetings.ui.screens.main
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
-import dev.whysoezzy.testwbproject.navigation.BottomNavigationBar
-import dev.whysoezzy.testwbproject.navigation.MainRouteScreen
-import ru.wb.meetings.navigation.graphs.MainNavGraph
+import ru.wb.meetings.R
+import ru.wb.meetings.navigation.AppNavigation
+import ru.wb.meetings.navigation.bottomBarRoutes
+import ru.wb.meetings.navigation.bottomNavigationItems
+import ru.wb.meetings.navigation.topBarItems
+import ru.wb.meetings.navigation.topBarRoutes
+import ru.wb.meetings.ui.base.MainIcon
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
-import ru.wb.meetings.ui.utils.bottomNavigationItemsList
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    rootNavHostController: NavHostController,
-    eventsNavController: NavHostController = rememberNavController()
+    navController: NavHostController
 
 ) {
-    val navBackStackEntry by eventsNavController.currentBackStackEntryAsState()
-    val currentRoute by remember(navBackStackEntry) {
-        derivedStateOf {
-            navBackStackEntry?.destination?.route
-        }
-    }
-    val topBarTitle by remember(currentRoute) {
-        derivedStateOf {
-            if (currentRoute != null) {
-                bottomNavigationItemsList[bottomNavigationItemsList.indexOfFirst {
-                    it.route == currentRoute
-                }].title
-            } else {
-                bottomNavigationItemsList[0].title
-            }
-        }
-    }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
     Scaffold(
         topBar = {
-            when (currentRoute) {
-                MainRouteScreen.Events.route -> {
+            topBarItems.find { it.route == currentRoute }?.let { topBarItem ->
+                if (currentRoute in topBarRoutes) {
                     TopAppBar(
                         title = {
                             Text(
-                                text = topBarTitle,
+                                text = topBarItem.title,
                                 style = MainTypographyTextStyle.subheading1,
                                 color = MainColorScheme.neutralActive
                             )
                         },
-                        actions = {
-                            Icon(
-                                imageVector = Icons.Default.Add,
-                                contentDescription = null,
-                                modifier = Modifier.padding(8.dp)
-                            )
-                        }
-                    )
-                }
+                        navigationIcon = {
+                            if (topBarItem.icon != null) {
+                                topBarItem.icon.let { icon ->
+                                    MainIcon(
+                                        showBadge = false,
+                                        isClickable = true,
+                                        sizeIcon = 12.dp,
+                                        image = painterResource(id = R.drawable.arrow_back),
+                                        onClick = {
+                                            navController.navigateUp()
+                                        }
+                                    )
+                                }
+                            }
 
-                MainRouteScreen.Communities.route, MainRouteScreen.More.route -> {
-                    TopAppBar(
-                        title = {
-                            Text(
-                                text = topBarTitle,
-                                style = MainTypographyTextStyle.subheading1,
-                                color = MainColorScheme.neutralActive
-                            )
+                        },
+                        actions = {
+                            if (topBarItem.action != null) {
+                                topBarItem.action.let { actionIcon ->
+                                    MainIcon(
+                                        showBadge = false,
+                                        isClickable = true,
+                                        sizeIcon = 18.dp,
+                                        image = painterResource(id = R.drawable.edit),
+                                        onClick = {
+                                        }
+                                    )
+                                }
+                            }
+
                         }
                     )
                 }
             }
         },
         bottomBar = {
-            BottomNavigationBar(
-                items = bottomNavigationItemsList,
-                currentRoute = currentRoute
-            ) { currentNavigationItem ->
-                eventsNavController.navigate(currentNavigationItem.route) {
+            if (currentRoute in bottomBarRoutes) {
+                NavigationBar(
+                    containerColor = Color.White
+                ) {
+                    bottomNavigationItems.forEach { item ->
+                        NavigationBarItem(
+                            colors = NavigationBarItemDefaults.colors(
+                                indicatorColor = Color.Transparent
+                            ),
+                            icon = {
+                                if (currentRoute == item.route) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        Column(
+                                            horizontalAlignment = Alignment.CenterHorizontally
+                                        ) {
+                                            Text(
+                                                text = item.title,
+                                                style = MainTypographyTextStyle.bodyText1
+                                            )
+                                            Icon(
+                                                painter = painterResource(id = R.drawable.navbar_dot),
+                                                contentDescription = null,
+                                                tint = Color.Black
+                                            )
+                                        }
 
-                    eventsNavController.graph.startDestinationRoute?.let { startDestinationRoute ->
-                        popUpTo(startDestinationRoute) {
-                            saveState = true
-                        }
+
+                                    }
+                                } else {
+                                    Icon(
+                                        painter = painterResource(id = item.unSelectedIcon),
+                                        contentDescription = null,
+                                        tint = Color.Black
+                                    )
+                                }
+                            },
+                            selected = currentRoute == item.route,
+                            onClick = {
+                                if (currentRoute != item.route) {
+                                    navController.navigate(item.route) {
+                                        popUpTo(navController.graph.startDestinationId)
+                                        launchSingleTop = true
+                                    }
+                                }
+                            }
+                        )
                     }
-                    launchSingleTop = true
-                    restoreState = true
                 }
             }
         }
     ) { innerPadding ->
-        MainNavGraph(
-            rootNavHostController,
-            eventsNavController,
-            innerPadding
-
-        )
+        AppNavigation(navController = navController, innerPadding = innerPadding)
     }
 }

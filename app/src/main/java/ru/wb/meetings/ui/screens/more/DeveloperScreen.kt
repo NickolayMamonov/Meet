@@ -19,9 +19,6 @@ import ru.wb.meetings.ui.base.CustomOutlinedButton
 import ru.wb.meetings.ui.base.CustomTextButton
 import ru.wb.meetings.ui.base.MainIcon
 import ru.wb.meetings.ui.base.SearchBar
-import ru.wb.meetings.ui.events.CommunityEvent
-import ru.wb.meetings.ui.events.EventsRow
-import ru.wb.meetings.ui.events.MeetingEvent
 import ru.wb.meetings.ui.rows.TypographyRow
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 
@@ -150,7 +147,9 @@ fun DeveloperScreen(
                         useContentScaleCrop = true
                     )
                 }
-                SearchBar()
+                SearchBar() {
+
+                }
                 ChipGroup()
 
             }
@@ -175,25 +174,13 @@ fun DeveloperScreen(
                         showClip = true,
                         useContentScaleCrop = true
                     )
-                    EventsRow(avatars = avatars)
-                    CommunityEvent(
-                        avatar = communityAvatar,
-                        title = "Designa",
-                        subTitle = "10000 человек"
-                    )
                     Spacer(modifier = Modifier.height(8.dp))
-                    MeetingEvent(
-                        title = "Developer meeting",
-                        subTitle = "13.09.2024 — Москва",
-                        isEnded = true
-                    )
-                    MeetingEvent(
-                        title = "Developer meeting",
-                        subTitle = "13.09.2024 — Москва",
-                        isEnded = false
-                    )
                     Row {
-                        MainIcon(showBadge = false, isClickable = false, modifier = Modifier.padding(top = 10.dp))
+                        MainIcon(
+                            showBadge = false,
+                            isClickable = false,
+                            modifier = Modifier.padding(top = 10.dp)
+                        )
                         MainIcon(showBadge = true, isClickable = true, onClick = {
 
                         })
