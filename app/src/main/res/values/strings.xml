@@ -16,5 +16,8 @@
     <string name="search">Поиск</string>
     <string name="community_events">Встречи сообщества</string>
     <string name="go_to_event">Пойду на встречу!</string>
+    <string name="more">Ещё</string>
+    <string name="meetings">Встречи</string>
+    <string name="communities">Сообщества</string>
 
 </resources>

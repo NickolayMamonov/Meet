@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.base.ChipGroup
 import ru.wb.meetings.ui.base.MainSmallNetworkIcon
+import ru.wb.meetings.ui.models.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 
@@ -83,11 +84,5 @@ fun MeetingEvent(
 
 }
 
-data class MeetingEventModel(
-    val id: String,
-    val title: String,
-    val subTitle: String,
-    val isEnded: Boolean,
-    val icon: String = "https://picsum.photos/200/300"
-)
+
 
