@@ -10,76 +10,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import ru.wb.meetings.R
 
-//val SFProDisplay = FontFamily(
-//    Font(R.font.sf_pro_display_regular, FontWeight.Normal),
-//    Font(R.font.sf_pro_display_semibold, FontWeight.SemiBold),
-//    Font(R.font.sf_pro_display_bold, FontWeight.Bold),
-//)
-//
-//val Typography = Typography(
-//    headlineLarge = TextStyle(
-//        fontFamily = SFProDisplay,
-//        fontWeight = FontWeight.Bold,
-//        fontSize = 32.sp,
-//        letterSpacing = 0.sp
-//    ),
-//    headlineMedium = TextStyle(
-//        fontFamily = SFProDisplay,
-//        fontWeight = FontWeight.Bold,
-//        fontSize = 24.sp,
-//        letterSpacing = 0.sp
-//    ),
-//    titleLarge = TextStyle(
-//        fontFamily = SFProDisplay,
-//        fontWeight = FontWeight.SemiBold,
-//        fontSize = 18.sp,
-//        lineHeight = 30.sp,
-//        letterSpacing = 0.sp
-//    ),
-//    titleMedium = TextStyle(
-//        fontFamily = SFProDisplay,
-//        fontWeight = FontWeight.SemiBold,
-//        fontSize = 16.sp,
-//        lineHeight = 28.sp,
-//        letterSpacing = 0.sp
-//    ),
-//    bodyLarge = TextStyle(
-//        fontFamily = SFProDisplay,
-//        fontWeight = FontWeight.SemiBold,
-//        fontSize = 14.sp,
-//        lineHeight = 24.sp,
-//        letterSpacing = 0.sp
-//    ),
-//    bodyMedium = TextStyle(
-//        fontFamily = SFProDisplay,
-//        fontWeight = FontWeight.Normal,
-//        fontSize = 14.sp,
-//        lineHeight = 24.sp,
-//        letterSpacing = 0.sp
-//    ),
-//    labelLarge = TextStyle(
-//        fontFamily = SFProDisplay,
-//        fontWeight = FontWeight.Normal,
-//        fontSize = 12.sp,
-//        lineHeight = 20.sp,
-//        letterSpacing = 0.sp
-//    ),
-//    labelMedium = TextStyle(
-//        fontFamily = SFProDisplay,
-//        fontWeight = FontWeight.Normal,
-//        fontSize = 10.sp,
-//        lineHeight = 16.sp,
-//        letterSpacing = 0.sp
-//    ),
-//    labelSmall = TextStyle(
-//        fontFamily = SFProDisplay,
-//        fontWeight = FontWeight.SemiBold,
-//        fontSize = 10.sp,
-//        lineHeight = 16.sp,
-//        letterSpacing = 0.sp
-//    ),
-//)
-
 @Immutable
 data class MainTypography(
     val heading1: TextStyle,
@@ -94,7 +24,7 @@ data class MainTypography(
 )
 
 val SFProDisplayFontFamily = FontFamily(
-    Font(R.font.sf_pro_display_black,FontWeight.Black),
+    Font(R.font.sf_pro_display_black, FontWeight.Black),
     Font(R.font.sf_pro_display_bold, FontWeight.Bold),
     Font(R.font.sf_pro_display_heavyitalic, FontWeight.Bold, FontStyle.Italic),
     Font(R.font.sf_pro_display_lightitalic, FontWeight.Light, FontStyle.Italic),

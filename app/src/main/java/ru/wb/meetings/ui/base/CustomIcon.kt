@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.theme.MainColorScheme
 
@@ -82,4 +83,121 @@ fun MainIcon(
     }
 }
 
+@Composable
+fun MainSmallNetworkIcon(
+    image: String? = null,
+    showBadge: Boolean,
+    onClick: (() -> Unit)? = null,
+    isClickable: Boolean,
+    showBorder: Boolean = false,
+    showClip: Boolean = false,
+    clipPercent: Int = 35,
+    useContentScaleCrop: Boolean = false,
+    modifier: Modifier = Modifier
+        .let { if (showClip) it.clip(RoundedCornerShape(clipPercent)) else it }
+        .let {
+            if (showBorder) it.border(
+                2.dp,
+                MainColorScheme.neutralLine,
+                shape = RoundedCornerShape(35)
+            ) else it
+        }
+) {
+    Box(
+        modifier =
+        if (isClickable) modifier
+            .clickable { onClick?.invoke() }
+            .padding(10.dp)
+        else modifier
 
+    ) {
+        AsyncImage(
+            model = image,
+            placeholder = painterResource(id = R.drawable.test_community_avatar),
+            error = painterResource(id = R.drawable.test_community_avatar),
+            contentDescription = "User Icon",
+            contentScale = if (useContentScaleCrop) ContentScale.Crop else ContentScale.Fit,
+            modifier = Modifier
+                .size(48.dp)
+        )
+        if (showBadge) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .size(16.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.icon_badge),
+                    contentDescription = "Add icon",
+                    modifier = Modifier
+                        .offset((8.dp), (12).dp)
+                        .size(8.dp)
+
+
+                )
+
+            }
+        }
+
+    }
+}
+
+@Composable
+fun MainNetworkIcon(
+    image: String? = null,
+    showBadge: Boolean,
+    onClick: (() -> Unit)? = null,
+    isClickable: Boolean,
+    showBorder: Boolean = false,
+    showClip: Boolean = false,
+    clipPercent: Int = 35,
+    useContentScaleCrop: Boolean = false,
+    modifier: Modifier = Modifier
+        .let { if (showClip) it.clip(RoundedCornerShape(clipPercent)) else it }
+        .let {
+            if (showBorder) it.border(
+                2.dp,
+                MainColorScheme.neutralLine,
+                shape = RoundedCornerShape(35)
+            ) else it
+        }
+) {
+    Box(
+        modifier =
+        if (isClickable) modifier
+            .clickable { onClick?.invoke() }
+            .padding(10.dp)
+        else modifier
+
+    ) {
+        AsyncImage(
+            model = image,
+            placeholder = painterResource(id = R.drawable.test_community_avatar),
+            error = painterResource(id = R.drawable.test_community_avatar),
+            contentDescription = "User Icon",
+            contentScale = if (useContentScaleCrop) ContentScale.Crop else ContentScale.Fit,
+            modifier = Modifier
+        )
+        if (showBadge) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .size(16.dp)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.icon_badge),
+                    contentDescription = "Add icon",
+                    modifier = Modifier
+                        .offset((8.dp), (12).dp)
+                        .size(8.dp)
+
+
+                )
+
+            }
+        }
+
+    }
+}
