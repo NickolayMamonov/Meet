@@ -1,8 +1,6 @@
 package ru.wb.meetings.ui.screens.more
 
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -46,7 +44,15 @@ fun MyEventsScreen(
         MeetingEventModel("3", "Встреча 2", "Описание 2", true),
         MeetingEventModel("4", "Встреча 2", "Описание 2", false),
         MeetingEventModel("5", "Встреча 2", "Описание 2", true),
-    )
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+
+        )
     val activeMeetingsList = allMeetingsList.filter { !it.isEnded }
     val inactiveMeetingsList = allMeetingsList.filter { it.isEnded }
     val currentList = if (selectedTabIndex == 0) activeMeetingsList else inactiveMeetingsList
@@ -90,6 +96,7 @@ fun MyEventsScreen(
                             color = MainColorScheme.brandDefault
                         )
                     },
+                    modifier = Modifier.padding(bottom = 8.dp)
                 ) {
                     MyEventsTabs.entries.forEachIndexed { index, tab ->
                         Tab(
@@ -105,7 +112,6 @@ fun MyEventsScreen(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(8.dp))
             }
             items(currentList) { meeting ->
                 MeetingEvent(meeting = meeting, onClick = {
