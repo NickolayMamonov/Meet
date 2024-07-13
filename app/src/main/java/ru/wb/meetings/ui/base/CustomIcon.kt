@@ -53,7 +53,7 @@ fun MainIcon(
     ) {
         Image(
             painter = image ?: painterResource(id = R.drawable.icon_person),
-            contentDescription = "User Icon",
+            contentDescription = "Default Icon",
             contentScale = if (useContentScaleCrop) ContentScale.Crop else ContentScale.Fit,
             modifier = Modifier
                 .size(sizeIcon)
@@ -123,6 +123,7 @@ fun MainSmallNetworkIcon(
         if (showBadge) {
             Box(
                 contentAlignment = Alignment.Center,
+
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .size(16.dp)

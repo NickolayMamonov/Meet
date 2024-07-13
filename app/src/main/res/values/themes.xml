@@ -2,5 +2,6 @@
 <resources>
     <style name="Theme.Meet" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
+        <item name ="android:colorBackground">@color/white</item>
     </style>
 </resources>

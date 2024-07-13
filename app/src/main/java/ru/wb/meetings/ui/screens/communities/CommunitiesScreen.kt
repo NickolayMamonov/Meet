@@ -37,6 +37,7 @@ fun CommunitiesScreen(
         CommunityEventModel("7", "Кино", 500),
         CommunityEventModel("8", "Кино", 500),
         CommunityEventModel("9", "Кино", 500),
+        CommunityEventModel("10", "Кино", 500),
     )
 
     Scaffold(
@@ -54,20 +55,20 @@ fun CommunitiesScreen(
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier
+                .padding(innerPadding)
                 .fillMaxSize()
-                .padding(innerPadding),
+
         ) {
             item {
                 SearchBar(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 20.dp)
+                        .padding(horizontal = 20.dp, vertical = 8.dp)
                 ) {
 
                 }
             }
             items(communities) { community ->
-
                 CommunityEvent(community = community, onClick = {
                     navController.navigate(Screen.CommunitiesRoot.DetailsCommunity.route + "/${community.title}")
                 })

@@ -1,5 +1,6 @@
 package ru.wb.meetings.ui.screens.events
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,8 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
@@ -31,10 +32,15 @@ import coil.compose.AsyncImage
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.base.ChipGroup
 import ru.wb.meetings.ui.base.CustomButton
+import ru.wb.meetings.ui.base.CustomOutlinedButton
 import ru.wb.meetings.ui.base.MainNetworkIcon
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.widgets.EventsRow
+
+
+private const val MAX_LINE = 8
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,6 +58,11 @@ fun DetailsEventScreen(navController: NavController, name: String) {
         "https://picsum.photos/200/300",
         "https://picsum.photos/200/300",
     )
+    var fullText by rememberSaveable {
+        mutableStateOf(false)
+    }
+    var buttonPressed by rememberSaveable { mutableStateOf(false) }
+
     if (showImageDialog) {
         Dialog(onDismissRequest = { showImageDialog = false }) {
             Box(modifier = Modifier.fillMaxSize()) {
@@ -72,8 +83,8 @@ fun DetailsEventScreen(navController: NavController, name: String) {
                 title = {
                     Text(
                         text = name,
-                        style = MainTypographyTextStyle.subheading1,
-                        color = MainColorScheme.neutralActive
+                        style = MeetTheme.typography.subheading1,
+                        color = MeetTheme.colors.neutralActive
                     )
                 },
                 navigationIcon = {
@@ -84,6 +95,18 @@ fun DetailsEventScreen(navController: NavController, name: String) {
                         )
                     }
 
+                },
+                actions = {
+                    if (buttonPressed) {
+                        IconButton(onClick = {
+                        }) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_accept),
+                                tint = MeetTheme.colors.brandDefault,
+                                contentDescription = "Action Icon"
+                            )
+                        }
+                    }
                 }
 
 
@@ -99,10 +122,14 @@ fun DetailsEventScreen(navController: NavController, name: String) {
             item {
                 Text(
                     text = text,
-                    style = MainTypographyTextStyle.bodyText1,
-                    color = MainColorScheme.neutralWeak
+                    style = MeetTheme.typography.bodyText1,
+                    color = MeetTheme.colors.neutralWeak,
                 )
+            }
+            item {
                 ChipGroup()
+            }
+            item {
                 MainNetworkIcon(
                     image = imageUrl,
                     showBadge = false,
@@ -112,29 +139,44 @@ fun DetailsEventScreen(navController: NavController, name: String) {
                     clipPercent = 16,
                     onClick = { showImageDialog = true },
                 )
+            }
+            item {
                 Text(
                     text = description,
-                    style = MainTypographyTextStyle.metadata1,
-                    color = MainColorScheme.neutralWeak,
-                    maxLines = 8,
+                    style = MeetTheme.typography.metadata1,
+                    color = MeetTheme.colors.neutralWeak,
+                    maxLines = if (fullText) Int.MAX_VALUE else MAX_LINE,
                     overflow = TextOverflow.Ellipsis,
-
-                    )
+                    modifier = Modifier.clickable {
+                        fullText = !fullText
+                    }
+                )
+            }
+            item {
                 EventsRow(avatars = avatars)
+            }
+            item {
+                when {
+                    !buttonPressed -> {
+                        CustomButton(
+                            text = stringResource(R.string.go_to_event),
+                            onClick = { buttonPressed = true },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                        )
+                    }
 
-                Box(modifier = Modifier.fillMaxWidth()) {
-                    CustomButton(
-                        text = stringResource(R.string.go_to_event),
-                        onClick = { /*TODO*/ },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.Center)
-                    )
+                    else -> {
+                        CustomOutlinedButton(
+                            text = stringResource(R.string.go_another_time),
+                            onClick = { buttonPressed = false },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                        )
+                    }
                 }
             }
         }
-
-
     }
 }
 
