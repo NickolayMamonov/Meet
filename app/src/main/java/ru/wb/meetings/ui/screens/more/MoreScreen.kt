@@ -64,7 +64,7 @@ fun MoreScreen(
             item {
                 SettingsItem(
                     icon = painterResource(id = R.drawable.events),
-                    name = "Мои встречи",
+                    name = stringResource(id = R.string.my_meetings),
                     onClick = {
                         navController.navigate(Screen.MoreRoot.MyEvents.route)
                     },
@@ -77,7 +77,7 @@ fun MoreScreen(
             item {
                 SettingsItem(
                     icon = painterResource(id = R.drawable.ic_theme),
-                    name = "Тема",
+                    name = stringResource(R.string.theme),
                     onClick = {},
                     modifier = Modifier.padding(20.dp)
                 )
@@ -85,7 +85,7 @@ fun MoreScreen(
             item {
                 SettingsItem(
                     icon = painterResource(id = R.drawable.ic_notification),
-                    name = "Уведомления",
+                    name = stringResource(R.string.notifications),
                     onClick = {},
                     modifier = Modifier.padding(20.dp)
                 )
@@ -93,7 +93,7 @@ fun MoreScreen(
             item {
                 SettingsItem(
                     icon = painterResource(id = R.drawable.ic_security),
-                    name = "Безопасность",
+                    name = stringResource(R.string.security),
                     onClick = {},
                     modifier = Modifier.padding(20.dp)
                 )
@@ -101,7 +101,7 @@ fun MoreScreen(
             item {
                 SettingsItem(
                     icon = painterResource(id = R.drawable.ic_memory_and_storage),
-                    name = "Память и ресурсы",
+                    name = stringResource(R.string.memory_and_resources),
                     onClick = {},
                     modifier = Modifier.padding(20.dp)
                 )
@@ -115,7 +115,7 @@ fun MoreScreen(
             item {
                 SettingsItem(
                     icon = painterResource(id = R.drawable.ic_help),
-                    name = "Помощь",
+                    name = stringResource(R.string.help),
                     onClick = {},
                     modifier = Modifier.padding(20.dp)
                 )
@@ -123,7 +123,7 @@ fun MoreScreen(
             item {
                 SettingsItem(
                     icon = painterResource(id = R.drawable.ic_invite_friend),
-                    name = "Пригласи друга",
+                    name = stringResource(R.string.invite_friend),
                     onClick = {},
                     modifier = Modifier.padding(20.dp)
                 )

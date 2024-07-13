@@ -29,6 +29,7 @@ import ru.wb.meetings.navigation.Screen
 import ru.wb.meetings.ui.models.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.utils.MyEventsTabs
 import ru.wb.meetings.ui.widgets.MeetingEvent
 
@@ -62,8 +63,8 @@ fun MyEventsScreen(
                 title = {
                     Text(
                         text = stringResource(id = R.string.my_meetings),
-                        style = MainTypographyTextStyle.subheading1,
-                        color = MainColorScheme.neutralActive
+                        style = MeetTheme.typography.subheading1,
+                        color = MeetTheme.colors.neutralActive
                     )
                 },
                 navigationIcon = {
@@ -89,11 +90,11 @@ fun MyEventsScreen(
             item {
                 TabRow(
                     selectedTabIndex = selectedTabIndex,
-                    contentColor = MainColorScheme.brandDefault,
+                    contentColor = MeetTheme.colors.brandDefault,
                     indicator = { tabPositions ->
                         SecondaryIndicator(
                             modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                            color = MainColorScheme.brandDefault
+                            color = MeetTheme.colors.brandDefault
                         )
                     },
                     modifier = Modifier.padding(bottom = 8.dp)
@@ -103,8 +104,11 @@ fun MyEventsScreen(
                             text = {
                                 Text(
                                     stringResource(id = tab.title),
-                                    style = MainTypographyTextStyle.bodyText1,
-                                    color = MainColorScheme.brandDefault
+                                    style = MeetTheme.typography.bodyText1,
+                                    color = when (selectedTabIndex) {
+                                        index -> MeetTheme.colors.brandDefault
+                                        else -> MeetTheme.colors.neutralWeak
+                                    }
                                 )
                             },
                             selected = selectedTabIndex == index,

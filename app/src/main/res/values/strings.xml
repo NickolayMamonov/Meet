@@ -19,5 +19,12 @@
     <string name="more">Ещё</string>
     <string name="meetings">Встречи</string>
     <string name="communities">Сообщества</string>
+    <string name="go_another_time">Схожу в другой раз</string>
+    <string name="theme">Тема</string>
+    <string name="notifications">Уведомления</string>
+    <string name="security">Безопасность</string>
+    <string name="memory_and_resources">Память и ресурсы</string>
+    <string name="help">Помощь</string>
+    <string name="invite_friend">Пригласи друга</string>
 
 </resources>

@@ -21,6 +21,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -31,6 +32,7 @@ import ru.wb.meetings.ui.base.SearchBar
 import ru.wb.meetings.ui.models.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.utils.EventsTabs
 import ru.wb.meetings.ui.widgets.MeetingEvent
 
@@ -53,8 +55,8 @@ fun EventsScreen(navController: NavController) {
                 title = {
                     Text(
                         text = stringResource(R.string.meetings),
-                        style = MainTypographyTextStyle.subheading1,
-                        color = MainColorScheme.neutralActive,
+                        style = MeetTheme.typography.subheading1,
+                        color = MeetTheme.colors.neutralActive,
                         modifier = Modifier.padding(start = 4.dp)
                     )
                 },
@@ -87,11 +89,11 @@ fun EventsScreen(navController: NavController) {
             item {
                 TabRow(
                     selectedTabIndex = selectedTabIndex,
-                    contentColor = MainColorScheme.brandDefault,
+                    contentColor = MeetTheme.colors.brandDefault,
                     indicator = { tabPositions ->
                         SecondaryIndicator(
                             modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                            color = MainColorScheme.brandDefault
+                            color = MeetTheme.colors.brandDefault
                         )
                     },
                     modifier = Modifier
@@ -103,7 +105,11 @@ fun EventsScreen(navController: NavController) {
                             text = {
                                 Text(
                                     stringResource(id = tab.title),
-                                    style = MainTypographyTextStyle.bodyText1
+                                    style = MeetTheme.typography.bodyText1,
+                                    color = when (selectedTabIndex) {
+                                        index -> MeetTheme.colors.brandDefault
+                                        else -> MeetTheme.colors.neutralWeak
+                                    }
                                 )
                             },
                             selected = selectedTabIndex == index,
