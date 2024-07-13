@@ -18,19 +18,23 @@ fun mobileNumberFilter(text: AnnotatedString): TransformedText {
 
     val offsetMapping = object : OffsetMapping {
         override fun originalToTransformed(offset: Int): Int {
-            if (offset <= 3) return offset
-            if (offset <= 6) return offset + 1
-            if (offset <= 8) return offset + 2
-            if (offset <= 10) return offset + 3
-            return 13
+            return when {
+                offset <= 3 -> offset
+                offset <= 6 -> offset + 1
+                offset <= 8 -> offset + 2
+                offset <= 10 -> offset + 3
+                else -> 13
+            }
         }
 
         override fun transformedToOriginal(offset: Int): Int {
-            if (offset <= 4) return offset
-            if (offset <= 7) return offset - 1
-            if (offset <= 10) return offset - 2
-            if (offset <= 13) return offset - 3
-            return 10
+            return when {
+                offset <= 4 -> offset
+                offset <= 7 -> offset - 1
+                offset <= 10 -> offset - 2
+                offset <= 13 -> offset - 3
+                else -> 10
+            }
         }
     }
 

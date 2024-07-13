@@ -31,7 +31,6 @@ import ru.wb.meetings.R
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 
-private const val OTP_FIRST = 1
 private const val OTP_LENGTH = 4
 
 
@@ -49,7 +48,7 @@ fun OtpElement(onOtpComplete: (String) -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.width(220.dp)
         ) {
-            (OTP_FIRST..OTP_LENGTH).forEach { index ->
+            repeat(OTP_LENGTH) { index ->
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
@@ -58,7 +57,7 @@ fun OtpElement(onOtpComplete: (String) -> Unit) {
                         .height(50.dp)
                 ) {
                     when {
-                        index > otp.length -> {
+                        index >= otp.length -> {
                             Image(
                                 painter = painterResource(id = R.drawable.navbar_dot),
                                 contentDescription = "Dot",
@@ -69,7 +68,7 @@ fun OtpElement(onOtpComplete: (String) -> Unit) {
 
                         else -> {
                             Text(
-                                text = otp[index - 1].toString(),
+                                text = otp[index].toString(),
                                 style = MainTypographyTextStyle.heading1
                             )
                         }
