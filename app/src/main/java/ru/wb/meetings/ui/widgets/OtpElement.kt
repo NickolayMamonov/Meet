@@ -20,7 +20,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.SolidColor
@@ -32,12 +31,11 @@ import ru.wb.meetings.R
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 
-private const val OTP_FIRST = 1
 private const val OTP_LENGTH = 4
 
 
 @Composable
-fun OtpElement() {
+fun OtpElement(onOtpComplete: (String) -> Unit) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -50,7 +48,7 @@ fun OtpElement() {
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.width(220.dp)
         ) {
-            (OTP_FIRST..OTP_LENGTH).forEach { index ->
+            repeat(OTP_LENGTH) { index ->
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
@@ -59,7 +57,7 @@ fun OtpElement() {
                         .height(50.dp)
                 ) {
                     when {
-                        index > otp.length -> {
+                        index >= otp.length -> {
                             Image(
                                 painter = painterResource(id = R.drawable.navbar_dot),
                                 contentDescription = "Dot",
@@ -67,9 +65,10 @@ fun OtpElement() {
                                 modifier = Modifier.size(24.dp)
                             )
                         }
+
                         else -> {
                             Text(
-                                text = otp[index - 1].toString(),
+                                text = otp[index].toString(),
                                 style = MainTypographyTextStyle.heading1
                             )
                         }
@@ -81,7 +80,16 @@ fun OtpElement() {
         BasicTextField(
             value = otp,
             onValueChange = { value ->
-                if (value.length <= 4) otp = value.filter { it.isDigit() }
+                when {
+                    value.length <= OTP_LENGTH -> {
+                        otp = value.filter { it.isDigit() }
+                        when (value.length) {
+                            OTP_LENGTH -> {
+                                onOtpComplete(value)
+                            }
+                        }
+                    }
+                }
             },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
@@ -104,5 +112,5 @@ fun OtpElement() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewOtpElement() {
-    OtpElement()
+//    OtpElement()
 }
