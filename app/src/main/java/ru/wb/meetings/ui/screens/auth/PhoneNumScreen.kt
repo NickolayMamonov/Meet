@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -69,7 +70,7 @@ fun PhoneNumScreen(navController: NavController) {
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Введите номер телефона",
+                        text = stringResource(R.string.enter_phone_num),
                         style = MeetTheme.typography.heading2,
                         color = MeetTheme.colors.neutralActive,
                         textAlign = TextAlign.Center,
@@ -88,11 +89,12 @@ fun PhoneNumScreen(navController: NavController) {
                 ) {
                     Text(
                         textAlign = TextAlign.Center,
-                        text = "Мы вышлем код подтверждения на указанный номер",
+                        text = stringResource(R.string.we_will_send_confirmation_code),
                         style = MeetTheme.typography.bodyText2,
                         lineHeight = 28.sp,
                         color = MeetTheme.colors.neutralActive,
-                        modifier = Modifier.padding(16.dp)
+                        modifier = Modifier
+                            .padding(16.dp)
                             .padding(horizontal = 64.dp)
                     )
                 }
@@ -113,7 +115,7 @@ fun PhoneNumScreen(navController: NavController) {
                 when {
                     phoneNumberLength.value -> {
                         CustomButton(
-                            text = "Продолжить",
+                            text = stringResource(R.string.Continue),
                             onClick = {
                                 navController.navigate(AuthScreens.OtpCodeScreen.route + "/${phoneNumberState.value}/${countryCodeState.value}")
                             },
@@ -125,7 +127,7 @@ fun PhoneNumScreen(navController: NavController) {
 
                     else -> {
                         CustomButton(
-                            text = "Продолжить",
+                            text = stringResource(R.string.Continue),
                             isEnabled = false,
                             onClick = {},
                             modifier = Modifier

@@ -29,5 +29,11 @@
     <string name="save">Сохранить</string>
     <string name="surname_optionally">Фамилия (опционально)</string>
     <string name="name_required">Имя (обязательно)</string>
+    <string name="Continue">Продолжить</string>
+    <string name="we_will_send_confirmation_code">Мы вышлем код подтверждения на указанный номер</string>
+    <string name="enter_phone_num">Введите номер телефона</string>
+    <string name="enter_code">Введите код</string>
+    <string name="we_send_code">Отправили код на номер</string>
+    <string name="request_code_again">Запросить код повторно</string>
 
 </resources>

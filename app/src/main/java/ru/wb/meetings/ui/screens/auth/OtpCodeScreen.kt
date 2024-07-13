@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -22,6 +23,7 @@ import ru.wb.meetings.R
 import ru.wb.meetings.navigation.AuthScreens
 import ru.wb.meetings.ui.base.CustomTextButton
 import ru.wb.meetings.ui.theme.MeetTheme
+import ru.wb.meetings.ui.utils.formatPhoneNumber
 import ru.wb.meetings.ui.widgets.OtpElement
 
 private const val TEST_CODE = "1234"
@@ -61,7 +63,7 @@ fun OtpCodeScreen(navController: NavController, phoneNumber: String, countryCode
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Введите код",
+                        text = stringResource(R.string.enter_code),
                         style = MeetTheme.typography.heading2,
                         color = MeetTheme.colors.neutralActive,
                         textAlign = TextAlign.Center,
@@ -78,7 +80,7 @@ fun OtpCodeScreen(navController: NavController, phoneNumber: String, countryCode
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = "Отправили код на номер",
+                        text = stringResource(R.string.we_send_code),
                         style = MeetTheme.typography.bodyText2,
                         color = MeetTheme.colors.neutralActive,
                         modifier = Modifier.padding(horizontal = 16.dp)
@@ -112,22 +114,10 @@ fun OtpCodeScreen(navController: NavController, phoneNumber: String, countryCode
                 })
             }
             item {
-                CustomTextButton(text = "Запросить код повторно", onClick = { /*TODO*/ }, modifier = Modifier.padding(top = 64.dp))
+                CustomTextButton(text = stringResource(R.string.request_code_again), onClick = { /*TODO*/ }, modifier = Modifier.padding(top = 64.dp))
             }
         }
     }
 
 }
 
-fun formatPhoneNumber(phoneNumber: String): String {
-    return if (phoneNumber.length == 10) {
-        "${phoneNumber.substring(0, 3)} ${phoneNumber.substring(3, 6)}-${
-            phoneNumber.substring(
-                6,
-                8
-            )
-        }-${phoneNumber.substring(8)}"
-    } else {
-        phoneNumber
-    }
-}
