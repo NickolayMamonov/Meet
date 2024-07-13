@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
@@ -55,11 +56,11 @@ fun CustomTextButton(
     text: String,
     onClick: () -> Unit,
     isEnabled: Boolean = true,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    val backgroundColor = MainColorScheme.neutralWhite
+    val backgroundColor = Color.Transparent
     val contentColor = when {
         isPressed -> MainColorScheme.brandDark
         !isEnabled -> MainColorScheme.brandDefault.copy(alpha = 0.5f)

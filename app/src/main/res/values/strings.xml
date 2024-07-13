@@ -26,5 +26,8 @@
     <string name="memory_and_resources">Память и ресурсы</string>
     <string name="help">Помощь</string>
     <string name="invite_friend">Пригласи друга</string>
+    <string name="save">Сохранить</string>
+    <string name="surname_optionally">Фамилия (опционально)</string>
+    <string name="name_required">Имя (обязательно)</string>
 
 </resources>
