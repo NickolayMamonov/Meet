@@ -53,8 +53,8 @@ fun MoreScreen(
         ) {
             item {
                 ProfileItem(
-                    text = "Иван Иванов",
-                    subtext = "+7 999 999-99-99",
+                    text = stringResource(R.string.test_name_surname),
+                    subtext = stringResource(R.string.test_num_phone),
                     onClick = {
                         navController.navigate(Screen.MoreRoot.Profile.route)
                     },

@@ -36,6 +36,8 @@ import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.utils.Country
 import ru.wb.meetings.ui.utils.mobileNumberFilter
 
+
+private const val PHONE_NUM_WITHOUT_COUNTRY_CODE = 10
 @Composable
 fun PhoneNumberElement(
     onPhoneNumberChange: (String) -> Unit,
@@ -117,7 +119,7 @@ fun PhoneNumberElement(
                     textStyle = MeetTheme.typography.bodyText1,
                     value = phoneNumber,
                     onValueChange = {
-                        if (it.filter { char -> char.isDigit() }.length <= 10) {
+                        if (it.filter { char -> char.isDigit() }.length <= PHONE_NUM_WITHOUT_COUNTRY_CODE) {
                             phoneNumber = it
                         }
                     },
@@ -154,11 +156,4 @@ fun PhoneNumberElement(
 
     }
 
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewPhoneNumberElement() {
-//    PhoneNumberElement(onPhoneNumberChange = {})
 }

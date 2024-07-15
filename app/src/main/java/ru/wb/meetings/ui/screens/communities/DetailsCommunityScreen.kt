@@ -44,7 +44,7 @@ fun DetailsCommunityScreen(navController: NavController, name: String) {
         MeetingEventModel("4", "Developer Meeting", "13.09.2024 — Москва", false),
         MeetingEventModel("5", "Developer Meeting", "13.09.2024 — Москва", true),
     )
-    var isFullText by rememberSaveable {
+    var fullText by rememberSaveable {
         mutableStateOf(false)
     }
 
@@ -83,12 +83,12 @@ fun DetailsCommunityScreen(navController: NavController, name: String) {
             item {
                 Text(
                     text = description,
-                    maxLines = if (isFullText) Int.MAX_VALUE else MAX_LINE,
+                    maxLines = if (fullText) Int.MAX_VALUE else MAX_LINE,
                     overflow = TextOverflow.Ellipsis,
                     style = MainTypographyTextStyle.metadata1,
                     color = MainColorScheme.neutralWeak,
                     modifier = Modifier.clickable {
-                        isFullText = !isFullText
+                        fullText = !fullText
                     }
                 )
             }

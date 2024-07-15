@@ -35,5 +35,7 @@
     <string name="enter_code">Введите код</string>
     <string name="we_send_code">Отправили код на номер</string>
     <string name="request_code_again">Запросить код повторно</string>
+    <string name="test_name_surname">Иван Иванов</string>
+    <string name="test_num_phone">+7 999 999-99-99</string>
 
 </resources>

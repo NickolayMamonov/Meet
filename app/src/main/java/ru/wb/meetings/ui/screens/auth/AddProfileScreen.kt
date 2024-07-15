@@ -165,42 +165,37 @@ fun AddProfileScreen(navController: NavController) {
 
             }
             item {
-                if (firstName.isNotEmpty()) {
-                    CustomButton(
-                        text = stringResource(R.string.save),
-                        onClick = {
-                            navController.navigate(AuthScreens.MainScreen.route) {
-                                popUpTo(route = AuthScreens.PhoneNumScreen.route){
-                                    inclusive = true
+                when {
+                    firstName.isNotEmpty() -> {
+                        CustomButton(
+                            text = stringResource(R.string.save),
+                            onClick = {
+                                navController.navigate(AuthScreens.MainScreen.route) {
+                                    popUpTo(route = AuthScreens.PhoneNumScreen.route){
+                                        inclusive = true
+                                    }
                                 }
-                            }
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 64.dp)
-                    )
-                } else {
-                    CustomButton(
-                        text = stringResource(R.string.save),
-                        isEnabled = false,
-                        onClick = {},
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 64.dp)
-                    )
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 64.dp)
+                        )
+                    }
+                    else -> {
+                        CustomButton(
+                            text = stringResource(R.string.save),
+                            isEnabled = false,
+                            onClick = {},
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 64.dp)
+                        )
 
+                    }
                 }
 
             }
 
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewAddProfileScreen() {
-    MeetTheme {
-        AddProfileScreen(navController = rememberNavController())
     }
 }
