@@ -17,7 +17,7 @@ import ru.wb.meetings.ui.screens.more.MyEventsScreen
 import ru.wb.meetings.ui.screens.more.ProfileScreen
 
 @Composable
-fun NavGraph(navController: NavHostController,innerPadding:PaddingValues){
+fun NavGraph(navController: NavHostController, innerPadding: PaddingValues) {
     NavHost(navController = navController, startDestination = Screen.EventsRoot.route) {
         navigation(
             startDestination = Screen.EventsRoot.Events.route,
@@ -32,17 +32,9 @@ fun NavGraph(navController: NavHostController,innerPadding:PaddingValues){
                     navArgument("name") { type = NavType.StringType },
                 )
             ) { backStackEntry ->
-                val name = backStackEntry.arguments?.getString("name")
-                when {
-                    name != null -> {
-                        DetailsEventScreen(navController = navController, name = name)
-                    }
-                }
-
+                backStackEntry.arguments?.getString("name")?.let { DetailsEventScreen(navController = navController, name = it) }
             }
-
         }
-
         navigation(
             startDestination = Screen.CommunitiesRoot.Communities.route,
             route = Screen.CommunitiesRoot.route
@@ -56,12 +48,7 @@ fun NavGraph(navController: NavHostController,innerPadding:PaddingValues){
                     navArgument("name") { type = NavType.StringType },
                 )
             ) { backStackEntry ->
-                val name = backStackEntry.arguments?.getString("name")
-                when {
-                    name != null -> {
-                        DetailsCommunityScreen(navController = navController, name = name)
-                    }
-                }
+                backStackEntry.arguments?.getString("name")?.let {DetailsCommunityScreen(navController = navController, name = it)  }
             }
             composable(
                 route = Screen.CommunitiesRoot.DetailsCommunity.DetailsEvent.route + "/{name}",
@@ -69,16 +56,9 @@ fun NavGraph(navController: NavHostController,innerPadding:PaddingValues){
                     navArgument("name") { type = NavType.StringType },
                 )
             ) { backStackEntry ->
-                val name = backStackEntry.arguments?.getString("name")
-                when {
-                    name != null -> {
-                        DetailsEventScreen(navController = navController, name = name)
-                    }
-                }
-
+                backStackEntry.arguments?.getString("name")?.let { DetailsEventScreen(navController = navController, name = it) }
             }
         }
-
         navigation(
             startDestination = Screen.MoreRoot.More.route,
             route = Screen.MoreRoot.route
@@ -98,16 +78,8 @@ fun NavGraph(navController: NavHostController,innerPadding:PaddingValues){
                     navArgument("name") { type = NavType.StringType },
                 )
             ) { backStackEntry ->
-                val name = backStackEntry.arguments?.getString("name")
-                when {
-                    name != null -> {
-                        DetailsEventScreen(navController = navController, name = name)
-                    }
-                }
+                backStackEntry.arguments?.getString("name")?.let {DetailsEventScreen(navController = navController, name = it)  }
             }
         }
-
-
     }
-
 }

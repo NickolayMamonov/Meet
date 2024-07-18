@@ -11,8 +11,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.R
+import ru.wb.meetings.ui.base.text.TextBody2
+import ru.wb.meetings.ui.base.text.TextSubheading2
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 
 @Composable
 fun TypographyRow(
@@ -31,27 +34,13 @@ fun TypographyRow(
                     .padding(vertical = 16.dp)
                     .widthIn(180.dp)
             ) {
-
-                Text(
-                    text = title,
-                    style = MainTypographyTextStyle.subheading2,
-                    fontSize = MainTypographyTextStyle.subheading2.fontSize,
-                    maxLines = 1,
-                    color = MainColorScheme.neutralActive
-                )
-                Text(
-                    text = subTitle,
-                    style = MainTypographyTextStyle.bodyText2,
-                    fontSize = MainTypographyTextStyle.bodyText2.fontSize,
-                    maxLines = 1,
-                    color = MainColorScheme.neutralWeak
-                )
-
+                TextSubheading2(text = title, maxLines = 1, color = MeetTheme.colors.neutralActive)
+                TextBody2(text = subTitle, maxLines = 1, color = MeetTheme.colors.neutralWeak)
             }
             Text(
                 text = text,
                 style = textStyle,
-                color = MainColorScheme.neutralActive,
+                color = MeetTheme.colors.neutralActive,
                 maxLines = 1,
                 modifier = Modifier.padding(8.dp)
             )

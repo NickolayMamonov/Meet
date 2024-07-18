@@ -12,8 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ru.wb.meetings.ui.base.text.TextMetadata3
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 
 @Composable
 fun ChipGroup() {
@@ -38,15 +40,8 @@ fun CustomChip(text: String, modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .background(MainColorScheme.brandBackground, RoundedCornerShape(33.dp))
+            .background(MeetTheme.colors.brandBackground, RoundedCornerShape(33.dp))
     ) {
-        Text(
-            text = text,
-            color = MainColorScheme.brandDark,
-            style = MainTypographyTextStyle.metadata3,
-            modifier = Modifier
-                .padding(horizontal = 8.dp, vertical = 4.dp)
-        )
+        TextMetadata3(text = text, color = MeetTheme.colors.brandDark, modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp))
     }
-
 }

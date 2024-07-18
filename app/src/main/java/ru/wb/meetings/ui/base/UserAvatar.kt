@@ -23,14 +23,12 @@ import ru.wb.meetings.ui.theme.MeetTheme
 fun UserAvatar(
     image: String? = null,
     size: Dp,
-    isBadge: Boolean? = false,
+    isBadge: Boolean = false,
     onClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     Box(
         contentAlignment = Alignment.BottomEnd,
-        modifier = modifier
-            .padding(end = 16.dp, bottom = 16.dp)
     ) {
         Box(
             contentAlignment = Alignment.Center,
@@ -49,12 +47,13 @@ fun UserAvatar(
                 modifier = modifier.size(size / 2)
             )
         }
-        if (isBadge == true) {
+        if (isBadge) {
             Image(
                 painter = painterResource(id = R.drawable.icon_badge),
                 contentDescription = null,
-                modifier=Modifier
-                    .offset((-8).dp, (-8).dp))
+                modifier = Modifier
+                    .offset((-8).dp, (-8).dp)
+            )
 
         }
     }

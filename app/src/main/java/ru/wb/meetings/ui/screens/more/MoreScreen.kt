@@ -13,17 +13,18 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ru.wb.meetings.R
 import ru.wb.meetings.navigation.Screen
+import ru.wb.meetings.ui.base.text.TextSubheading1
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
-import ru.wb.meetings.ui.widgets.ProfileItem
-import ru.wb.meetings.ui.widgets.SettingsItem
+import ru.wb.meetings.ui.theme.MeetTheme
+import ru.wb.meetings.ui.widgets.ProfileElement
+import ru.wb.meetings.ui.widgets.SettingsElement
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,6 +35,10 @@ fun MoreScreen(
         topBar = {
             TopAppBar(
                 title = {
+                    TextSubheading1(
+                        text = stringResource(R.string.more),
+                        color = MeetTheme.colors.neutralActive
+                    )
                     Text(
                         text = stringResource(R.string.more),
                         style = MainTypographyTextStyle.subheading1,
@@ -47,14 +52,14 @@ fun MoreScreen(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(Color.White),
+                .background(MeetTheme.colors.neutralWhite),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
-                ProfileItem(
-                    text = "Иван Иванов",
-                    subtext = "+7 999 999-99-99",
+                ProfileElement(
+                    text = stringResource(R.string.test_name_surname),
+                    subtext = stringResource(R.string.test_num_phone),
                     onClick = {
                         navController.navigate(Screen.MoreRoot.Profile.route)
                     },
@@ -62,7 +67,7 @@ fun MoreScreen(
                 )
             }
             item {
-                SettingsItem(
+                SettingsElement(
                     icon = painterResource(id = R.drawable.events),
                     name = stringResource(id = R.string.my_meetings),
                     onClick = {
@@ -75,7 +80,7 @@ fun MoreScreen(
             }
 
             item {
-                SettingsItem(
+                SettingsElement(
                     icon = painterResource(id = R.drawable.ic_theme),
                     name = stringResource(R.string.theme),
                     onClick = {},
@@ -83,7 +88,7 @@ fun MoreScreen(
                 )
             }
             item {
-                SettingsItem(
+                SettingsElement(
                     icon = painterResource(id = R.drawable.ic_notification),
                     name = stringResource(R.string.notifications),
                     onClick = {},
@@ -91,7 +96,7 @@ fun MoreScreen(
                 )
             }
             item {
-                SettingsItem(
+                SettingsElement(
                     icon = painterResource(id = R.drawable.ic_security),
                     name = stringResource(R.string.security),
                     onClick = {},
@@ -99,7 +104,7 @@ fun MoreScreen(
                 )
             }
             item {
-                SettingsItem(
+                SettingsElement(
                     icon = painterResource(id = R.drawable.ic_memory_and_storage),
                     name = stringResource(R.string.memory_and_resources),
                     onClick = {},
@@ -113,7 +118,7 @@ fun MoreScreen(
                 )
             }
             item {
-                SettingsItem(
+                SettingsElement(
                     icon = painterResource(id = R.drawable.ic_help),
                     name = stringResource(R.string.help),
                     onClick = {},
@@ -121,7 +126,7 @@ fun MoreScreen(
                 )
             }
             item {
-                SettingsItem(
+                SettingsElement(
                     icon = painterResource(id = R.drawable.ic_invite_friend),
                     name = stringResource(R.string.invite_friend),
                     onClick = {},

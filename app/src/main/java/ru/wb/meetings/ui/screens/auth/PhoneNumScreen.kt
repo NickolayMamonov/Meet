@@ -26,7 +26,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import ru.wb.meetings.R
 import ru.wb.meetings.navigation.AuthScreens
-import ru.wb.meetings.ui.base.CustomButton
+import ru.wb.meetings.ui.base.buttons.CustomButton
+import ru.wb.meetings.ui.base.text.TextBody2
+import ru.wb.meetings.ui.base.text.TextHeading2
 import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.widgets.PhoneNumberElement
 
@@ -39,44 +41,32 @@ fun PhoneNumScreen(navController: NavController) {
     val phoneNumberState = remember { mutableStateOf("") }
     val countryCodeState = remember { mutableStateOf("+7") }
     val phoneNumberLength = remember { mutableStateOf(false) }
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                navigationIcon = {
-                    IconButton(onClick = { navController.navigateUp() }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.arrow_back),
-                            contentDescription = null
-                        )
-                    }
-
-                },
-                title = {}
-            )
-        }
-    ) { innerPadding ->
+    Scaffold(topBar = {
+        TopAppBar(navigationIcon = {
+            IconButton(onClick = { navController.navigateUp() }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.arrow_back),
+                    contentDescription = null
+                )
+            }
+        }, title = {})
+    }) { innerPadding ->
         LazyColumn(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
                 .padding(horizontal = 24.dp)
-
         ) {
             item {
                 Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(
+                    TextHeading2(
                         text = stringResource(R.string.enter_phone_num),
-                        style = MeetTheme.typography.heading2,
                         color = MeetTheme.colors.neutralActive,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .padding(top = 32.dp, start = 16.dp, end = 16.dp)
-
+                        modifier = Modifier.padding(top = 32.dp)
                     )
                 }
             }
@@ -87,39 +77,32 @@ fun PhoneNumScreen(navController: NavController) {
                         .fillMaxWidth()
                         .padding(bottom = 32.dp)
                 ) {
-                    Text(
-                        textAlign = TextAlign.Center,
+                    TextBody2(
                         text = stringResource(R.string.we_will_send_confirmation_code),
-                        style = MeetTheme.typography.bodyText2,
-                        lineHeight = 28.sp,
+                        textAlign = TextAlign.Center,
                         color = MeetTheme.colors.neutralActive,
+                        lineHeight = 28.sp,
                         modifier = Modifier
                             .padding(16.dp)
                             .padding(horizontal = 64.dp)
                     )
                 }
-
             }
             item {
-                PhoneNumberElement(
-                    onPhoneNumberChange = { phoneNumber ->
+                PhoneNumberElement(onPhoneNumberChange = { phoneNumber ->
                     phoneNumberLength.value = phoneNumber.length == PHONE_NUM_LENGTH
                     phoneNumberState.value = phoneNumber
-                },
-                    onCountryCodeChange = { countryCode ->
-                        countryCodeState.value = countryCode
-                    }
-                )
+                }, onCountryCodeChange = { countryCode ->
+                    countryCodeState.value = countryCode
+                })
             }
             item {
                 when {
                     phoneNumberLength.value -> {
                         CustomButton(
-                            text = stringResource(R.string.Continue),
-                            onClick = {
+                            text = stringResource(R.string.Continue), onClick = {
                                 navController.navigate(AuthScreens.OtpCodeScreen.route + "/${phoneNumberState.value}/${countryCodeState.value}")
-                            },
-                            modifier = Modifier
+                            }, modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(top = 64.dp)
                         )

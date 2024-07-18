@@ -20,7 +20,6 @@ fun AuthNavGraph(navController: NavHostController) {
         ) {
             PhoneNumScreen(navController = navController)
         }
-
         composable(
             route = AuthScreens.OtpCodeScreen.route + "/{phoneNumber}/{countryCode}",
             arguments = listOf(
@@ -28,16 +27,9 @@ fun AuthNavGraph(navController: NavHostController) {
                 navArgument("countryCode") { type = NavType.StringType }
             )
         ) { backStackEntry ->
-            val phoneNumber = backStackEntry.arguments?.getString("phoneNumber")
-            val countryCode = backStackEntry.arguments?.getString("countryCode")
-            phoneNumber?.let {
-                countryCode?.let {
-                    OtpCodeScreen(
-                        navController = navController,
-                        phoneNumber = phoneNumber,
-                        countryCode = countryCode
-                    )
-
+            backStackEntry.arguments?.getString("phoneNumber")?.let { phoneNumber ->
+                backStackEntry.arguments?.getString("countryCode")?.let { countryCode ->
+                    OtpCodeScreen(navController = navController, phoneNumber = phoneNumber, countryCode = countryCode)
                 }
             }
         }

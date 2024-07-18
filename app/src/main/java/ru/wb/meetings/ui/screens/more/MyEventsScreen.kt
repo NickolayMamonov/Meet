@@ -12,7 +12,6 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,9 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ru.wb.meetings.R
 import ru.wb.meetings.navigation.Screen
+import ru.wb.meetings.ui.base.text.TextBody1
+import ru.wb.meetings.ui.base.text.TextSubheading1
 import ru.wb.meetings.ui.models.MeetingEventModel
-import ru.wb.meetings.ui.theme.MainColorScheme
-import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.utils.MyEventsTabs
 import ru.wb.meetings.ui.widgets.MeetingEvent
@@ -61,9 +60,8 @@ fun MyEventsScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
+                    TextSubheading1(
                         text = stringResource(id = R.string.my_meetings),
-                        style = MeetTheme.typography.subheading1,
                         color = MeetTheme.colors.neutralActive
                     )
                 },
@@ -102,9 +100,8 @@ fun MyEventsScreen(
                     MyEventsTabs.entries.forEachIndexed { index, tab ->
                         Tab(
                             text = {
-                                Text(
-                                    stringResource(id = tab.title),
-                                    style = MeetTheme.typography.bodyText1,
+                                TextBody1(
+                                    text = stringResource(id = tab.title),
                                     color = when (selectedTabIndex) {
                                         index -> MeetTheme.colors.brandDefault
                                         else -> MeetTheme.colors.neutralWeak

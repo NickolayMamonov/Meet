@@ -25,9 +25,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import ru.wb.meetings.R
 import ru.wb.meetings.navigation.Screen
+import ru.wb.meetings.ui.base.text.TextBody1
+import ru.wb.meetings.ui.base.text.TextSubheading1
 import ru.wb.meetings.ui.models.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.widgets.MeetingEvent
 
 
@@ -44,7 +47,7 @@ fun DetailsCommunityScreen(navController: NavController, name: String) {
         MeetingEventModel("4", "Developer Meeting", "13.09.2024 — Москва", false),
         MeetingEventModel("5", "Developer Meeting", "13.09.2024 — Москва", true),
     )
-    var isFullText by rememberSaveable {
+    var fullText by rememberSaveable {
         mutableStateOf(false)
     }
 
@@ -52,11 +55,7 @@ fun DetailsCommunityScreen(navController: NavController, name: String) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = name,
-                        style = MainTypographyTextStyle.subheading1,
-                        color = MainColorScheme.neutralActive
-                    )
+                    TextSubheading1(text = name, color = MeetTheme.colors.neutralActive)
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
@@ -83,20 +82,19 @@ fun DetailsCommunityScreen(navController: NavController, name: String) {
             item {
                 Text(
                     text = description,
-                    maxLines = if (isFullText) Int.MAX_VALUE else MAX_LINE,
+                    maxLines = if (fullText) Int.MAX_VALUE else MAX_LINE,
                     overflow = TextOverflow.Ellipsis,
                     style = MainTypographyTextStyle.metadata1,
                     color = MainColorScheme.neutralWeak,
                     modifier = Modifier.clickable {
-                        isFullText = !isFullText
+                        fullText = !fullText
                     }
                 )
             }
             item {
-                Text(
+                TextBody1(
                     text = stringResource(R.string.community_events),
-                    style = MainTypographyTextStyle.bodyText1,
-                    color = MainColorScheme.neutralWeak,
+                    color = MeetTheme.colors.neutralWeak,
                     modifier = Modifier.padding(top = 32.dp, bottom = 16.dp)
                 )
             }
