@@ -21,7 +21,7 @@ fun SplashScreen() {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(MainColorScheme.brandBackground)
+            .background(MainColorScheme.neutralWhite)
     ) {
         val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.base_anim))
         val logoAnimationState =

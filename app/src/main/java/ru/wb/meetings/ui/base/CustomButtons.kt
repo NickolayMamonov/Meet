@@ -12,9 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 
 @Composable
 fun CustomButton(
@@ -45,7 +47,7 @@ fun CustomButton(
         interactionSource = interactionSource,
         modifier = modifier
     ) {
-        Text(text = text)
+        Text(text = text, style = MeetTheme.typography.subheading2, color = MeetTheme.colors.brandLight)
     }
 }
 
@@ -54,11 +56,11 @@ fun CustomTextButton(
     text: String,
     onClick: () -> Unit,
     isEnabled: Boolean = true,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    val backgroundColor = MainColorScheme.neutralWhite
+    val backgroundColor = Color.Transparent
     val contentColor = when {
         isPressed -> MainColorScheme.brandDark
         !isEnabled -> MainColorScheme.brandDefault.copy(alpha = 0.5f)
@@ -115,7 +117,7 @@ fun CustomOutlinedButton(
         if (icon != null) {
             icon()
         }
-        Text(text = text, style = MainTypographyTextStyle.subheading2, color = MainColorScheme.neutralSecondaryBackground)
+        Text(text = text, style = MainTypographyTextStyle.subheading2, color = MainColorScheme.brandDefault)
     }
 }
 

@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -19,6 +21,8 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -28,6 +32,7 @@ import ru.wb.meetings.ui.base.SearchBar
 import ru.wb.meetings.ui.models.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.utils.EventsTabs
 import ru.wb.meetings.ui.widgets.MeetingEvent
 
@@ -50,9 +55,19 @@ fun EventsScreen(navController: NavController) {
                 title = {
                     Text(
                         text = stringResource(R.string.meetings),
-                        style = MainTypographyTextStyle.subheading1,
-                        color = MainColorScheme.neutralActive
+                        style = MeetTheme.typography.subheading1,
+                        color = MeetTheme.colors.neutralActive,
+                        modifier = Modifier.padding(start = 4.dp)
                     )
+                },
+                actions = {
+                    IconButton(onClick = { /* doSomething() */ },
+                        modifier = Modifier.padding(end = 4.dp)) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.add_new),
+                            contentDescription = null
+                        )
+                    }
                 }
             )
         }
@@ -70,13 +85,15 @@ fun EventsScreen(navController: NavController) {
                 ) {
 
                 }
+            }
+            item {
                 TabRow(
                     selectedTabIndex = selectedTabIndex,
-                    contentColor = MainColorScheme.brandDefault,
+                    contentColor = MeetTheme.colors.brandDefault,
                     indicator = { tabPositions ->
                         SecondaryIndicator(
                             modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                            color = MainColorScheme.brandDefault
+                            color = MeetTheme.colors.brandDefault
                         )
                     },
                     modifier = Modifier
@@ -88,7 +105,11 @@ fun EventsScreen(navController: NavController) {
                             text = {
                                 Text(
                                     stringResource(id = tab.title),
-                                    style = MainTypographyTextStyle.bodyText1
+                                    style = MeetTheme.typography.bodyText1,
+                                    color = when (selectedTabIndex) {
+                                        index -> MeetTheme.colors.brandDefault
+                                        else -> MeetTheme.colors.neutralWeak
+                                    }
                                 )
                             },
                             selected = selectedTabIndex == index,
@@ -96,8 +117,6 @@ fun EventsScreen(navController: NavController) {
                         )
                     }
                 }
-
-
             }
             items(currentList) { meeting ->
                 MeetingEvent(meeting = meeting, onClick = {

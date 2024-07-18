@@ -1,8 +1,6 @@
 package ru.wb.meetings.ui.screens.more
 
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -31,6 +29,7 @@ import ru.wb.meetings.navigation.Screen
 import ru.wb.meetings.ui.models.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.utils.MyEventsTabs
 import ru.wb.meetings.ui.widgets.MeetingEvent
 
@@ -46,7 +45,15 @@ fun MyEventsScreen(
         MeetingEventModel("3", "Встреча 2", "Описание 2", true),
         MeetingEventModel("4", "Встреча 2", "Описание 2", false),
         MeetingEventModel("5", "Встреча 2", "Описание 2", true),
-    )
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+        MeetingEventModel("5", "Встреча 2", "Описание 2", true),
+
+        )
     val activeMeetingsList = allMeetingsList.filter { !it.isEnded }
     val inactiveMeetingsList = allMeetingsList.filter { it.isEnded }
     val currentList = if (selectedTabIndex == 0) activeMeetingsList else inactiveMeetingsList
@@ -56,8 +63,8 @@ fun MyEventsScreen(
                 title = {
                     Text(
                         text = stringResource(id = R.string.my_meetings),
-                        style = MainTypographyTextStyle.subheading1,
-                        color = MainColorScheme.neutralActive
+                        style = MeetTheme.typography.subheading1,
+                        color = MeetTheme.colors.neutralActive
                     )
                 },
                 navigationIcon = {
@@ -83,21 +90,25 @@ fun MyEventsScreen(
             item {
                 TabRow(
                     selectedTabIndex = selectedTabIndex,
-                    contentColor = MainColorScheme.brandDefault,
+                    contentColor = MeetTheme.colors.brandDefault,
                     indicator = { tabPositions ->
                         SecondaryIndicator(
                             modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex]),
-                            color = MainColorScheme.brandDefault
+                            color = MeetTheme.colors.brandDefault
                         )
                     },
+                    modifier = Modifier.padding(bottom = 8.dp)
                 ) {
                     MyEventsTabs.entries.forEachIndexed { index, tab ->
                         Tab(
                             text = {
                                 Text(
                                     stringResource(id = tab.title),
-                                    style = MainTypographyTextStyle.bodyText1,
-                                    color = MainColorScheme.brandDefault
+                                    style = MeetTheme.typography.bodyText1,
+                                    color = when (selectedTabIndex) {
+                                        index -> MeetTheme.colors.brandDefault
+                                        else -> MeetTheme.colors.neutralWeak
+                                    }
                                 )
                             },
                             selected = selectedTabIndex == index,
@@ -105,7 +116,6 @@ fun MyEventsScreen(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(8.dp))
             }
             items(currentList) { meeting ->
                 MeetingEvent(meeting = meeting, onClick = {

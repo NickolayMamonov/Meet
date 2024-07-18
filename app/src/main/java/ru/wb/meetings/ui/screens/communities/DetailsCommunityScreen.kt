@@ -1,8 +1,7 @@
 package ru.wb.meetings.ui.screens.communities
 
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,6 +12,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -27,6 +30,9 @@ import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 import ru.wb.meetings.ui.widgets.MeetingEvent
 
+
+private const val MAX_LINE = 13
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsCommunityScreen(navController: NavController, name: String) {
@@ -38,6 +44,10 @@ fun DetailsCommunityScreen(navController: NavController, name: String) {
         MeetingEventModel("4", "Developer Meeting", "13.09.2024 — Москва", false),
         MeetingEventModel("5", "Developer Meeting", "13.09.2024 — Москва", true),
     )
+    var isFullText by rememberSaveable {
+        mutableStateOf(false)
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -73,18 +83,22 @@ fun DetailsCommunityScreen(navController: NavController, name: String) {
             item {
                 Text(
                     text = description,
-                    maxLines = 13,
+                    maxLines = if (isFullText) Int.MAX_VALUE else MAX_LINE,
                     overflow = TextOverflow.Ellipsis,
                     style = MainTypographyTextStyle.metadata1,
                     color = MainColorScheme.neutralWeak,
+                    modifier = Modifier.clickable {
+                        isFullText = !isFullText
+                    }
                 )
-                Spacer(modifier = Modifier.height(32.dp))
+            }
+            item {
                 Text(
                     text = stringResource(R.string.community_events),
                     style = MainTypographyTextStyle.bodyText1,
-                    color = MainColorScheme.neutralWeak
+                    color = MainColorScheme.neutralWeak,
+                    modifier = Modifier.padding(top = 32.dp, bottom = 16.dp)
                 )
-                Spacer(modifier = Modifier.height(16.dp))
             }
 
             items(myMeetingsList) { meeting ->
