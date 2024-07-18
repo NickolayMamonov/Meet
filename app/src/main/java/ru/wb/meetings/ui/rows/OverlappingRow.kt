@@ -4,13 +4,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.unit.dp
-import ru.wb.meetings.ui.base.MainIcon
-import ru.wb.meetings.ui.base.MainSmallNetworkIcon
+import ru.wb.meetings.ui.base.MainNetworkIcon
+import ru.wb.meetings.ui.base.text.TextBody1
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 
 @Composable
 fun OverlappingRow(
@@ -24,15 +24,22 @@ fun OverlappingRow(
     Layout(
         modifier = modifier,
         content = {
-            avatars.take(5).forEach {avatar->
-                MainSmallNetworkIcon(image = avatar, showBadge = false, isClickable = false, showBorder = true, showClip = true, useContentScaleCrop = true)
+            avatars.take(5).forEach { avatar ->
+                MainNetworkIcon(
+                    image = avatar,
+                    showBadge = false,
+                    isClickable = false,
+                    showBorder = true,
+                    showClip = true,
+                    useContentScaleCrop = true
+                )
             }
-            if(avatars.size >5){
-                Text(text = "+${avatars.size - 5}",
-                    style = MainTypographyTextStyle.bodyText1,
-                    color = MainColorScheme.neutralActive,
-                    modifier = Modifier.padding(start = 28.dp, top = 16.dp))
-
+            if (avatars.size > 5) {
+                TextBody1(
+                    text = "+${avatars.size - 5}",
+                    color = MeetTheme.colors.neutralActive,
+                    modifier = Modifier.padding(start = 28.dp, top = 16.dp)
+                )
             }
 
         },

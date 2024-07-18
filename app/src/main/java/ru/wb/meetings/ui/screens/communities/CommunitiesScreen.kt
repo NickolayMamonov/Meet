@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,9 +16,9 @@ import androidx.navigation.NavController
 import ru.wb.meetings.R
 import ru.wb.meetings.navigation.Screen
 import ru.wb.meetings.ui.base.SearchBar
+import ru.wb.meetings.ui.base.text.TextSubheading1
 import ru.wb.meetings.ui.models.CommunityEventModel
-import ru.wb.meetings.ui.theme.MainColorScheme
-import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.widgets.CommunityEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,10 +43,9 @@ fun CommunitiesScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
+                    TextSubheading1(
                         text = stringResource(R.string.communities),
-                        style = MainTypographyTextStyle.subheading1,
-                        color = MainColorScheme.neutralActive
+                        color = MeetTheme.colors.neutralActive
                     )
                 }
             )

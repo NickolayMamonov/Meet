@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.HorizontalDivider
@@ -18,10 +17,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.base.ChipGroup
-import ru.wb.meetings.ui.base.MainSmallNetworkIcon
+import ru.wb.meetings.ui.base.MainNetworkIcon
+import ru.wb.meetings.ui.base.text.TextBody1
+import ru.wb.meetings.ui.base.text.TextMetadata1
+import ru.wb.meetings.ui.base.text.TextMetadata2
 import ru.wb.meetings.ui.models.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 
 @Composable
 fun MeetingEvent(
@@ -29,7 +32,6 @@ fun MeetingEvent(
     onClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-
     Row(
         verticalAlignment = Alignment.Top,
         modifier = modifier
@@ -39,7 +41,7 @@ fun MeetingEvent(
                 onClick(meeting.id)
             }
     ) {
-        MainSmallNetworkIcon(
+        MainNetworkIcon(
             showBadge = false,
             isClickable = false,
             image = meeting.icon,
@@ -52,30 +54,14 @@ fun MeetingEvent(
             modifier = Modifier.padding(horizontal = 8.dp)
         ) {
             Row {
-                Text(
-                    text = meeting.title,
-                    style = MainTypographyTextStyle.bodyText1,
-                    color = MainColorScheme.neutralActive,
-                    modifier = Modifier.weight(1f)
-                )
+                TextBody1(text = meeting.title, color = MeetTheme.colors.neutralActive, modifier = Modifier.weight(1f))
                 if (meeting.isEnded) {
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = stringResource(R.string.ended),
-                        style = MainTypographyTextStyle.metadata2,
-                        color = MainColorScheme.neutralWeak,
-                    )
+                    TextMetadata2(text = stringResource(R.string.ended), color = MainColorScheme.neutralWeak, modifier = Modifier.padding(start = 8.dp))
                 }
             }
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = meeting.subTitle,
-                style = MainTypographyTextStyle.metadata1,
-                color = MainColorScheme.neutralWeak
-            )
+            TextMetadata1(text = meeting.subTitle, color = MainColorScheme.neutralWeak, modifier = Modifier.padding(top = 8.dp))
             ChipGroup()
         }
-
     }
     HorizontalDivider(
         thickness = 1.dp,

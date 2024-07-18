@@ -29,14 +29,15 @@ import androidx.compose.ui.unit.dp
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 
 
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = MainColorScheme.neutralSecondaryBackground,
-    activeContentColor: Color = MainColorScheme.neutralActive,
-    contentColor: Color = MainColorScheme.neutralDisabled,
+    backgroundColor: Color = MeetTheme.colors.neutralSecondaryBackground,
+    activeContentColor: Color = MeetTheme.colors.neutralActive,
+    contentColor: Color = MeetTheme.colors.neutralDisabled,
     onSearch: (String) -> Unit
 ) {
     var searchText by rememberSaveable { mutableStateOf("") }
@@ -47,7 +48,7 @@ fun SearchBar(
             onSearch(it)
         },
         singleLine = true,
-        textStyle = MainTypographyTextStyle.bodyText1,
+        textStyle = MeetTheme.typography.bodyText1,
 
         decorationBox = { innerTextField ->
             Row(
@@ -67,7 +68,7 @@ fun SearchBar(
                     if (searchText.isEmpty()) {
                         Text(
                             stringResource(id = R.string.search),
-                            style = MainTypographyTextStyle.bodyText1,
+                            style = MeetTheme.typography.bodyText1,
                             color = contentColor
                         )
                     }
@@ -83,11 +84,13 @@ fun SearchBar(
             .clip(shape = RoundedCornerShape(4.dp))
             .border(
                 1.dp,
-                if (isActive) {
-                    MainColorScheme.neutralLine
-                } else {
-
-                    MainColorScheme.neutralSecondaryBackground
+                when {
+                    isActive -> {
+                        MeetTheme.colors.neutralLine
+                    }
+                    else -> {
+                        MeetTheme.colors.neutralSecondaryBackground
+                    }
                 }
             )
 

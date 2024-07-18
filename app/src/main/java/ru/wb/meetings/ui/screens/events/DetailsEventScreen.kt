@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
@@ -31,11 +32,11 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.base.ChipGroup
-import ru.wb.meetings.ui.base.CustomButton
-import ru.wb.meetings.ui.base.CustomOutlinedButton
 import ru.wb.meetings.ui.base.MainNetworkIcon
-import ru.wb.meetings.ui.theme.MainColorScheme
-import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.base.buttons.CustomButton
+import ru.wb.meetings.ui.base.buttons.CustomOutlinedButton
+import ru.wb.meetings.ui.base.text.TextMetadata1
+import ru.wb.meetings.ui.base.text.TextSubheading1
 import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.widgets.EventsRow
 
@@ -81,11 +82,7 @@ fun DetailsEventScreen(navController: NavController, name: String) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = name,
-                        style = MeetTheme.typography.subheading1,
-                        color = MeetTheme.colors.neutralActive
-                    )
+                    TextSubheading1(text = name, color = MeetTheme.colors.neutralActive)
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
@@ -130,20 +127,21 @@ fun DetailsEventScreen(navController: NavController, name: String) {
                 ChipGroup()
             }
             item {
-                MainNetworkIcon(
-                    image = imageUrl,
-                    showBadge = false,
-                    showBorder = false,
-                    isClickable = true,
-                    showClip = true,
-                    clipPercent = 16,
-                    onClick = { showImageDialog = true },
-                )
+                Box(modifier = Modifier.fillMaxWidth()){
+                    MainNetworkIcon(
+                        image = imageUrl,
+                        isClickable = true,
+                        showClip = true,
+                        sizeIcon = 320.dp,
+                        clipPercent = 16,
+                        onClick = { showImageDialog = true },
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
             }
             item {
-                Text(
+                TextMetadata1(
                     text = description,
-                    style = MeetTheme.typography.metadata1,
                     color = MeetTheme.colors.neutralWeak,
                     maxLines = if (fullText) Int.MAX_VALUE else MAX_LINE,
                     overflow = TextOverflow.Ellipsis,
@@ -165,7 +163,6 @@ fun DetailsEventScreen(navController: NavController, name: String) {
                                 .fillMaxWidth()
                         )
                     }
-
                     else -> {
                         CustomOutlinedButton(
                             text = stringResource(R.string.go_another_time),

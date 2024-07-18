@@ -11,7 +11,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -24,11 +23,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import ru.wb.meetings.R
-import ru.wb.meetings.ui.base.CustomOutlinedButton
 import ru.wb.meetings.ui.base.MainIcon
 import ru.wb.meetings.ui.base.UserAvatar
-import ru.wb.meetings.ui.theme.MainColorScheme
-import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.base.buttons.CustomOutlinedButton
+import ru.wb.meetings.ui.base.text.TextBody2
+import ru.wb.meetings.ui.base.text.TextHeading2
+import ru.wb.meetings.ui.base.text.TextSubheading1
 import ru.wb.meetings.ui.theme.MeetTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,10 +40,9 @@ fun ProfileScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
+                    TextSubheading1(
                         text = stringResource(id = R.string.profile),
-                        style = MainTypographyTextStyle.subheading1,
-                        color = MainColorScheme.neutralActive
+                        color = MeetTheme.colors.neutralActive
                     )
                 },
                 navigationIcon = {
@@ -86,18 +85,16 @@ fun ProfileScreen(
                 )
             }
             item {
-                Text(
+                TextHeading2(
                     text = stringResource(id = R.string.test_name),
-                    style = MainTypographyTextStyle.heading2,
-                    color = MainColorScheme.neutralActive,
+                    color = MeetTheme.colors.neutralActive,
                     modifier = Modifier.padding(top = 16.dp, bottom = 4.dp)
                 )
             }
             item {
-                Text(
+                TextBody2(
                     text = stringResource(id = R.string.test_number),
-                    style = MainTypographyTextStyle.bodyText2,
-                    color = MainColorScheme.neutralDisabled,
+                    color = MeetTheme.colors.neutralDisabled,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
