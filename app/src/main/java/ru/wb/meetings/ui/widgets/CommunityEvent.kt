@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import ru.wb.meetings.ui.base.MainNetworkIcon
 import ru.wb.meetings.ui.base.text.TextBody1
 import ru.wb.meetings.ui.base.text.TextMetadata1
-import ru.wb.meetings.domain.models.CommunityEventModel
+import dev.whysoezzy.domain.models.CommunityEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.utils.getPeopleQuantityText

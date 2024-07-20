@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
-import ru.wb.meetings.navigation.AuthScreens
+import ru.wb.meetings.ui.navigation.AuthScreens
 import ru.wb.meetings.ui.base.buttons.CustomTextButton
 import ru.wb.meetings.ui.base.text.TextBody2
 import ru.wb.meetings.ui.base.text.TextHeading2

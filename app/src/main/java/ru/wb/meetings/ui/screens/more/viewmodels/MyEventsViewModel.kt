@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ru.wb.meetings.domain.models.MeetingEventModel
-import ru.wb.meetings.domain.usecases.GetPassedMeetingsUseCase
-import ru.wb.meetings.domain.usecases.GetPlannedMeetingsUseCase
+import dev.whysoezzy.domain.models.MeetingEventModel
+import dev.whysoezzy.domain.usecases.GetPassedMeetingsUseCase
+import dev.whysoezzy.domain.usecases.GetPlannedMeetingsUseCase
 import ru.wb.meetings.ui.screens.more.states.MyEventsScreenState
 
 class MyEventsViewModel(
@@ -64,7 +64,7 @@ class MyEventsViewModel(
     private fun loadPassedMeetings() {
         viewModelScope.launch {
             try {
-                getPassedMeetingsUseCase.invoke().collect { meetings ->
+                getPassedMeetingsUseCase.invoke().collect { meetings:List<MeetingEventModel> ->
                     _passedMeetingsList.update { meetings }
                     _screenState.value = MyEventsScreenState.Content(meetings)
                 }
@@ -76,7 +76,7 @@ class MyEventsViewModel(
     private fun loadPlannedMeetings() {
         viewModelScope.launch {
             try {
-                getPlannedMeetingsUseCase.invoke().collect { meetings ->
+                getPlannedMeetingsUseCase.invoke().collect { meetings :List<MeetingEventModel>->
                     _plannedMeetingsList.update { meetings }
                     _screenState.value = MyEventsScreenState.Content(meetings)
                 }

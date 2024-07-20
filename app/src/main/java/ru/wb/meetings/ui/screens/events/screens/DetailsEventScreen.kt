@@ -67,7 +67,6 @@ fun DetailsEventScreen(navController: NavController, name: String,viewModel: Det
                             contentDescription = null
                         )
                     }
-
                 },
                 actions = {
                     if (buttonPressed) {
@@ -81,8 +80,6 @@ fun DetailsEventScreen(navController: NavController, name: String,viewModel: Det
                         }
                     }
                 }
-
-
             )
         }
     ) { innerPadding ->
@@ -176,7 +173,6 @@ fun DetailsEventScreen(navController: NavController, name: String,viewModel: Det
                 }
             }
         }
-
     }
 }
 

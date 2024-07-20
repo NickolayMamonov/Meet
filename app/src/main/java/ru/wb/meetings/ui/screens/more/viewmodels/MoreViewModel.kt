@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.wb.meetings.domain.models.UserProfileModel
-import ru.wb.meetings.domain.usecases.GetUserProfileUseCase
+import dev.whysoezzy.domain.models.UserProfileModel
+import dev.whysoezzy.domain.usecases.GetUserProfileUseCase
 import ru.wb.meetings.ui.screens.more.states.MoreScreenState
 
 class MoreViewModel(private val getUserProfileUseCase: GetUserProfileUseCase): ViewModel() {
@@ -21,7 +21,7 @@ class MoreViewModel(private val getUserProfileUseCase: GetUserProfileUseCase): V
     private fun loadUserProfile() {
         viewModelScope.launch {
             try{
-                getUserProfileUseCase().collect { userProfileModel ->
+                getUserProfileUseCase().collect { userProfileModel: UserProfileModel ->
                     _screenState.value = MoreScreenState.Content(userProfileModel)
                 }
             }catch (e: Exception) {

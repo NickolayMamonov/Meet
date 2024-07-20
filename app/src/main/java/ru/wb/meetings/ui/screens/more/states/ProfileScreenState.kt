@@ -1,6 +1,6 @@
 package ru.wb.meetings.ui.screens.more.states
 
-import ru.wb.meetings.domain.models.UserProfileModel
+import dev.whysoezzy.domain.models.UserProfileModel
 
 sealed class ProfileScreenState {
     object Loading : ProfileScreenState()

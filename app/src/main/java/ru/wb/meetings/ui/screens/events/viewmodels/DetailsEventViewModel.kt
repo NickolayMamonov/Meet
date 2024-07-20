@@ -2,14 +2,12 @@ package ru.wb.meetings.ui.screens.events.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dev.whysoezzy.domain.models.DetailsEventModel
+import dev.whysoezzy.domain.usecases.GetEventDetailsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import ru.wb.meetings.domain.models.DetailsEventModel
-import ru.wb.meetings.domain.usecases.GetEventDetailsUseCase
-import ru.wb.meetings.ui.screens.communities.states.DetailsCommunityScreenState
 import ru.wb.meetings.ui.screens.events.states.DetailEventScreenState
 
 class DetailsEventViewModel(private val getEvent: GetEventDetailsUseCase) : ViewModel() {
@@ -30,7 +28,7 @@ class DetailsEventViewModel(private val getEvent: GetEventDetailsUseCase) : View
         viewModelScope.launch {
             _screenState.value = DetailEventScreenState.Loading
             try {
-                getEvent(name).collectLatest { event ->
+                getEvent(name).collectLatest { event: DetailsEventModel ->
                     _screenState.value = DetailEventScreenState.Content(event)
                 }
             } catch (e: Exception) {

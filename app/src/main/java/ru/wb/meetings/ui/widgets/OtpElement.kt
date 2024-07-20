@@ -107,10 +107,3 @@ fun OtpElement(onOtpComplete: (String) -> Unit) {
 
 
 }
-
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewOtpElement() {
-//    OtpElement()
-}

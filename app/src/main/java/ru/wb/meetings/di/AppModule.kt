@@ -1,6 +1,5 @@
 package ru.wb.meetings.di
 
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 import ru.wb.meetings.ui.screens.auth.viewmodels.AddProfileViewModel
@@ -14,7 +13,9 @@ import ru.wb.meetings.ui.screens.more.viewmodels.MoreViewModel
 import ru.wb.meetings.ui.screens.more.viewmodels.MyEventsViewModel
 import ru.wb.meetings.ui.screens.more.viewmodels.ProfileViewModel
 
-val appModule = module {
+
+
+val viewModelModule = module {
     viewModelOf(::EventsViewModel)
     viewModelOf(::DetailsEventViewModel)
     viewModelOf(::CommunitiesViewModel)

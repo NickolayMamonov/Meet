@@ -2,12 +2,13 @@ package ru.wb.meetings.ui.screens.communities.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dev.whysoezzy.domain.models.CommunityDetailModel
+import dev.whysoezzy.domain.usecases.GetCommunityDetailsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import ru.wb.meetings.domain.usecases.GetCommunityDetailsUseCase
 import ru.wb.meetings.ui.screens.communities.states.DetailsCommunityScreenState
 
 
@@ -23,7 +24,7 @@ class DetailsCommunityViewModel(private val getCommunityDetailsUseCase: GetCommu
         viewModelScope.launch {
             _screenState.value = DetailsCommunityScreenState.Loading
             try {
-                getCommunityDetailsUseCase(name).collectLatest { details ->
+                getCommunityDetailsUseCase(name).collectLatest { details: CommunityDetailModel ->
                     _screenState.value = DetailsCommunityScreenState.Content(details)
                 }
             } catch (e: Exception) {

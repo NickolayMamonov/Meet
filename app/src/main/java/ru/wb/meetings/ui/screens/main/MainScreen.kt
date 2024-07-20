@@ -3,8 +3,8 @@ package ru.wb.meetings.ui.screens.main
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
-import ru.wb.meetings.navigation.BottomNavBar
-import ru.wb.meetings.navigation.NavGraph
+import ru.wb.meetings.ui.navigation.BottomNavBar
+import ru.wb.meetings.ui.navigation.NavGraph
 
 
 @Composable

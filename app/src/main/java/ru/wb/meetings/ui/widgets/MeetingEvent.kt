@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,9 +20,8 @@ import ru.wb.meetings.ui.base.MainNetworkIcon
 import ru.wb.meetings.ui.base.text.TextBody1
 import ru.wb.meetings.ui.base.text.TextMetadata1
 import ru.wb.meetings.ui.base.text.TextMetadata2
-import ru.wb.meetings.domain.models.MeetingEventModel
+import dev.whysoezzy.domain.models.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
-import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 import ru.wb.meetings.ui.theme.MeetTheme
 
 @Composable

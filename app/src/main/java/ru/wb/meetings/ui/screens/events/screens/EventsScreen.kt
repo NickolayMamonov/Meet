@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
-import ru.wb.meetings.navigation.Screen
+import ru.wb.meetings.ui.navigation.Screen
 import ru.wb.meetings.ui.base.SearchBar
 import ru.wb.meetings.ui.base.text.TextBody1
 import ru.wb.meetings.ui.base.text.TextSubheading1

@@ -1,12 +1,11 @@
 package ru.wb.meetings.ui.screens.auth.viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 private const val OTP_CODE_LENGTH = 4
+
 class OtpCodeViewModel : ViewModel() {
     private val _otpCode = MutableStateFlow("")
     val otpCode: StateFlow<String> = _otpCode

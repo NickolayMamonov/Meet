@@ -1,6 +1,6 @@
 package ru.wb.meetings.ui.screens.communities.states
 
-import ru.wb.meetings.domain.models.CommunityDetailModel
+import dev.whysoezzy.domain.models.CommunityDetailModel
 
 sealed class DetailsCommunityScreenState {
     object Loading : DetailsCommunityScreenState()

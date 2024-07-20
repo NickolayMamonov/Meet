@@ -1,11 +1,8 @@
 package ru.wb.meetings.ui.screens.auth.viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 class AddProfileViewModel : ViewModel() {
     private val _firstName = MutableStateFlow("")
@@ -21,7 +18,6 @@ class AddProfileViewModel : ViewModel() {
     fun updateLastName(name: String) {
         _lastName.value = name
     }
-
 
 
 }

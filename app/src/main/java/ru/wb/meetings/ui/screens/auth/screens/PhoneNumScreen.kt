@@ -25,7 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
-import ru.wb.meetings.navigation.AuthScreens
+import ru.wb.meetings.ui.navigation.AuthScreens
 import ru.wb.meetings.ui.base.buttons.CustomButton
 import ru.wb.meetings.ui.base.text.TextBody2
 import ru.wb.meetings.ui.base.text.TextHeading2

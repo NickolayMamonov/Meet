@@ -1,6 +1,6 @@
 package ru.wb.meetings.ui.screens.events.states
 
-import ru.wb.meetings.domain.models.DetailsEventModel
+import dev.whysoezzy.domain.models.DetailsEventModel
 
 sealed class DetailEventScreenState {
     object Loading : DetailEventScreenState()
