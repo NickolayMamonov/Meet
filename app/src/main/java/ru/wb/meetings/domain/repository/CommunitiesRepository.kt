@@ -6,5 +6,5 @@ import ru.wb.meetings.domain.models.CommunityEventModel
 
 interface CommunitiesRepository {
     fun getCommunities(): Flow<List<CommunityEventModel>>
-    fun getCommunity(id: String): Flow<CommunityDetailModel>
+    fun getCommunity(name: String): Flow<CommunityDetailModel>
 }

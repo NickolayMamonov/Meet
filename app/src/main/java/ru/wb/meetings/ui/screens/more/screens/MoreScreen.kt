@@ -82,8 +82,7 @@ fun MoreScreen(
                                 navController.navigate(Screen.MoreRoot.MyEvents.route)
                             },
                             modifier = Modifier
-                                .padding(bottom = 16.dp)
-                                .padding(20.dp)
+                                .padding(bottom = 20.dp)
                         )
                     }
                     item {
@@ -91,7 +90,6 @@ fun MoreScreen(
                             icon = painterResource(id = R.drawable.ic_theme),
                             name = stringResource(R.string.theme),
                             onClick = {},
-                            modifier = Modifier.padding(20.dp)
                         )
                     }
                     item {
@@ -99,7 +97,6 @@ fun MoreScreen(
                             icon = painterResource(id = R.drawable.ic_notification),
                             name = stringResource(R.string.notifications),
                             onClick = {},
-                            modifier = Modifier.padding(20.dp)
                         )
                     }
                     item {
@@ -107,7 +104,6 @@ fun MoreScreen(
                             icon = painterResource(id = R.drawable.ic_security),
                             name = stringResource(R.string.security),
                             onClick = {},
-                            modifier = Modifier.padding(20.dp)
                         )
                     }
                     item {
@@ -115,7 +111,6 @@ fun MoreScreen(
                             icon = painterResource(id = R.drawable.ic_memory_and_storage),
                             name = stringResource(R.string.memory_and_resources),
                             onClick = {},
-                            modifier = Modifier.padding(20.dp)
                         )
                     }
                     item {
@@ -129,7 +124,6 @@ fun MoreScreen(
                             icon = painterResource(id = R.drawable.ic_help),
                             name = stringResource(R.string.help),
                             onClick = {},
-                            modifier = Modifier.padding(20.dp)
                         )
                     }
                     item {
@@ -137,7 +131,6 @@ fun MoreScreen(
                             icon = painterResource(id = R.drawable.ic_invite_friend),
                             name = stringResource(R.string.invite_friend),
                             onClick = {},
-                            modifier = Modifier.padding(20.dp)
                         )
                     }
 

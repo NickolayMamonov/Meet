@@ -1,6 +1,7 @@
 package ru.wb.meetings.di
 
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 import ru.wb.meetings.ui.screens.auth.viewmodels.AddProfileViewModel
 import ru.wb.meetings.ui.screens.auth.viewmodels.OtpCodeViewModel
@@ -14,24 +15,14 @@ import ru.wb.meetings.ui.screens.more.viewmodels.MyEventsViewModel
 import ru.wb.meetings.ui.screens.more.viewmodels.ProfileViewModel
 
 val appModule = module {
-    viewModel {
-        EventsViewModel(
-            getAllMeetings = get(),
-            getActiveMeetings = get()
-        )
-    }
-    viewModel { DetailsEventViewModel(getEvent = get()) }
-    viewModel { CommunitiesViewModel(getCommunityUseCase = get()) }
-    viewModel { DetailsCommunityViewModel(getCommunityDetailsUseCase = get()) }
-    viewModel { MoreViewModel(getUserProfileUseCase = get()) }
-    viewModel { ProfileViewModel(getUserProfileUseCase = get()) }
-    viewModel {
-        MyEventsViewModel(
-            getPlannedMeetingsUseCase = get(),
-            getPassedMeetingsUseCase = get()
-        )
-    }
-    viewModel { PhoneNumViewModel() }
-    viewModel { OtpCodeViewModel() }
-    viewModel { AddProfileViewModel() }
+    viewModelOf(::EventsViewModel)
+    viewModelOf(::DetailsEventViewModel)
+    viewModelOf(::CommunitiesViewModel)
+    viewModelOf(::DetailsCommunityViewModel)
+    viewModelOf(::MoreViewModel)
+    viewModelOf(::ProfileViewModel)
+    viewModelOf(::MyEventsViewModel)
+    viewModelOf(::PhoneNumViewModel)
+    viewModelOf(::OtpCodeViewModel)
+    viewModelOf(::AddProfileViewModel)
 }
