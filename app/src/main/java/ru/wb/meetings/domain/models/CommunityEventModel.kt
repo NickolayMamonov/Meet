@@ -1,4 +1,4 @@
-package ru.wb.meetings.ui.models
+package ru.wb.meetings.domain.models
 
 data class CommunityEventModel(
     val id: String,

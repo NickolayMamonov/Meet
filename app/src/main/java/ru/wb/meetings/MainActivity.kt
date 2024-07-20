@@ -10,10 +10,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.delay
-import ru.wb.meetings.ui.screens.SplashScreen
-import ru.wb.meetings.ui.screens.auth.PhoneNumScreen
+import ru.wb.meetings.ui.screens.splash.SplashScreen
 import ru.wb.meetings.ui.screens.main.AuthScreen
-import ru.wb.meetings.ui.screens.main.MainScreen
 import ru.wb.meetings.ui.theme.MeetTheme
 
 class MainActivity : ComponentActivity() {

@@ -27,6 +27,7 @@ fun SettingsElement(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
+            .padding(20.dp)
             .clickable(
                 interactionSource = remember {
                     MutableInteractionSource()

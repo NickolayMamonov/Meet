@@ -1,4 +1,4 @@
-package ru.wb.meetings.ui.screens.auth
+package ru.wb.meetings.ui.screens.auth.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,9 +13,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -28,20 +29,25 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
 import ru.wb.meetings.navigation.AuthScreens
 import ru.wb.meetings.ui.base.UserAvatar
 import ru.wb.meetings.ui.base.buttons.CustomButton
 import ru.wb.meetings.ui.base.text.TextBody1
 import ru.wb.meetings.ui.base.text.TextSubheading1
+import ru.wb.meetings.ui.screens.auth.viewmodels.AddProfileViewModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MeetTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddProfileScreen(navController: NavController) {
-    val (firstName, setFirstName) = remember { mutableStateOf("") }
-    val (lastName, setLastName) = remember { mutableStateOf("") }
+fun AddProfileScreen(
+    navController: NavController,
+    viewModel: AddProfileViewModel = koinViewModel()
+) {
+    val firstName by viewModel.firstName.collectAsState()
+    val lastName by viewModel.lastName.collectAsState()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -95,7 +101,7 @@ fun AddProfileScreen(navController: NavController) {
                 ) {
                     BasicTextField(
                         value = firstName,
-                        onValueChange = setFirstName,
+                        onValueChange = viewModel::updateFirstName,
                         singleLine = true,
                         textStyle = MeetTheme.typography.bodyText1,
                         cursorBrush = SolidColor(Color.Transparent),
@@ -108,7 +114,10 @@ fun AddProfileScreen(navController: NavController) {
                                     .fillMaxWidth()
                             ) {
                                 if (firstName.isEmpty()) {
-                                    TextBody1(text = stringResource(R.string.name_required), color = MeetTheme.colors.neutralWeak)
+                                    TextBody1(
+                                        text = stringResource(R.string.name_required),
+                                        color = MeetTheme.colors.neutralWeak
+                                    )
                                 }
                                 innerTextField()
                             }
@@ -130,7 +139,7 @@ fun AddProfileScreen(navController: NavController) {
                 ) {
                     BasicTextField(
                         value = lastName,
-                        onValueChange = setLastName,
+                        onValueChange = viewModel::updateLastName,
                         singleLine = true,
                         textStyle = MeetTheme.typography.bodyText1,
                         cursorBrush = SolidColor(Color.Transparent),
@@ -143,7 +152,10 @@ fun AddProfileScreen(navController: NavController) {
                                     .fillMaxWidth()
                             ) {
                                 if (lastName.isEmpty()) {
-                                    TextBody1(text = stringResource(R.string.surname_optionally), color = MeetTheme.colors.neutralWeak)
+                                    TextBody1(
+                                        text = stringResource(R.string.surname_optionally),
+                                        color = MeetTheme.colors.neutralWeak
+                                    )
                                 }
                                 innerTextField()
                             }
@@ -171,6 +183,7 @@ fun AddProfileScreen(navController: NavController) {
                                 .padding(top = 64.dp)
                         )
                     }
+
                     else -> {
                         CustomButton(
                             text = stringResource(R.string.save),
