@@ -23,11 +23,4 @@ class OtpCodeViewModel : ViewModel() {
         _isOtpValid.value = _otpCode.value.length == OTP_CODE_LENGTH
     }
 
-    fun onOtpValidationSuccess(action: () -> Unit) {
-        if (_isOtpValid.value) {
-            viewModelScope.launch {
-                action()
-            }
-        }
-    }
 }

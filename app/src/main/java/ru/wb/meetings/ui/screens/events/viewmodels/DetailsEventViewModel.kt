@@ -13,8 +13,6 @@ import ru.wb.meetings.ui.screens.communities.states.DetailsCommunityScreenState
 import ru.wb.meetings.ui.screens.events.states.DetailEventScreenState
 
 class DetailsEventViewModel(private val getEvent: GetEventDetailsUseCase) : ViewModel() {
-    private val _eventDetails = MutableStateFlow<DetailsEventModel?>(null)
-    val eventDetails: StateFlow<DetailsEventModel?> = _eventDetails
 
     private val _screenState = MutableStateFlow<DetailEventScreenState>(DetailEventScreenState.Loading)
     val screenState: StateFlow<DetailEventScreenState> = _screenState

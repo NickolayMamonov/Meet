@@ -28,7 +28,6 @@ class PhoneNumViewModel() : ViewModel() {
     }
 
     private fun validatePhoneNumber() {
-        // Простая проверка на длину номера телефона, можно добавить более сложную логику
         _isPhoneNumberValid.value = _phoneNumber.value.length == PHONE_NUMBER_WITHOUT_COUNTRY_CODE_LENGTH
     }
 

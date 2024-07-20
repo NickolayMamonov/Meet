@@ -30,40 +30,4 @@ class MoreRepositoryImpl : MoreRepository {
             )
         )
     }
-
-//    override fun getPassedMeetings(): Flow<List<MeetingEventModel>> = flow {
-//        emit(
-//            listOf(
-//                MeetingEventModel("1", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("2", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("3", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("4", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("5", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("6", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("7", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("8", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("9", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("10", "Developer Meeting", "13.09.2024 — Москва", true),
-//                MeetingEventModel("11", "Developer Meeting", "13.09.2024 — Москва", true),
-//            )
-//        )
-//    }
-//
-//    override fun getPlannedMeetings(): Flow<List<MeetingEventModel>> = flow {
-//        emit(
-//            listOf(
-//                MeetingEventModel("1", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("2", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("3", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("4", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("5", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("6", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("7", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("8", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("9", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("10", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("11", "Developer Meeting", "13.09.2024 — Москва", false),
-//            )
-//        )
-//    }
 }

@@ -18,23 +18,6 @@ class MeetingsRepositoryImpl : MeetingsRepository {
         "https://picsum.photos/200/300",
         "https://picsum.photos/200/300",
     )
-//    override fun getActiveMeetings(): Flow<List<MeetingEventModel>> = flow {
-//        emit(
-//            listOf(
-//                MeetingEventModel("1", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("2", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("3", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("4", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("5", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("6", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("7", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("8", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("9", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("10", "Developer Meeting", "13.09.2024 — Москва", false),
-//                MeetingEventModel("11", "Developer Meeting", "13.09.2024 — Москва", false),
-//            )
-//        )
-//    }
 
     override fun getAllMeetings(): Flow<List<MeetingEventModel>> = flow {
         emit(
