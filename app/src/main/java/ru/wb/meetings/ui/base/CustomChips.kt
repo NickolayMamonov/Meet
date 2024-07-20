@@ -18,12 +18,12 @@ import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 import ru.wb.meetings.ui.theme.MeetTheme
 
 @Composable
-fun ChipGroup() {
-    val chipData = listOf(
-        "Kotlin",
-        "Junior",
-        "Moscow"
-    )
+fun ChipGroup(chipData: List<String>){
+//    val chipData = listOf(
+//        "Kotlin",
+//        "Junior",
+//        "Moscow"
+//    )
     LazyRow(modifier = Modifier.padding(top = 8.dp)) {
         chipData.forEach {
             item {

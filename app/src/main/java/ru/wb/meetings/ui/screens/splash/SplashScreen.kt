@@ -1,4 +1,4 @@
-package ru.wb.meetings.ui.screens
+package ru.wb.meetings.ui.screens.splash
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

@@ -8,13 +8,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
-import ru.wb.meetings.ui.screens.communities.CommunitiesScreen
-import ru.wb.meetings.ui.screens.communities.DetailsCommunityScreen
-import ru.wb.meetings.ui.screens.events.DetailsEventScreen
-import ru.wb.meetings.ui.screens.events.EventsScreen
-import ru.wb.meetings.ui.screens.more.MoreScreen
-import ru.wb.meetings.ui.screens.more.MyEventsScreen
-import ru.wb.meetings.ui.screens.more.ProfileScreen
+import ru.wb.meetings.ui.screens.communities.screens.CommunitiesScreen
+import ru.wb.meetings.ui.screens.communities.screens.DetailsCommunityScreen
+import ru.wb.meetings.ui.screens.events.screens.DetailsEventScreen
+import ru.wb.meetings.ui.screens.events.screens.EventsScreen
+import ru.wb.meetings.ui.screens.more.screens.MoreScreen
+import ru.wb.meetings.ui.screens.more.screens.MyEventsScreen
+import ru.wb.meetings.ui.screens.more.screens.ProfileScreen
 
 @Composable
 fun NavGraph(navController: NavHostController, innerPadding: PaddingValues) {
@@ -48,7 +48,7 @@ fun NavGraph(navController: NavHostController, innerPadding: PaddingValues) {
                     navArgument("name") { type = NavType.StringType },
                 )
             ) { backStackEntry ->
-                backStackEntry.arguments?.getString("name")?.let {DetailsCommunityScreen(navController = navController, name = it)  }
+                backStackEntry.arguments?.getString("name")?.let { DetailsCommunityScreen(navController = navController, name = it)  }
             }
             composable(
                 route = Screen.CommunitiesRoot.DetailsCommunity.DetailsEvent.route + "/{name}",
@@ -78,7 +78,7 @@ fun NavGraph(navController: NavHostController, innerPadding: PaddingValues) {
                     navArgument("name") { type = NavType.StringType },
                 )
             ) { backStackEntry ->
-                backStackEntry.arguments?.getString("name")?.let {DetailsEventScreen(navController = navController, name = it)  }
+                backStackEntry.arguments?.getString("name")?.let { DetailsEventScreen(navController = navController, name = it)  }
             }
         }
     }

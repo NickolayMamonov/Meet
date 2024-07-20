@@ -1,4 +1,4 @@
-package ru.wb.meetings.ui.screens.auth
+package ru.wb.meetings.ui.screens.auth.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,11 +9,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -24,11 +23,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
 import ru.wb.meetings.navigation.AuthScreens
 import ru.wb.meetings.ui.base.buttons.CustomButton
 import ru.wb.meetings.ui.base.text.TextBody2
 import ru.wb.meetings.ui.base.text.TextHeading2
+import ru.wb.meetings.ui.screens.auth.viewmodels.PhoneNumViewModel
 import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.widgets.PhoneNumberElement
 
@@ -37,10 +38,14 @@ private const val PHONE_NUM_LENGTH = 10
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PhoneNumScreen(navController: NavController) {
-    val phoneNumberState = remember { mutableStateOf("") }
-    val countryCodeState = remember { mutableStateOf("+7") }
-    val phoneNumberLength = remember { mutableStateOf(false) }
+fun PhoneNumScreen(
+    navController: NavController,
+    phoneNumViewModel: PhoneNumViewModel = koinViewModel()
+) {
+    val phoneNumber by phoneNumViewModel.phoneNumber.collectAsState()
+    val countryCode by phoneNumViewModel.countryCode.collectAsState()
+    val isPhoneNumberValid by phoneNumViewModel.isPhoneNumberValid.collectAsState()
+
     Scaffold(topBar = {
         TopAppBar(navigationIcon = {
             IconButton(onClick = { navController.navigateUp() }) {
@@ -89,36 +94,22 @@ fun PhoneNumScreen(navController: NavController) {
                 }
             }
             item {
-                PhoneNumberElement(onPhoneNumberChange = { phoneNumber ->
-                    phoneNumberLength.value = phoneNumber.length == PHONE_NUM_LENGTH
-                    phoneNumberState.value = phoneNumber
-                }, onCountryCodeChange = { countryCode ->
-                    countryCodeState.value = countryCode
-                })
+                PhoneNumberElement(
+                    onPhoneNumberChange = phoneNumViewModel::updatePhoneNumber,
+                    onCountryCodeChange = phoneNumViewModel::updateCountryCode
+                )
             }
             item {
-                when {
-                    phoneNumberLength.value -> {
-                        CustomButton(
-                            text = stringResource(R.string.Continue), onClick = {
-                                navController.navigate(AuthScreens.OtpCodeScreen.route + "/${phoneNumberState.value}/${countryCodeState.value}")
-                            }, modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 64.dp)
-                        )
-                    }
-
-                    else -> {
-                        CustomButton(
-                            text = stringResource(R.string.Continue),
-                            isEnabled = false,
-                            onClick = {},
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 64.dp)
-                        )
-                    }
-                }
+                CustomButton(
+                    text = stringResource(R.string.Continue),
+                    onClick = {
+                        navController.navigate(AuthScreens.OtpCodeScreen.route + "/${phoneNumber}/${countryCode}")
+                    },
+                    isEnabled = isPhoneNumberValid,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 64.dp)
+                )
             }
         }
     }

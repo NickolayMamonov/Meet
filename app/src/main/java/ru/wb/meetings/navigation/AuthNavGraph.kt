@@ -6,10 +6,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import ru.wb.meetings.ui.screens.auth.AddProfileScreen
-import ru.wb.meetings.ui.screens.auth.OtpCodeScreen
-import ru.wb.meetings.ui.screens.auth.PhoneNumScreen
-import ru.wb.meetings.ui.screens.main.AuthScreen
+import ru.wb.meetings.ui.screens.auth.screens.AddProfileScreen
+import ru.wb.meetings.ui.screens.auth.screens.OtpCodeScreen
+import ru.wb.meetings.ui.screens.auth.screens.PhoneNumScreen
 import ru.wb.meetings.ui.screens.main.MainScreen
 
 @Composable

@@ -21,7 +21,7 @@ import ru.wb.meetings.ui.base.MainNetworkIcon
 import ru.wb.meetings.ui.base.text.TextBody1
 import ru.wb.meetings.ui.base.text.TextMetadata1
 import ru.wb.meetings.ui.base.text.TextMetadata2
-import ru.wb.meetings.ui.models.MeetingEventModel
+import ru.wb.meetings.domain.models.MeetingEventModel
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
 import ru.wb.meetings.ui.theme.MeetTheme
@@ -60,7 +60,7 @@ fun MeetingEvent(
                 }
             }
             TextMetadata1(text = meeting.subTitle, color = MainColorScheme.neutralWeak, modifier = Modifier.padding(top = 8.dp))
-            ChipGroup()
+            ChipGroup(listOf("Kotlin","Junior", "Moscow"))
         }
     }
     HorizontalDivider(

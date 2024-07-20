@@ -1,4 +1,4 @@
-package ru.wb.meetings.ui.screens.events
+package ru.wb.meetings.ui.screens.events.screens
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,38 +15,32 @@ import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
 import ru.wb.meetings.navigation.Screen
 import ru.wb.meetings.ui.base.SearchBar
 import ru.wb.meetings.ui.base.text.TextBody1
 import ru.wb.meetings.ui.base.text.TextSubheading1
-import ru.wb.meetings.ui.models.MeetingEventModel
+import ru.wb.meetings.ui.screens.events.viewmodels.EventsViewModel
 import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.utils.EventsTabs
 import ru.wb.meetings.ui.widgets.MeetingEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventsScreen(navController: NavController) {
-    var selectedTabIndex by remember { mutableIntStateOf(0) }
-    val allMeetingsList = listOf(
-        MeetingEventModel("1", "Developer Meeting", "13.09.2024 — Москва", false),
-        MeetingEventModel("2", "Developer Meeting", "13.09.2024 — Москва", true),
-        MeetingEventModel("3", "Developer Meeting", "13.09.2024 — Москва", true),
-        MeetingEventModel("4", "Developer Meeting", "13.09.2024 — Москва", false),
-        MeetingEventModel("5", "Developer Meeting", "13.09.2024 — Москва", true),
-    )
-    val activeMeetingsList = allMeetingsList.filter { !it.isEnded }
-    val currentList = if (selectedTabIndex == 0) allMeetingsList else activeMeetingsList
+fun EventsScreen(
+    navController: NavController,
+    viewModel: EventsViewModel = koinViewModel()
+) {
+    val selectedTabIndex by viewModel.selectedTabIndex.collectAsState()
+    val currentList by viewModel.currentList.collectAsState()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -56,7 +50,6 @@ fun EventsScreen(navController: NavController) {
                         color = MeetTheme.colors.neutralActive,
                         modifier = Modifier.padding(start = 4.dp)
                     )
-
                 },
                 actions = {
                     IconButton(
@@ -112,7 +105,7 @@ fun EventsScreen(navController: NavController) {
                                 )
                             },
                             selected = selectedTabIndex == index,
-                            onClick = { selectedTabIndex = index }
+                            onClick = { viewModel.setSelectedTabIndex(index) }
                         )
                     }
                 }
@@ -122,14 +115,8 @@ fun EventsScreen(navController: NavController) {
                     navController.navigate(Screen.EventsRoot.DetailsEvent.route + "/${meeting.title}")
                 })
             }
-
-
         }
-
-
     }
-
-
 }
 
 
