@@ -11,10 +11,14 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -22,10 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
-import ru.wb.meetings.navigation.AuthScreens
 import ru.wb.meetings.ui.base.buttons.CustomTextButton
 import ru.wb.meetings.ui.base.text.TextBody2
 import ru.wb.meetings.ui.base.text.TextHeading2
+import ru.wb.meetings.ui.navigation.AuthScreens
 import ru.wb.meetings.ui.screens.auth.viewmodels.OtpCodeViewModel
 import ru.wb.meetings.ui.theme.MeetTheme
 import ru.wb.meetings.ui.utils.formatPhoneNumber
@@ -35,9 +39,17 @@ private const val TEST_CODE = "1234"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OtpCodeScreen(navController: NavController, phoneNumber: String, countryCode: String,otpCodeViewModel: OtpCodeViewModel = koinViewModel()) {
-    val otpCode by otpCodeViewModel.otpCode.collectAsState()
-    val isOtpValid by otpCodeViewModel.isOtpValid.collectAsState()
+fun OtpCodeScreen(
+    navController: NavController,
+    phoneNumber: String,
+    otpCodeViewModel: OtpCodeViewModel = koinViewModel()
+) {
+
+    val focusRequester = remember { FocusRequester() }
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
+    val isOtpValid by otpCodeViewModel.isOtpValid().collectAsState()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -102,7 +114,7 @@ fun OtpCodeScreen(navController: NavController, phoneNumber: String, countryCode
                         .padding(bottom = 32.dp, top = 16.dp)
                 ) {
                     TextBody2(
-                        text = "$countryCode ${formatPhoneNumber(phoneNumber)}",
+                        text = formatPhoneNumber(phoneNumber),
                         color = MeetTheme.colors.neutralActive,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(horizontal = 16.dp)
@@ -110,12 +122,15 @@ fun OtpCodeScreen(navController: NavController, phoneNumber: String, countryCode
                 }
             }
             item {
-                OtpElement(onOtpComplete = {otp ->
-                    otpCodeViewModel.updateOtpCode(otp)
-                    if (otp == TEST_CODE) {
-                        navController.navigate(AuthScreens.AddProfileScreen.route)
-                    }
-                })
+                OtpElement(
+                    onOtpComplete = { otp ->
+                        otpCodeViewModel.updateOtpCode(otp)
+                        if (otp == TEST_CODE) {
+                            navController.navigate(AuthScreens.AddProfileScreen.route)
+                        }
+                    },
+                    modifier = Modifier.focusRequester(focusRequester)
+                )
             }
             item {
                 CustomTextButton(

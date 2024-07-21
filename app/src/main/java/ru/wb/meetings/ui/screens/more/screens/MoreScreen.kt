@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
-import ru.wb.meetings.navigation.Screen
+import ru.wb.meetings.ui.navigation.Screen
 import ru.wb.meetings.ui.base.text.TextSubheading1
 import ru.wb.meetings.ui.screens.more.states.MoreScreenState
 import ru.wb.meetings.ui.screens.more.viewmodels.MoreViewModel
@@ -36,7 +36,7 @@ fun MoreScreen(
     navController: NavController,
     viewModel: MoreViewModel = koinViewModel()
 ) {
-    val screenState by viewModel.screenState.collectAsState()
+    val screenState by viewModel.screenState().collectAsState()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -133,12 +133,8 @@ fun MoreScreen(
                             onClick = {},
                         )
                     }
-
-
                 }
             }
         }
-
-
     }
 }

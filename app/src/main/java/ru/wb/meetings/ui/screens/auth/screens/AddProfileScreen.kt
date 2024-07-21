@@ -15,13 +15,15 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
@@ -31,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
-import ru.wb.meetings.navigation.AuthScreens
+import ru.wb.meetings.ui.navigation.AuthScreens
 import ru.wb.meetings.ui.base.UserAvatar
 import ru.wb.meetings.ui.base.buttons.CustomButton
 import ru.wb.meetings.ui.base.text.TextBody1
@@ -46,8 +48,12 @@ fun AddProfileScreen(
     navController: NavController,
     viewModel: AddProfileViewModel = koinViewModel()
 ) {
-    val firstName by viewModel.firstName.collectAsState()
-    val lastName by viewModel.lastName.collectAsState()
+    val firstName by viewModel.firstName().collectAsState()
+    val lastName by viewModel.lastName().collectAsState()
+    val focusRequester = remember { FocusRequester() }
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -94,6 +100,7 @@ fun AddProfileScreen(
             item {
                 Box(
                     modifier = Modifier
+                        .focusRequester(focusRequester)
                         .padding(vertical = 8.dp)
                         .clip(RoundedCornerShape(8.dp))
                         .background(MeetTheme.colors.neutralSecondaryBackground)

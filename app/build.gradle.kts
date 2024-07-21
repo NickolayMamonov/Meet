@@ -84,4 +84,7 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
+
+    implementation(project(":domain"))
+    implementation(project(":data"))
 }

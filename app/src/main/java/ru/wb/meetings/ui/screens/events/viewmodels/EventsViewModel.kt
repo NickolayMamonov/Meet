@@ -2,6 +2,9 @@ package ru.wb.meetings.ui.screens.events.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dev.whysoezzy.domain.models.MeetingEventModel
+import dev.whysoezzy.domain.usecases.GetActiveMeetingsUseCase
+import dev.whysoezzy.domain.usecases.GetAllMeetingsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -10,9 +13,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ru.wb.meetings.domain.models.MeetingEventModel
-import ru.wb.meetings.domain.usecases.GetActiveMeetingsUseCase
-import ru.wb.meetings.domain.usecases.GetAllMeetingsUseCase
 import ru.wb.meetings.ui.screens.events.states.EventsScreenState
 
 class EventsViewModel(
@@ -20,16 +20,24 @@ class EventsViewModel(
     private val getActiveMeetings: GetActiveMeetingsUseCase
 ) : ViewModel() {
     private val _screenState = MutableStateFlow<EventsScreenState>(EventsScreenState.Loading)
-    val screenState: StateFlow<EventsScreenState> = _screenState.asStateFlow()
+    private val screenState: StateFlow<EventsScreenState> = _screenState.asStateFlow()
+
+    fun screenState() = screenState
 
     private val _selectedTabIndex = MutableStateFlow(0)
-    val selectedTabIndex: StateFlow<Int> = _selectedTabIndex
+    private val selectedTabIndex: StateFlow<Int> = _selectedTabIndex.asStateFlow()
+
+    fun selectedTabIndex() = selectedTabIndex
 
     private var _allMeetingsList = MutableStateFlow<List<MeetingEventModel>>(emptyList())
-    val allMeetingsList: StateFlow<List<MeetingEventModel>> = _allMeetingsList.asStateFlow()
+    private val allMeetingsList: StateFlow<List<MeetingEventModel>> = _allMeetingsList.asStateFlow()
+
+    fun allMeetingsList() = allMeetingsList
 
     private var _activeMeetingsList = MutableStateFlow<List<MeetingEventModel>>(emptyList())
-    val activeMeetingsList: StateFlow<List<MeetingEventModel>> = _activeMeetingsList.asStateFlow()
+    private val activeMeetingsList: StateFlow<List<MeetingEventModel>> = _activeMeetingsList.asStateFlow()
+
+    fun activeMeetingsList() = activeMeetingsList
 
     val currentList: StateFlow<List<MeetingEventModel>> = combine(
         _selectedTabIndex, _allMeetingsList, _activeMeetingsList
@@ -44,6 +52,7 @@ class EventsViewModel(
         loadAllMeetings()
         loadActiveMeetings()
     }
+
     fun setSelectedTabIndex(index: Int) {
         viewModelScope.launch {
             _selectedTabIndex.emit(index)
@@ -54,10 +63,11 @@ class EventsViewModel(
             }
         }
     }
+
     private fun loadAllMeetings() {
         viewModelScope.launch {
             try {
-                getAllMeetings.invoke().collect { meetings ->
+                getAllMeetings.invoke().collect { meetings: List<MeetingEventModel> ->
                     _allMeetingsList.update { meetings }
                     _screenState.value = EventsScreenState.Content(meetings)
                 }
@@ -66,10 +76,11 @@ class EventsViewModel(
             }
         }
     }
+
     private fun loadActiveMeetings() {
         viewModelScope.launch {
             try {
-                getActiveMeetings.invoke().collect{meeting ->
+                getActiveMeetings.invoke().collect { meeting: List<MeetingEventModel> ->
                     _activeMeetingsList.update { meeting }
                     _screenState.value = EventsScreenState.Content(meeting)
                 }
@@ -78,7 +89,4 @@ class EventsViewModel(
             }
         }
     }
-
-
-
 }

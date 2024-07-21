@@ -44,7 +44,7 @@ fun ProfileScreen(
     navController: NavController,
     viewModel: ProfileViewModel = koinViewModel()
 ) {
-    val screenState by viewModel.screenState.collectAsState()
+    val screenState by viewModel.screenState().collectAsState()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -64,7 +64,6 @@ fun ProfileScreen(
                 },
                 actions = {
                     IconButton(onClick = {
-
                     }) {
                         Icon(
                             painter = painterResource(id = R.drawable.edit),
@@ -76,7 +75,6 @@ fun ProfileScreen(
                     containerColor = MeetTheme.colors.neutralWhite
                 )
             )
-
         }
     ) { innerPadding ->
         when (screenState) {
@@ -91,7 +89,6 @@ fun ProfileScreen(
                         .fillMaxSize()
                         .background(MeetTheme.colors.neutralWhite)
                         .padding(top = 50.dp),
-
                     ) {
                     userProfile.let { profile ->
                         item {
@@ -178,7 +175,6 @@ fun ProfileScreen(
                 }
             }
         }
-
     }
 }
 

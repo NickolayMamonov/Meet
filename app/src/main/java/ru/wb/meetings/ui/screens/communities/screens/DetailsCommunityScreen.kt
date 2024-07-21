@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
 import ru.wb.meetings.R
-import ru.wb.meetings.navigation.Screen
+import ru.wb.meetings.ui.navigation.Screen
 import ru.wb.meetings.ui.base.text.TextBody1
 import ru.wb.meetings.ui.base.text.TextSubheading1
 import ru.wb.meetings.ui.screens.communities.states.DetailsCommunityScreenState
@@ -46,8 +46,8 @@ fun DetailsCommunityScreen(
     name: String,
     viewModel: DetailsCommunityViewModel = koinViewModel()
 ) {
-    val screenState by viewModel.screenState.collectAsState()
-    val fullText by viewModel.fullText.collectAsState()
+    val screenState by viewModel.screenState().collectAsState()
+    val fullText by viewModel.fullText().collectAsState()
     LaunchedEffect(name) {
         viewModel.loadCommunityDetails(name)
     }
