@@ -35,7 +35,7 @@ fun CommunitiesScreen(
     navController: NavController,
     viewModel: CommunitiesViewModel = koinViewModel()
 ) {
-    val screenState by viewModel.screenState.collectAsState()
+    val screenState by viewModel.screenState().collectAsState()
 
     Scaffold(
         topBar = {

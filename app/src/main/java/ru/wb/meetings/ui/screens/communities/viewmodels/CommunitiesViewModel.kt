@@ -7,11 +7,14 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import dev.whysoezzy.domain.usecases.GetCommunityUseCase
+import kotlinx.coroutines.flow.asStateFlow
 import ru.wb.meetings.ui.screens.communities.states.CommunitiesScreenState
 
 class CommunitiesViewModel(private val getCommunityUseCase: GetCommunityUseCase): ViewModel() {
     private val _screenState = MutableStateFlow<CommunitiesScreenState>(CommunitiesScreenState.Loading)
-    val screenState: StateFlow<CommunitiesScreenState> = _screenState
+    private val screenState: StateFlow<CommunitiesScreenState> = _screenState.asStateFlow()
+
+    fun screenState() = screenState
 
     init {
         loadCommunities()

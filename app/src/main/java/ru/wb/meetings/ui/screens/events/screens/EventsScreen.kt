@@ -39,7 +39,7 @@ fun EventsScreen(
     navController: NavController,
     viewModel: EventsViewModel = koinViewModel()
 ) {
-    val selectedTabIndex by viewModel.selectedTabIndex.collectAsState()
+    val selectedTabIndex by viewModel.selectedTabIndex().collectAsState()
     val currentList by viewModel.currentList.collectAsState()
     Scaffold(
         topBar = {

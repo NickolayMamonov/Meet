@@ -11,10 +11,15 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -42,10 +47,14 @@ fun PhoneNumScreen(
     navController: NavController,
     phoneNumViewModel: PhoneNumViewModel = koinViewModel()
 ) {
-    val phoneNumber by phoneNumViewModel.phoneNumber.collectAsState()
-    val countryCode by phoneNumViewModel.countryCode.collectAsState()
-    val isPhoneNumberValid by phoneNumViewModel.isPhoneNumberValid.collectAsState()
+    val phoneNumber by phoneNumViewModel.phoneNumber().collectAsState()
+    val countryCode by phoneNumViewModel.countryCode().collectAsState()
+    val isPhoneNumberValid by phoneNumViewModel.isPhoneNumberValid().collectAsState()
 
+    val focusRequester = remember { FocusRequester() }
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
     Scaffold(topBar = {
         TopAppBar(navigationIcon = {
             IconButton(onClick = { navController.navigateUp() }) {
@@ -96,14 +105,16 @@ fun PhoneNumScreen(
             item {
                 PhoneNumberElement(
                     onPhoneNumberChange = phoneNumViewModel::updatePhoneNumber,
-                    onCountryCodeChange = phoneNumViewModel::updateCountryCode
+                    onCountryCodeChange = phoneNumViewModel::updateCountryCode,
+                    modifier = Modifier.focusRequester(focusRequester)
                 )
             }
             item {
                 CustomButton(
                     text = stringResource(R.string.Continue),
                     onClick = {
-                        navController.navigate(AuthScreens.OtpCodeScreen.route + "/${phoneNumber}/${countryCode}")
+                        val fullPhoneNumber = "$countryCode$phoneNumber"
+                        navController.navigate(AuthScreens.OtpCodeScreen.route + "/${fullPhoneNumber}")
                     },
                     isEnabled = isPhoneNumberValid,
                     modifier = Modifier

@@ -12,7 +12,9 @@ import ru.wb.meetings.ui.screens.more.states.ProfileScreenState
 
 class ProfileViewModel(private val getUserProfileUseCase: GetUserProfileUseCase) : ViewModel() {
     private val _screenState = MutableStateFlow<ProfileScreenState>(ProfileScreenState.Loading)
-    val screenState: StateFlow<ProfileScreenState> = _screenState.asStateFlow()
+    private val screenState: StateFlow<ProfileScreenState> = _screenState.asStateFlow()
+
+    fun screenState() = screenState
 
     init {
         loadUserProfile()

@@ -20,16 +20,24 @@ class EventsViewModel(
     private val getActiveMeetings: GetActiveMeetingsUseCase
 ) : ViewModel() {
     private val _screenState = MutableStateFlow<EventsScreenState>(EventsScreenState.Loading)
-    val screenState: StateFlow<EventsScreenState> = _screenState.asStateFlow()
+    private val screenState: StateFlow<EventsScreenState> = _screenState.asStateFlow()
+
+    fun screenState() = screenState
 
     private val _selectedTabIndex = MutableStateFlow(0)
-    val selectedTabIndex: StateFlow<Int> = _selectedTabIndex
+    private val selectedTabIndex: StateFlow<Int> = _selectedTabIndex.asStateFlow()
+
+    fun selectedTabIndex() = selectedTabIndex
 
     private var _allMeetingsList = MutableStateFlow<List<MeetingEventModel>>(emptyList())
-    val allMeetingsList: StateFlow<List<MeetingEventModel>> = _allMeetingsList.asStateFlow()
+    private val allMeetingsList: StateFlow<List<MeetingEventModel>> = _allMeetingsList.asStateFlow()
+
+    fun allMeetingsList() = allMeetingsList
 
     private var _activeMeetingsList = MutableStateFlow<List<MeetingEventModel>>(emptyList())
-    val activeMeetingsList: StateFlow<List<MeetingEventModel>> = _activeMeetingsList.asStateFlow()
+    private val activeMeetingsList: StateFlow<List<MeetingEventModel>> = _activeMeetingsList.asStateFlow()
+
+    fun activeMeetingsList() = activeMeetingsList
 
     val currentList: StateFlow<List<MeetingEventModel>> = combine(
         _selectedTabIndex, _allMeetingsList, _activeMeetingsList

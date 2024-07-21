@@ -13,12 +13,15 @@ import ru.wb.meetings.ui.screens.communities.states.DetailsCommunityScreenState
 
 
 class DetailsCommunityViewModel(private val getCommunityDetailsUseCase: GetCommunityDetailsUseCase) : ViewModel() {
-    private val _screenState = MutableStateFlow<DetailsCommunityScreenState>(
-        DetailsCommunityScreenState.Loading)
-    val screenState: StateFlow<DetailsCommunityScreenState> = _screenState
+    private val _screenState = MutableStateFlow<DetailsCommunityScreenState>(DetailsCommunityScreenState.Loading)
+    private val screenState: StateFlow<DetailsCommunityScreenState> = _screenState.asStateFlow()
+
+    fun screenState() = screenState
 
     private val _fullText = MutableStateFlow(false)
-    val fullText: StateFlow<Boolean> = _fullText.asStateFlow()
+    private val fullText: StateFlow<Boolean> = _fullText.asStateFlow()
+
+    fun fullText() = fullText
 
     fun loadCommunityDetails(name: String) {
         viewModelScope.launch {

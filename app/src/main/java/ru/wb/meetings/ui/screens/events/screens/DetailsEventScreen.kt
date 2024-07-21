@@ -47,10 +47,10 @@ private const val MAX_LINE = 8
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsEventScreen(navController: NavController, name: String,viewModel: DetailsEventViewModel = koinViewModel()) {
-    val screenState by viewModel.screenState.collectAsState()
-    val showImageDialog by viewModel.showImageDialog.collectAsState()
-    val fullText by viewModel.fullText.collectAsState()
-    val buttonPressed by viewModel.buttonPressed.collectAsState()
+    val screenState by viewModel.screenState().collectAsState()
+    val showImageDialog by viewModel.showImageDialog().collectAsState()
+    val fullText by viewModel.fullText().collectAsState()
+    val buttonPressed by viewModel.buttonPressed().collectAsState()
     LaunchedEffect(name) {
         viewModel.loadEventDetails(name)
     }

@@ -40,7 +40,8 @@ private const val PHONE_NUM_WITHOUT_COUNTRY_CODE = 10
 @Composable
 fun PhoneNumberElement(
     onPhoneNumberChange: (String) -> Unit,
-    onCountryCodeChange: (String) -> Unit
+    onCountryCodeChange: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     var phoneNumber by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
@@ -55,7 +56,7 @@ fun PhoneNumberElement(
     }
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxHeight()
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {

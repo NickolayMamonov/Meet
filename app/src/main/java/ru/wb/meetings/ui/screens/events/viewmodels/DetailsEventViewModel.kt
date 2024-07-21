@@ -6,6 +6,7 @@ import dev.whysoezzy.domain.models.DetailsEventModel
 import dev.whysoezzy.domain.usecases.GetEventDetailsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.wb.meetings.ui.screens.events.states.DetailEventScreenState
@@ -13,16 +14,24 @@ import ru.wb.meetings.ui.screens.events.states.DetailEventScreenState
 class DetailsEventViewModel(private val getEvent: GetEventDetailsUseCase) : ViewModel() {
 
     private val _screenState = MutableStateFlow<DetailEventScreenState>(DetailEventScreenState.Loading)
-    val screenState: StateFlow<DetailEventScreenState> = _screenState
+    private val screenState: StateFlow<DetailEventScreenState> = _screenState.asStateFlow()
+
+    fun screenState() = screenState
 
     private val _showImageDialog = MutableStateFlow(false)
-    val showImageDialog: StateFlow<Boolean> = _showImageDialog
+    private val showImageDialog: StateFlow<Boolean> = _showImageDialog.asStateFlow()
+
+    fun showImageDialog() = showImageDialog
 
     private val _fullText = MutableStateFlow(false)
-    val fullText: StateFlow<Boolean> = _fullText
+    private val fullText: StateFlow<Boolean> = _fullText.asStateFlow()
+
+    fun fullText() = fullText
 
     private val _buttonPressed = MutableStateFlow(false)
-    val buttonPressed: StateFlow<Boolean> = _buttonPressed
+    private val buttonPressed: StateFlow<Boolean> = _buttonPressed.asStateFlow()
+
+    fun buttonPressed() = buttonPressed
 
     fun loadEventDetails(name: String) {
         viewModelScope.launch {

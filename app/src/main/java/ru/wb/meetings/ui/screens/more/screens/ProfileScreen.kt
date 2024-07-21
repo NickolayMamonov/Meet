@@ -44,7 +44,7 @@ fun ProfileScreen(
     navController: NavController,
     viewModel: ProfileViewModel = koinViewModel()
 ) {
-    val screenState by viewModel.screenState.collectAsState()
+    val screenState by viewModel.screenState().collectAsState()
     Scaffold(
         topBar = {
             TopAppBar(

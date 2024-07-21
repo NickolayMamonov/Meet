@@ -3,18 +3,25 @@ package ru.wb.meetings.ui.screens.auth.viewmodels
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 private const val PHONE_NUMBER_WITHOUT_COUNTRY_CODE_LENGTH = 10
 
 class PhoneNumViewModel : ViewModel() {
     private val _phoneNumber = MutableStateFlow("")
-    val phoneNumber: StateFlow<String> = _phoneNumber
+    private val phoneNumber: StateFlow<String> = _phoneNumber.asStateFlow()
+
+    fun phoneNumber() = phoneNumber
 
     private val _countryCode = MutableStateFlow("+7")
-    val countryCode: StateFlow<String> = _countryCode
+    private val countryCode: StateFlow<String> = _countryCode.asStateFlow()
+
+    fun countryCode() = countryCode
 
     private val _isPhoneNumberValid = MutableStateFlow(false)
-    val isPhoneNumberValid: StateFlow<Boolean> = _isPhoneNumberValid
+    private val isPhoneNumberValid: StateFlow<Boolean> = _isPhoneNumberValid.asStateFlow()
+
+    fun isPhoneNumberValid() = isPhoneNumberValid
 
     fun updatePhoneNumber(number: String) {
         _phoneNumber.value = number

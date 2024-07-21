@@ -46,8 +46,8 @@ fun DetailsCommunityScreen(
     name: String,
     viewModel: DetailsCommunityViewModel = koinViewModel()
 ) {
-    val screenState by viewModel.screenState.collectAsState()
-    val fullText by viewModel.fullText.collectAsState()
+    val screenState by viewModel.screenState().collectAsState()
+    val fullText by viewModel.fullText().collectAsState()
     LaunchedEffect(name) {
         viewModel.loadCommunityDetails(name)
     }
