@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
     id("io.gitlab.arturbosch.detekt") version "1.23.6"
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.jetbrains.kotlin.jvm) apply false
 }
 
 detekt {

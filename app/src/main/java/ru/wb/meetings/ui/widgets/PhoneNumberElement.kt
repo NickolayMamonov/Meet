@@ -29,7 +29,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MeetTheme
@@ -41,7 +40,8 @@ private const val PHONE_NUM_WITHOUT_COUNTRY_CODE = 10
 @Composable
 fun PhoneNumberElement(
     onPhoneNumberChange: (String) -> Unit,
-    onCountryCodeChange: (String) -> Unit
+    onCountryCodeChange: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     var phoneNumber by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
@@ -56,7 +56,7 @@ fun PhoneNumberElement(
     }
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxHeight()
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {

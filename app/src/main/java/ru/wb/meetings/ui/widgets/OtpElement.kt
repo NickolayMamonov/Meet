@@ -25,20 +25,20 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.wb.meetings.R
 import ru.wb.meetings.ui.theme.MainColorScheme
 import ru.wb.meetings.ui.theme.MainTypographyTextStyle
+import ru.wb.meetings.ui.theme.MeetTheme
 
 private const val OTP_LENGTH = 4
 
 
 @Composable
-fun OtpElement(onOtpComplete: (String) -> Unit) {
+fun OtpElement(onOtpComplete: (String) -> Unit, modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
 
     ) {
@@ -61,7 +61,7 @@ fun OtpElement(onOtpComplete: (String) -> Unit) {
                             Image(
                                 painter = painterResource(id = R.drawable.navbar_dot),
                                 contentDescription = "Dot",
-                                colorFilter = ColorFilter.tint(MainColorScheme.neutralLine),
+                                colorFilter = ColorFilter.tint(MeetTheme.colors.neutralLine),
                                 modifier = Modifier.size(24.dp)
                             )
                         }
@@ -69,7 +69,7 @@ fun OtpElement(onOtpComplete: (String) -> Unit) {
                         else -> {
                             Text(
                                 text = otp[index].toString(),
-                                style = MainTypographyTextStyle.heading1
+                                style = MeetTheme.typography.heading1
                             )
                         }
                     }
@@ -106,11 +106,4 @@ fun OtpElement(onOtpComplete: (String) -> Unit) {
     }
 
 
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewOtpElement() {
-//    OtpElement()
 }

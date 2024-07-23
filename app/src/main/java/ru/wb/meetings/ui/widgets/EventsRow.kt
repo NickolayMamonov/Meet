@@ -21,13 +21,16 @@ fun EventsRow(avatars: List<String>, modifier: Modifier = Modifier) {
             .fillMaxWidth(),
         contentAlignment = Alignment.CenterStart
     ) {
-        if (avatars.isEmpty()) {
-            Text(text = stringResource(R.string.not_liked_yet))
-        } else {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OverlappingRow(avatars = avatars, overlappingPercentage = 0.35f)
+        when {
+            avatars.isEmpty() -> {
+                Text(text = stringResource(R.string.not_liked_yet))
+            }
+            else -> {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    OverlappingRow(avatars = avatars, overlappingPercentage = 0.35f)
+                }
             }
         }
     }
