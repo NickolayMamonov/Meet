@@ -1,8 +1,9 @@
-package dev.whysoezzy.domain.repository
+package dev.whysoezzy.domain.repository.stub
 
 import dev.whysoezzy.domain.models.CommunityDetailModel
 import dev.whysoezzy.domain.models.CommunityEventModel
 import dev.whysoezzy.domain.models.MeetingEventModel
+import dev.whysoezzy.domain.repository.CommunitiesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
