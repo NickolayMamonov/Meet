@@ -9,10 +9,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import dev.whysoezzy.ui.screens.main.AuthScreen
+import dev.whysoezzy.ui.screens.splash.SplashScreen
 import kotlinx.coroutines.delay
-import ru.wb.meetings.ui.screens.splash.SplashScreen
-import ru.wb.meetings.ui.screens.main.AuthScreen
-import ru.wb.meetings.ui.theme.MeetTheme
+import dev.whysoezzy.ui.theme.MeetTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -35,9 +35,7 @@ class MainActivity : ComponentActivity() {
                         AuthScreen()
                     }
                 }
-
             }
-
         }
     }
 }

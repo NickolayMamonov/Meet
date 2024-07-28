@@ -1,5 +1,12 @@
 @file:Suppress("UnstableApiUsage")
 
+
+include(":ui")
+
+
+include(":common")
+
+
 include(":domain")
 
 

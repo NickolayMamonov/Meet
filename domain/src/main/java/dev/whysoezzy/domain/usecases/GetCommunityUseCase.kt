@@ -7,6 +7,6 @@ import dev.whysoezzy.domain.repository.CommunitiesRepository
 
 class GetCommunityUseCase(private val repository: CommunitiesRepository) {
     operator fun invoke(): Flow<List<CommunityEventModel>> {
-        return  repository.getCommunities()
+        return repository.getCommunities()
     }
 }
