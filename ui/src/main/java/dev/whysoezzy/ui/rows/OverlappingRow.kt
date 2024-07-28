@@ -9,7 +9,7 @@ import dev.whysoezzy.ui.base.MainNetworkIcon
 import dev.whysoezzy.ui.base.text.TextBody1
 
 import dev.whysoezzy.ui.theme.MeetTheme
-
+import dev.whysoezzy.ui.utils.AVATAR_ITEMS
 
 @Composable
 fun OverlappingRow(
@@ -23,7 +23,7 @@ fun OverlappingRow(
     Layout(
         modifier = modifier,
         content = {
-            avatars.take(5).forEach { avatar ->
+            avatars.take(AVATAR_ITEMS).forEach { avatar ->
                 MainNetworkIcon(
                     image = avatar,
                     showBadge = false,
@@ -35,7 +35,7 @@ fun OverlappingRow(
             }
             if (avatars.size > 5) {
                 TextBody1(
-                    text = "+${avatars.size - 5}",
+                    text = "+${avatars.size - AVATAR_ITEMS}",
                     color = MeetTheme.colors.neutralActive,
                     modifier = Modifier.padding(start = 28.dp, top = 16.dp)
                 )

@@ -34,9 +34,10 @@ import androidx.compose.ui.unit.dp
 import dev.whysoezzy.ui.R
 import dev.whysoezzy.ui.theme.MeetTheme
 import dev.whysoezzy.ui.utils.Country
+import dev.whysoezzy.ui.utils.PHONE_NUM_WITHOUT_COUNTRY_CODE
 import dev.whysoezzy.ui.utils.mobileNumberFilter
 
-private const val PHONE_NUM_WITHOUT_COUNTRY_CODE = 10
+
 @Composable
 fun PhoneNumberElement(
     onPhoneNumberChange: (String) -> Unit,

@@ -32,11 +32,10 @@ import dev.whysoezzy.ui.navigation.AuthScreens
 import org.koin.androidx.compose.koinViewModel
 import dev.whysoezzy.ui.screens.auth.viewmodels.OtpCodeViewModel
 import dev.whysoezzy.ui.theme.MeetTheme
+import dev.whysoezzy.ui.utils.TEST_CODE
 import dev.whysoezzy.ui.utils.formatPhoneNumber
 import dev.whysoezzy.ui.widgets.OtpElement
 
-
-private const val TEST_CODE = "1234"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

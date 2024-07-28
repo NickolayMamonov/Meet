@@ -28,8 +28,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import dev.whysoezzy.ui.R
 import dev.whysoezzy.ui.theme.MeetTheme
-
-private const val OTP_LENGTH = 4
+import dev.whysoezzy.ui.utils.OTP_LENGTH
 
 
 @Composable

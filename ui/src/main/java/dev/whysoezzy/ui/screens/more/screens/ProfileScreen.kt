@@ -2,6 +2,7 @@ package dev.whysoezzy.ui.screens.more.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -76,103 +77,110 @@ fun ProfileScreen(
             )
         }
     ) { innerPadding ->
-        when (currentState) {
-            is ScreenState.Loading -> CircularProgressIndicator()
-            is ScreenState.Error -> Text(text = "Error: ${currentState.message}")
-            is ScreenState.Content -> {
-                val userProfile = currentState.data
-                LazyColumn(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .padding(innerPadding)
-                        .fillMaxSize()
-                        .background(MeetTheme.colors.neutralWhite)
-                        .padding(top = 50.dp),
+        Box(modifier = Modifier.padding(innerPadding)){
+            when (currentState) {
+                is ScreenState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+
+                is ScreenState.Error -> Text(
+                    text = "Error: ${currentState.message}",
+                    modifier = Modifier.align(Alignment.Center)
+                )
+                is ScreenState.Content -> {
+                    val userProfile = currentState.data
+                    LazyColumn(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .fillMaxSize()
+                            .background(MeetTheme.colors.neutralWhite)
+                            .padding(top = 50.dp),
                     ) {
-                    userProfile.let { profile ->
-                        item {
-                            UserAvatar(
-                                size = 200.dp,
-                            )
-                        }
-                        item {
-                            TextHeading2(
-                                text = profile.name,
-                                color = MeetTheme.colors.neutralActive,
-                                modifier = Modifier.padding(top = 16.dp, bottom = 4.dp)
-                            )
-                        }
-                        item {
-                            TextBody2(
-                                text = profile.phoneNumber,
-                                color = MeetTheme.colors.neutralDisabled,
-                                modifier = Modifier.padding(bottom = 16.dp)
-                            )
-                        }
-                        item {
-                            Row(
-                                horizontalArrangement = Arrangement.SpaceEvenly,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = 16.dp)
-                            ) {
-                                CustomOutlinedButton(
-                                    icon = {
-                                        MainIcon(
-                                            showBadge = false,
-                                            isClickable = false,
-                                            sizeIcon = 24.dp,
-                                            image = painterResource(id = R.drawable.icon_twittter)
-                                        )
-                                    },
-                                    onClick = {
-
-                                    },
+                        userProfile.let { profile ->
+                            item {
+                                UserAvatar(
+                                    size = 200.dp,
                                 )
-                                CustomOutlinedButton(
-                                    icon = {
-                                        MainIcon(
-                                            showBadge = false,
-                                            isClickable = false,
-                                            sizeIcon = 24.dp,
-                                            image = painterResource(id = R.drawable.icon_inst)
-                                        )
-                                    },
-                                    onClick = {
-
-                                    },
+                            }
+                            item {
+                                TextHeading2(
+                                    text = profile.name,
+                                    color = MeetTheme.colors.neutralActive,
+                                    modifier = Modifier.padding(top = 16.dp, bottom = 4.dp)
                                 )
-                                CustomOutlinedButton(
-                                    icon = {
-                                        MainIcon(
-                                            showBadge = false,
-                                            isClickable = false,
-                                            sizeIcon = 24.dp,
-                                            image = painterResource(id = R.drawable.icon_in)
-                                        )
-                                    },
-                                    onClick = {
-
-                                    },
+                            }
+                            item {
+                                TextBody2(
+                                    text = profile.phoneNumber,
+                                    color = MeetTheme.colors.neutralDisabled,
+                                    modifier = Modifier.padding(bottom = 16.dp)
                                 )
-                                CustomOutlinedButton(
-                                    icon = {
-                                        MainIcon(
-                                            showBadge = false,
-                                            isClickable = false,
-                                            sizeIcon = 24.dp,
-                                            image = painterResource(id = R.drawable.icon_fb)
-                                        )
-                                    },
-                                    onClick = {
+                            }
+                            item {
+                                Row(
+                                    horizontalArrangement = Arrangement.SpaceEvenly,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(top = 16.dp)
+                                ) {
+                                    CustomOutlinedButton(
+                                        icon = {
+                                            MainIcon(
+                                                showBadge = false,
+                                                isClickable = false,
+                                                sizeIcon = 24.dp,
+                                                image = painterResource(id = R.drawable.icon_twittter)
+                                            )
+                                        },
+                                        onClick = {
 
-                                    },
-                                )
+                                        },
+                                    )
+                                    CustomOutlinedButton(
+                                        icon = {
+                                            MainIcon(
+                                                showBadge = false,
+                                                isClickable = false,
+                                                sizeIcon = 24.dp,
+                                                image = painterResource(id = R.drawable.icon_inst)
+                                            )
+                                        },
+                                        onClick = {
+
+                                        },
+                                    )
+                                    CustomOutlinedButton(
+                                        icon = {
+                                            MainIcon(
+                                                showBadge = false,
+                                                isClickable = false,
+                                                sizeIcon = 24.dp,
+                                                image = painterResource(id = R.drawable.icon_in)
+                                            )
+                                        },
+                                        onClick = {
+
+                                        },
+                                    )
+                                    CustomOutlinedButton(
+                                        icon = {
+                                            MainIcon(
+                                                showBadge = false,
+                                                isClickable = false,
+                                                sizeIcon = 24.dp,
+                                                image = painterResource(id = R.drawable.icon_fb)
+                                            )
+                                        },
+                                        onClick = {
+
+                                        },
+                                    )
+                                }
                             }
                         }
                     }
                 }
             }
         }
+
     }
 }

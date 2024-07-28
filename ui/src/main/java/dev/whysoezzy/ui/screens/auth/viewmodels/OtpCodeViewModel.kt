@@ -1,11 +1,11 @@
 package dev.whysoezzy.ui.screens.auth.viewmodels
 
 import androidx.lifecycle.ViewModel
+import dev.whysoezzy.ui.utils.OTP_LENGTH
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-private const val OTP_CODE_LENGTH = 4
 
 class OtpCodeViewModel : ViewModel() {
     private val _otpCode = MutableStateFlow("")
@@ -22,7 +22,7 @@ class OtpCodeViewModel : ViewModel() {
     }
 
     private fun validateOtpCode() {
-        _isOtpValid.value = _otpCode.value.length == OTP_CODE_LENGTH
+        _isOtpValid.value = _otpCode.value.length == OTP_LENGTH
     }
 
 }

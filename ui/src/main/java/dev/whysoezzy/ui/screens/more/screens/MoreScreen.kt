@@ -2,6 +2,7 @@ package dev.whysoezzy.ui.screens.more.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -50,89 +51,95 @@ fun MoreScreen(
             )
         }
     ) { innerPadding ->
-        when(currentState){
-            is ScreenState.Loading -> CircularProgressIndicator()
-            is ScreenState.Error -> Text(text = "Error: ${currentState.message}")
-            is ScreenState.Content -> {
-                val userProfile = currentState.data
-                LazyColumn(
-                    modifier = Modifier
-                        .padding(innerPadding)
-                        .fillMaxSize()
-                        .background(MeetTheme.colors.neutralWhite),
-                    verticalArrangement = Arrangement.Top,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    item {
-                        userProfile.let{ profile ->
-                            ProfileElement(
-                                text = profile.name,
-                                subtext = profile.phoneNumber,
+        Box(modifier = Modifier.padding(innerPadding)){
+            when(currentState){
+                is ScreenState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+
+                is ScreenState.Error -> Text(
+                    text = "Error: ${currentState.message}",
+                    modifier = Modifier.align(Alignment.Center)
+                )
+                is ScreenState.Content -> {
+                    val userProfile = currentState.data
+                    LazyColumn(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .fillMaxSize()
+                            .background(MeetTheme.colors.neutralWhite),
+                        verticalArrangement = Arrangement.Top,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        item {
+                            userProfile.let{ profile ->
+                                ProfileElement(
+                                    text = profile.name,
+                                    subtext = profile.phoneNumber,
+                                    onClick = {
+                                        navController.navigate(Screen.MoreRoot.Profile.route)
+                                    },
+                                    modifier = Modifier.padding(top = 8.dp)
+                                )
+                            }
+                        }
+                        item {
+                            SettingsElement(
+                                icon = painterResource(id = R.drawable.events),
+                                name = stringResource(id = R.string.my_meetings),
                                 onClick = {
-                                    navController.navigate(Screen.MoreRoot.Profile.route)
+                                    navController.navigate(Screen.MoreRoot.MyEvents.route)
                                 },
-                                modifier = Modifier.padding(top = 8.dp)
+                                modifier = Modifier
+                                    .padding(bottom = 20.dp)
                             )
                         }
-                    }
-                    item {
-                        SettingsElement(
-                            icon = painterResource(id = R.drawable.events),
-                            name = stringResource(id = R.string.my_meetings),
-                            onClick = {
-                                navController.navigate(Screen.MoreRoot.MyEvents.route)
-                            },
-                            modifier = Modifier
-                                .padding(bottom = 20.dp)
-                        )
-                    }
-                    item {
-                        SettingsElement(
-                            icon = painterResource(id = R.drawable.ic_theme),
-                            name = stringResource(R.string.theme),
-                            onClick = {},
-                        )
-                    }
-                    item {
-                        SettingsElement(
-                            icon = painterResource(id = R.drawable.ic_notification),
-                            name = stringResource(R.string.notifications),
-                            onClick = {},
-                        )
-                    }
-                    item {
-                        SettingsElement(
-                            icon = painterResource(id = R.drawable.ic_security),
-                            name = stringResource(R.string.security),
-                            onClick = {},
-                        )
-                    }
-                    item {
-                        SettingsElement(
-                            icon = painterResource(id = R.drawable.ic_memory_and_storage),
-                            name = stringResource(R.string.memory_and_resources),
-                            onClick = {},
-                        )
-                    }
-                    item {
-                        HorizontalDivider(
-                            thickness = 1.dp,
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
-                        )
-                    }
-                    item {
-                        SettingsElement(
-                            icon = painterResource(id = R.drawable.ic_help),
-                            name = stringResource(R.string.help),
-                            onClick = {},
-                        )
-                    }
-                    item {
-                        SettingsElement(
-                            icon = painterResource(id = R.drawable.ic_invite_friend),
-                            name = stringResource(R.string.invite_friend),
-                            onClick = {},
-                        )
+                        item {
+                            SettingsElement(
+                                icon = painterResource(id = R.drawable.ic_theme),
+                                name = stringResource(R.string.theme),
+                                onClick = {},
+                            )
+                        }
+                        item {
+                            SettingsElement(
+                                icon = painterResource(id = R.drawable.ic_notification),
+                                name = stringResource(R.string.notifications),
+                                onClick = {},
+                            )
+                        }
+                        item {
+                            SettingsElement(
+                                icon = painterResource(id = R.drawable.ic_security),
+                                name = stringResource(R.string.security),
+                                onClick = {},
+                            )
+                        }
+                        item {
+                            SettingsElement(
+                                icon = painterResource(id = R.drawable.ic_memory_and_storage),
+                                name = stringResource(R.string.memory_and_resources),
+                                onClick = {},
+                            )
+                        }
+                        item {
+                            HorizontalDivider(
+                                thickness = 1.dp,
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+                            )
+                        }
+                        item {
+                            SettingsElement(
+                                icon = painterResource(id = R.drawable.ic_help),
+                                name = stringResource(R.string.help),
+                                onClick = {},
+                            )
+                        }
+                        item {
+                            SettingsElement(
+                                icon = painterResource(id = R.drawable.ic_invite_friend),
+                                name = stringResource(R.string.invite_friend),
+                                onClick = {},
+                            )
+                        }
                     }
                 }
             }

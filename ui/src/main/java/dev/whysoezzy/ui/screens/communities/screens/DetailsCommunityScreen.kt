@@ -70,17 +70,11 @@ fun DetailsCommunityScreen(
             .padding(innerPadding)
             .fillMaxSize()) {
             when (currentState) {
-                is ScreenState.Loading -> {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-                }
-
-                is ScreenState.Error -> {
-                    Text(
-                        text = "Error: ${currentState.message}",
-                        modifier = Modifier.align(Alignment.Center)
-                    )
-                }
-
+                is ScreenState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                is ScreenState.Error -> Text(
+                    text = "Error: ${currentState.message}",
+                    modifier = Modifier.align(Alignment.Center)
+                )
                 is ScreenState.Content -> {
                     val details = currentState.data
                     val fullText by viewModel.fullText().collectAsState()

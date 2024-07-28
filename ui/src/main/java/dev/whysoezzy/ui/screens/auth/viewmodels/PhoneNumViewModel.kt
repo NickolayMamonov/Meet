@@ -1,11 +1,12 @@
 package dev.whysoezzy.ui.screens.auth.viewmodels
 
 import androidx.lifecycle.ViewModel
+import dev.whysoezzy.ui.utils.PHONE_NUM_WITHOUT_COUNTRY_CODE
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-private const val PHONE_NUMBER_WITHOUT_COUNTRY_CODE_LENGTH = 10
+
 
 class PhoneNumViewModel : ViewModel() {
     private val _phoneNumber = MutableStateFlow("")
@@ -30,7 +31,7 @@ class PhoneNumViewModel : ViewModel() {
 
     private fun validatePhoneNumber() {
         _isPhoneNumberValid.value =
-            _phoneNumber.value.length == PHONE_NUMBER_WITHOUT_COUNTRY_CODE_LENGTH
+            _phoneNumber.value.length == PHONE_NUM_WITHOUT_COUNTRY_CODE
     }
 
 }

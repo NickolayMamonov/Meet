@@ -10,5 +10,3 @@ fun formatPhoneNumber(phoneNumber: String): String {
         }
     }
 }
-
-private const val NUMBER_LENGTH_WITHOUT_CODE_COUNTRY = 12

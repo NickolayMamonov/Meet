@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import dev.whysoezzy.common.ScreenState
+import dev.whysoezzy.ui.utils.FIRST_ELEMENT_TAB_INDEX
 
 class MyEventsViewModel(
     private val getPassedMeetingsUseCase: GetPassedMeetingsUseCase,
@@ -21,7 +22,7 @@ class MyEventsViewModel(
 ) : ViewModel() {
     private val _screenState = MutableStateFlow<ScreenState<List<MeetingEventModel>>>(ScreenState.Loading)
     private val screenState: StateFlow<ScreenState<List<MeetingEventModel>>> = _screenState.asStateFlow()
-    private val _selectedTabIndex = MutableStateFlow(0)
+    private val _selectedTabIndex = MutableStateFlow(FIRST_ELEMENT_TAB_INDEX)
     private val selectedTabIndex: StateFlow<Int> = _selectedTabIndex.asStateFlow()
     private var _passedMeetingsList = MutableStateFlow<List<MeetingEventModel>>(emptyList())
     private val passedMeetingsList: StateFlow<List<MeetingEventModel>> =
@@ -42,7 +43,7 @@ class MyEventsViewModel(
         _selectedTabIndex, _plannedMeetingsList, _passedMeetingsList
     ) { selectedTabIndex, plannedMeetingList, passedMeetingsList ->
         when (selectedTabIndex) {
-            0 -> plannedMeetingList
+            FIRST_ELEMENT_TAB_INDEX -> plannedMeetingList
             else -> passedMeetingsList
         }
     }.stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
@@ -56,7 +57,7 @@ class MyEventsViewModel(
         viewModelScope.launch {
             _selectedTabIndex.emit(index)
             when (index) {
-                0 -> {
+                FIRST_ELEMENT_TAB_INDEX -> {
                     loadPlannedMeetings()
                 }
 
