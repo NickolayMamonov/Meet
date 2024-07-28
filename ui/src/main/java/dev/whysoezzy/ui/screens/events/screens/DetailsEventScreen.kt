@@ -90,14 +90,11 @@ fun DetailsEventScreen(
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             when (currentState) {
-                is ScreenState.Loading -> {
-                    CircularProgressIndicator()
-                }
-
-                is ScreenState.Error -> {
-                    Text(text = "Error: ")
-                }
-
+                is ScreenState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                is ScreenState.Error -> Text(
+                    text = "Error: ${currentState.message}",
+                    modifier = Modifier.align(Alignment.Center)
+                )
                 is ScreenState.Content -> {
                     val event = currentState.data
                     val fullText by viewModel.fullText().collectAsState()

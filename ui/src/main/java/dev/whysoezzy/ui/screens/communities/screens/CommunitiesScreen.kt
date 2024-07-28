@@ -52,12 +52,11 @@ fun CommunitiesScreen(
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             when(currentState) {
-                is ScreenState.Loading -> {
-                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-                }
-                is ScreenState.Error -> {
-                    Text(text = "Error: ", modifier = Modifier.align(Alignment.Center))
-                }
+                is ScreenState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                is ScreenState.Error -> Text(
+                    text = "Error: ${currentState.message}",
+                    modifier = Modifier.align(Alignment.Center)
+                )
                 is ScreenState.Content -> {
                     LazyColumn(
                         modifier = Modifier
