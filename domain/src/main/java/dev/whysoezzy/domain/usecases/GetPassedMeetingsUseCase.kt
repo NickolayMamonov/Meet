@@ -10,7 +10,6 @@ class GetPassedMeetingsUseCase(private val repository: MoreRepository) {
         return repository.getMeetings()
             .map { meetings ->
                 meetings.filter { it.isEnded }
-
             }
     }
 }

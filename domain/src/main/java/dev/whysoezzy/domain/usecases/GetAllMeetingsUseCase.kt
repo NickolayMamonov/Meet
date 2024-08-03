@@ -6,7 +6,7 @@ import dev.whysoezzy.domain.repository.MeetingsRepository
 
 class GetAllMeetingsUseCase(private val meetingsRepository: MeetingsRepository) {
     operator fun invoke(): Flow<List<MeetingEventModel>> {
-        return  meetingsRepository.getAllMeetings()
+        return meetingsRepository.getAllMeetings()
     }
 
 }

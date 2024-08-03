@@ -10,16 +10,16 @@ import dev.whysoezzy.domain.usecases.GetEventDetailsUseCase
 import dev.whysoezzy.domain.usecases.GetPassedMeetingsUseCase
 import dev.whysoezzy.domain.usecases.GetPlannedMeetingsUseCase
 import dev.whysoezzy.domain.usecases.GetUserProfileUseCase
-
+import org.koin.core.module.dsl.singleOf
 
 
 val usecasesModule = module {
-    factoryOf(::GetAllMeetingsUseCase)
-    factoryOf(::GetActiveMeetingsUseCase)
-    factoryOf(::GetEventDetailsUseCase)
-    factoryOf(::GetCommunityUseCase)
-    factoryOf(::GetCommunityDetailsUseCase)
-    factoryOf(::GetUserProfileUseCase)
-    factoryOf(::GetPlannedMeetingsUseCase)
-    factoryOf(::GetPassedMeetingsUseCase)
+    singleOf(::GetAllMeetingsUseCase)
+    singleOf(::GetActiveMeetingsUseCase)
+    singleOf(::GetEventDetailsUseCase)
+    singleOf(::GetCommunityUseCase)
+    singleOf(::GetCommunityDetailsUseCase)
+    singleOf(::GetUserProfileUseCase)
+    singleOf(::GetPlannedMeetingsUseCase)
+    singleOf(::GetPassedMeetingsUseCase)
 }
