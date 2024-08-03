@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.TextUnit
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun TextMetadata3(
+internal fun TextMetadata3(
     text: String,
     color: Color = Color.Unspecified,
     overflow: TextOverflow = TextOverflow.Clip,

@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.TextUnit
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun TextSubheading2(
+internal fun TextSubheading2(
     text: String,
     color: Color = Color.Unspecified,
     overflow: TextOverflow = TextOverflow.Clip,

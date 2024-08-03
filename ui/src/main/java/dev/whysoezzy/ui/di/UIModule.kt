@@ -1,18 +1,17 @@
 package dev.whysoezzy.ui.di
 
+import dev.whysoezzy.ui.screens.auth.otp.OtpCodeViewModel
+import dev.whysoezzy.ui.screens.auth.phone.PhoneNumViewModel
+import dev.whysoezzy.ui.screens.auth.profile.AddProfileViewModel
+import dev.whysoezzy.ui.screens.communities.detail.DetailsCommunityViewModel
+import dev.whysoezzy.ui.screens.communities.primary.CommunitiesViewModel
+import dev.whysoezzy.ui.screens.events.detail.DetailsEventViewModel
+import dev.whysoezzy.ui.screens.events.primary.EventsViewModel
+import dev.whysoezzy.ui.screens.more.myevents.MyEventsViewModel
+import dev.whysoezzy.ui.screens.more.primary.MoreViewModel
+import dev.whysoezzy.ui.screens.more.profile.ProfileViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
-import dev.whysoezzy.ui.screens.events.viewmodels.EventsViewModel
-import dev.whysoezzy.ui.screens.auth.viewmodels.AddProfileViewModel
-import dev.whysoezzy.ui.screens.auth.viewmodels.OtpCodeViewModel
-import dev.whysoezzy.ui.screens.auth.viewmodels.PhoneNumViewModel
-import dev.whysoezzy.ui.screens.communities.viewmodels.CommunitiesViewModel
-import dev.whysoezzy.ui.screens.communities.viewmodels.DetailsCommunityViewModel
-import dev.whysoezzy.ui.screens.events.viewmodels.DetailsEventViewModel
-import dev.whysoezzy.ui.screens.more.viewmodels.MoreViewModel
-import dev.whysoezzy.ui.screens.more.viewmodels.MyEventsViewModel
-import dev.whysoezzy.ui.screens.more.viewmodels.ProfileViewModel
-
 
 
 val viewModelModule = module {

@@ -5,11 +5,10 @@ import dev.whysoezzy.domain.models.DetailsEventModel
 import dev.whysoezzy.domain.models.MeetingEventModel
 import dev.whysoezzy.domain.repository.MeetingsRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 
 
-class MeetingsRepositoryImpl : MeetingsRepository {
+internal class MeetingsRepositoryImpl : MeetingsRepository {
     private val avatars = listOf(
         "https://picsum.photos/200/300",
         "https://picsum.photos/200/300",

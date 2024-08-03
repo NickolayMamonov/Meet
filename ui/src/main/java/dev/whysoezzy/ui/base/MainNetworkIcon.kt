@@ -21,7 +21,7 @@ import dev.whysoezzy.ui.R
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun MainNetworkIcon(
+internal fun MainNetworkIcon(
     image: String? = null,
     showBadge: Boolean = false,
     onClick: (() -> Unit)? = null,

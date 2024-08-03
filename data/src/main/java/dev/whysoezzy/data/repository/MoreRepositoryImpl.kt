@@ -6,7 +6,7 @@ import dev.whysoezzy.domain.repository.MoreRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class MoreRepositoryImpl : MoreRepository {
+internal class MoreRepositoryImpl : MoreRepository {
     override fun getUserProfile(): Flow<UserProfileModel> =
         flowOf(UserProfileModel("1", "Ivan Ivanov", "+7 999 999-99-99", listOf()))
 

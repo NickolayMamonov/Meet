@@ -19,7 +19,7 @@ import dev.whysoezzy.ui.R
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun UserAvatar(
+internal fun UserAvatar(
     image: String? = null,
     size: Dp,
     isBadge: Boolean = false,

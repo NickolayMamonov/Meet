@@ -4,7 +4,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
 
-fun mobileNumberFilter(text: AnnotatedString): TransformedText {
+internal fun mobileNumberFilter(text: AnnotatedString): TransformedText {
     val digitsOnly = text.text.filter { it.isDigit() }
     val builder = StringBuilder()
     for (i in digitsOnly.indices) {

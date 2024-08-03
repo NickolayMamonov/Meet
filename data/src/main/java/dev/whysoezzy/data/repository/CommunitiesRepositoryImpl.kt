@@ -6,10 +6,9 @@ import dev.whysoezzy.domain.models.CommunityEventModel
 import dev.whysoezzy.domain.models.MeetingEventModel
 import dev.whysoezzy.domain.repository.CommunitiesRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 
-class CommunitiesRepositoryImpl : CommunitiesRepository {
+internal class CommunitiesRepositoryImpl : CommunitiesRepository {
     override fun getCommunities(): Flow<List<CommunityEventModel>> = flowOf(
         listOf(
             CommunityEventModel("1", "Спорт", 100),

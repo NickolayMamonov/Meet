@@ -6,13 +6,13 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import dev.whysoezzy.ui.screens.auth.screens.AddProfileScreen
-import dev.whysoezzy.ui.screens.auth.screens.OtpCodeScreen
-import dev.whysoezzy.ui.screens.auth.screens.PhoneNumScreen
+import dev.whysoezzy.ui.screens.auth.otp.OtpCodeScreen
+import dev.whysoezzy.ui.screens.auth.phone.PhoneNumScreen
+import dev.whysoezzy.ui.screens.auth.profile.AddProfileScreen
 import dev.whysoezzy.ui.screens.main.MainScreen
 
 @Composable
-fun AuthNavGraph(navController: NavHostController) {
+internal fun AuthNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = AuthScreens.PhoneNumScreen.route) {
         composable(
             route = AuthScreens.PhoneNumScreen.route

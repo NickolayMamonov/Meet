@@ -2,8 +2,7 @@ package dev.whysoezzy.ui.navigation
 
 import dev.whysoezzy.ui.R
 
-
-sealed class Screen(
+internal sealed class Screen(
     val route: String,
     val title: String,
     val unSelectedIcon: Int

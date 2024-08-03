@@ -14,7 +14,7 @@ import dev.whysoezzy.ui.base.text.TextSubheading2
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun CustomOutlinedButton(
+internal fun CustomOutlinedButton(
     text: String = "",
     onClick: () -> Unit,
     isEnabled: Boolean = true,

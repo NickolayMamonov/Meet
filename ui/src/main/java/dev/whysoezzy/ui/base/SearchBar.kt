@@ -31,8 +31,10 @@ import dev.whysoezzy.ui.theme.MeetTheme
 
 
 @Composable
-fun SearchBar(
-    modifier: Modifier = Modifier,
+internal fun SearchBar(
+    modifier: Modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 20.dp, vertical = 8.dp),
     backgroundColor: Color = MeetTheme.colors.neutralSecondaryBackground,
     activeContentColor: Color = MeetTheme.colors.neutralActive,
     contentColor: Color = MeetTheme.colors.neutralDisabled,
@@ -74,7 +76,6 @@ fun SearchBar(
                 }
             }
         },
-
         modifier = modifier
             .onFocusChanged { focusState ->
                 isActive = focusState.isFocused
@@ -86,12 +87,11 @@ fun SearchBar(
                     isActive -> {
                         MeetTheme.colors.neutralLine
                     }
+
                     else -> {
                         MeetTheme.colors.neutralSecondaryBackground
                     }
                 }
             )
-
-
     )
 }

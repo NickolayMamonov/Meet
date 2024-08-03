@@ -33,7 +33,7 @@ fun ProfileElement(
         horizontalArrangement = Arrangement.Center,
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp, horizontal = 20.dp)
+            .padding(start = 20.dp, end = 20.dp, bottom = 16.dp)
             .clickable(
                 interactionSource = remember {
                     MutableInteractionSource()
@@ -41,7 +41,7 @@ fun ProfileElement(
                 indication = null, onClick = onClick
             ),
     ) {
-        UserAvatar(size = 40.dp,)
+        UserAvatar(size = 40.dp)
         Column(
             modifier = Modifier
                 .padding(start = 10.dp)

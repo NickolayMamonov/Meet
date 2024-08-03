@@ -6,3 +6,4 @@ internal const val PHONE_NUM_WITHOUT_COUNTRY_CODE = 10
 internal const val NUMBER_LENGTH_WITHOUT_CODE_COUNTRY = 12
 internal const val TEST_CODE = "1234"
 internal const val FIRST_ELEMENT_TAB_INDEX = 0
+internal const val DETAILS_MAX_LINE = 8

@@ -1,7 +1,5 @@
 package dev.whysoezzy.domain.usecases
 
-import dev.whysoezzy.domain.di.testRepositoryModule
-import dev.whysoezzy.domain.di.usecasesModule
 import dev.whysoezzy.domain.repository.stub.MeetingsRepositoryStub
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
@@ -11,8 +9,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class GetActiveMeetingsUseCaseTest {
@@ -20,13 +16,11 @@ class GetActiveMeetingsUseCaseTest {
 
     @Before
     fun setUp() {
-        startKoin { modules(usecasesModule, testRepositoryModule) }
         useCase = GetActiveMeetingsUseCase(MeetingsRepositoryStub())
     }
 
     @After
     fun stop(){
-        stopKoin()
         useCase = null
     }
 

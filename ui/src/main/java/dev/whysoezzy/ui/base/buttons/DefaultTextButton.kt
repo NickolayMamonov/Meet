@@ -13,7 +13,7 @@ import dev.whysoezzy.ui.base.text.TextSubheading2
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun CustomTextButton(
+internal fun CustomTextButton(
     text: String,
     onClick: () -> Unit,
     isEnabled: Boolean = true,
