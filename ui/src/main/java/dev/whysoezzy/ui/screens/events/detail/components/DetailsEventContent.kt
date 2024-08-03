@@ -27,7 +27,7 @@ internal fun DetailsEventContent(
             .fillMaxWidth()
             .padding(horizontal = 18.dp)
     ) {
-        item { TextBody1(event.location, MeetTheme.colors.neutralWeak) }
+        item { TextBody1(text = event.location, color = MeetTheme.colors.neutralWeak) }
         item { ChipGroup(event.tags) }
         item { EventMap(event.map, showImageDialog, setShowImageDialog) }
         item { EventDescription(event.description, fullText, toggleFullText) }

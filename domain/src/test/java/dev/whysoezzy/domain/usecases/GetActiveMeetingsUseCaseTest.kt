@@ -26,7 +26,7 @@ class GetActiveMeetingsUseCaseTest {
 
     @Test
     fun `invoke should return non-null meeting ids`() = runTest {
-        val result = useCase?.let { it().toList() }
+        val result = useCase?.invoke()?.toList()
         val activeMeetings = result?.first()
 
         activeMeetings?.forEach { meeting ->
@@ -36,7 +36,7 @@ class GetActiveMeetingsUseCaseTest {
 
     @Test
     fun `invoke should return non-null meeting titles`() = runTest {
-        val result = useCase?.let { it().toList() }
+        val result = useCase?.invoke()?.toList()
         val activeMeetings = result?.first()
 
         activeMeetings?.forEach { meeting ->
@@ -46,7 +46,7 @@ class GetActiveMeetingsUseCaseTest {
 
     @Test
     fun `invoke should return non-null meeting subTitles`() = runTest {
-        val result = useCase?.let { it().toList() }
+        val result = useCase?.invoke()?.toList()
         val activeMeetings = result?.first()
 
         activeMeetings?.forEach { meeting ->
@@ -56,7 +56,7 @@ class GetActiveMeetingsUseCaseTest {
 
     @Test
     fun `invoke should return non-null meeting icons`() = runTest {
-        val result = useCase?.let { it().toList() }
+        val result = useCase?.invoke()?.toList()
         val activeMeetings = result?.first()
 
         activeMeetings?.forEach { meeting ->
@@ -66,17 +66,12 @@ class GetActiveMeetingsUseCaseTest {
 
     @Test
     fun `invoke should return meetings that are not ended`() = runTest {
-        val result = useCase?.let { it().toList() }
+        val result = useCase?.invoke()?.toList()
         val activeMeetings = result?.first()
 
         activeMeetings?.forEach { meeting ->
             assertFalse(meeting.isEnded)
         }
     }
-
-
-
-
-
 }
 

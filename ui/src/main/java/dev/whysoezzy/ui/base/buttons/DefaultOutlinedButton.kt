@@ -15,11 +15,11 @@ import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
 internal fun CustomOutlinedButton(
+    modifier: Modifier = Modifier,
     text: String = "",
     onClick: () -> Unit,
     isEnabled: Boolean = true,
     icon: @Composable (() -> Unit)? = null,
-    modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()

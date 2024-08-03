@@ -12,10 +12,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import dev.whysoezzy.ui.base.text.TextBody1
 import dev.whysoezzy.ui.theme.MeetTheme
-import dev.whysoezzy.ui.utils.EventsTabs
+import dev.whysoezzy.ui.utils.TabType
 
 @Composable
-internal fun TabRow(selectedTabIndex: Int, onTabSelected: (Int) -> Unit) {
+internal fun TabRow(selectedTabIndex: Int, onTabSelected: (Int) -> Unit, tabs: List<TabType>) {
     TabRow(
         selectedTabIndex = selectedTabIndex,
         contentColor = MeetTheme.colors.brandDefault,
@@ -29,7 +29,7 @@ internal fun TabRow(selectedTabIndex: Int, onTabSelected: (Int) -> Unit) {
             .fillMaxWidth()
             .padding(horizontal = 20.dp, vertical = 8.dp)
     ) {
-        EventsTabs.entries.forEachIndexed { index, tab ->
+        tabs.forEachIndexed { index, tab ->
             Tab(
                 text = {
                     TextBody1(

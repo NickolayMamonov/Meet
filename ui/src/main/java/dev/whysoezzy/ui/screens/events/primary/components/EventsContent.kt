@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.whysoezzy.domain.models.MeetingEventModel
 import dev.whysoezzy.ui.base.SearchBar
+import dev.whysoezzy.ui.utils.EventsTabs
+import dev.whysoezzy.ui.utils.TabType
 import dev.whysoezzy.ui.widgets.MeetingEvent
 import dev.whysoezzy.ui.widgets.TabRow
 
@@ -20,6 +22,10 @@ internal fun EventsContent(
     onTabSelected: (Int) -> Unit,
     onMeetingClick: (MeetingEventModel) -> Unit
 ) {
+    val eventsTabs = listOf(
+        TabType.EventsTab(EventsTabs.ALL_MEETINGS.title),
+        TabType.EventsTab(EventsTabs.ACTIVE.title)
+    )
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -34,7 +40,11 @@ internal fun EventsContent(
             }
         }
         item {
-            TabRow(selectedTabIndex = selectedTabIndex, onTabSelected = onTabSelected)
+            TabRow(
+                selectedTabIndex = selectedTabIndex,
+                onTabSelected = onTabSelected,
+                tabs = eventsTabs
+            )
         }
         items(currentList) { meeting ->
             MeetingEvent(meeting = meeting, onClick = { onMeetingClick(meeting) })

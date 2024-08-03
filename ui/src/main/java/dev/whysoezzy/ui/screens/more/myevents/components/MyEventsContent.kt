@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.whysoezzy.domain.models.MeetingEventModel
 import dev.whysoezzy.ui.base.SearchBar
+import dev.whysoezzy.ui.utils.MyEventsTabs
+import dev.whysoezzy.ui.utils.TabType
 import dev.whysoezzy.ui.widgets.MeetingEvent
 import dev.whysoezzy.ui.widgets.TabRow
 
@@ -24,6 +26,10 @@ internal fun MyEventsContent(
         modifier = Modifier
             .fillMaxSize()
     ) {
+        val eventsTabs = listOf(
+            TabType.EventsTab(MyEventsTabs.PLANNED.title),
+            TabType.EventsTab(MyEventsTabs.PASSED.title)
+        )
         item {
             SearchBar(
                 modifier = Modifier
@@ -34,7 +40,11 @@ internal fun MyEventsContent(
             }
         }
         item {
-            TabRow(selectedTabIndex = selectedTabIndex, onTabSelected = onTabSelected)
+            TabRow(
+                selectedTabIndex = selectedTabIndex,
+                onTabSelected = onTabSelected,
+                tabs = eventsTabs
+            )
         }
         items(currentList) { meeting ->
             MeetingEvent(meeting = meeting, onClick = { onMeetingClick(meeting) })
