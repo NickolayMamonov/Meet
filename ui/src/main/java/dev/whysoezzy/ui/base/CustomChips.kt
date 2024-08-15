@@ -15,7 +15,7 @@ import dev.whysoezzy.ui.base.text.TextMetadata3
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun ChipGroup(chipData: List<String>) {
+internal fun ChipGroup(chipData: List<String>) {
     LazyRow(modifier = Modifier.padding(top = 8.dp)) {
         chipData.forEach {
             item {

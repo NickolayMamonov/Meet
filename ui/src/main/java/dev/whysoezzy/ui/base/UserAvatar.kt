@@ -19,12 +19,12 @@ import dev.whysoezzy.ui.R
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun UserAvatar(
+internal fun UserAvatar(
+    modifier: Modifier = Modifier,
     image: String? = null,
     size: Dp,
     isBadge: Boolean = false,
     onClick: (() -> Unit)? = null,
-    modifier: Modifier = Modifier
 ) {
     Box(
         contentAlignment = Alignment.BottomEnd,

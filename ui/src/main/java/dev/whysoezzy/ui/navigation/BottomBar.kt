@@ -14,14 +14,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.navigation.NavController
-import dev.whysoezzy.ui.R
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import dev.whysoezzy.ui.R
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun BottomNavBar(navController: NavController) {
+internal fun BottomNavBar(navController: NavController) {
     val items = listOf(
         Screen.EventsRoot,
         Screen.CommunitiesRoot,

@@ -2,7 +2,7 @@ package dev.whysoezzy.ui.utils
 
 import dev.whysoezzy.ui.R
 
-enum class Country(val country: String, val phoneCode: String,val flagId: Int) {
+internal enum class Country(val country: String, val phoneCode: String, val flagId: Int) {
     ARMENIA("Armenia", "+374", R.drawable.ic_am_flag),
     AZERBAIJAN("Azerbaijan", "+994", R.drawable.ic_az_flag),
     BElARUS("Belarus", "+375", R.drawable.ic_by_flag),

@@ -13,18 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import dev.whysoezzy.domain.models.CommunityEventModel
 import dev.whysoezzy.ui.base.MainNetworkIcon
 import dev.whysoezzy.ui.base.text.TextBody1
 import dev.whysoezzy.ui.base.text.TextMetadata1
-import dev.whysoezzy.domain.models.CommunityEventModel
 import dev.whysoezzy.ui.theme.MeetTheme
 import dev.whysoezzy.ui.utils.getPeopleQuantityText
 
 @Composable
 fun CommunityEvent(
     community: CommunityEventModel,
-    onClick: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: (String) -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,

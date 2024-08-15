@@ -22,11 +22,11 @@ import dev.whysoezzy.ui.R
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun MainIcon(
+internal fun MainIcon(
     image: Painter? = null,
-    showBadge: Boolean,
+    showBadge: Boolean = false,
     onClick: (() -> Unit)? = null,
-    isClickable: Boolean,
+    isClickable: Boolean = false,
     showBorder: Boolean = false,
     showClip: Boolean = false,
     clipPercent: Int = 35,

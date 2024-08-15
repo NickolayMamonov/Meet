@@ -12,7 +12,7 @@ import dev.whysoezzy.ui.theme.MeetTheme
 import dev.whysoezzy.ui.utils.AVATAR_ITEMS
 
 @Composable
-fun OverlappingRow(
+internal fun OverlappingRow(
     avatars: List<String>,
     modifier: Modifier = Modifier,
     overlappingPercentage: Float,

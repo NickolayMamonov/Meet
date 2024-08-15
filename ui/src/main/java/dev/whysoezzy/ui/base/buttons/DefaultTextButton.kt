@@ -13,12 +13,13 @@ import dev.whysoezzy.ui.base.text.TextSubheading2
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun CustomTextButton(
+internal fun CustomTextButton(
+    modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,
     isEnabled: Boolean = true,
-    modifier: Modifier = Modifier
-) {
+
+    ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val backgroundColor = Color.Transparent

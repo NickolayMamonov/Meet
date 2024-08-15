@@ -1,6 +1,6 @@
 package dev.whysoezzy.ui.utils
 
-fun getPeopleQuantityText(quantity: Int): String {
+internal fun getPeopleQuantityText(quantity: Int): String {
     val lastDigit = quantity % 10
     val lastTwoDigits = quantity % 100
     return when {

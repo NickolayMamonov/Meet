@@ -8,17 +8,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.navArgument
-import dev.whysoezzy.ui.screens.communities.screens.CommunitiesScreen
-import dev.whysoezzy.ui.screens.communities.screens.DetailsCommunityScreen
-import dev.whysoezzy.ui.screens.events.screens.DetailsEventScreen
-import dev.whysoezzy.ui.screens.events.screens.EventsScreen
-import dev.whysoezzy.ui.screens.more.screens.MoreScreen
-import dev.whysoezzy.ui.screens.more.screens.MyEventsScreen
-import dev.whysoezzy.ui.screens.more.screens.ProfileScreen
+import dev.whysoezzy.ui.screens.communities.detail.DetailsCommunityScreen
+import dev.whysoezzy.ui.screens.communities.primary.CommunitiesScreen
+import dev.whysoezzy.ui.screens.events.detail.DetailsEventScreen
+import dev.whysoezzy.ui.screens.events.primary.EventsScreen
+import dev.whysoezzy.ui.screens.more.myevents.MyEventsScreen
+import dev.whysoezzy.ui.screens.more.primary.MoreScreen
+import dev.whysoezzy.ui.screens.more.profile.ProfileScreen
 
 
 @Composable
-fun NavGraph(navController: NavHostController, innerPadding: PaddingValues) {
+internal fun NavGraph(navController: NavHostController, innerPadding: PaddingValues) {
     NavHost(navController = navController, startDestination = Screen.EventsRoot.route) {
         navigation(
             startDestination = Screen.EventsRoot.Events.route,

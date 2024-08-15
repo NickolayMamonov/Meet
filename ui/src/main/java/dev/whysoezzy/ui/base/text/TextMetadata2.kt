@@ -10,14 +10,14 @@ import androidx.compose.ui.unit.TextUnit
 import dev.whysoezzy.ui.theme.MeetTheme
 
 @Composable
-fun TextMetadata2(
+internal fun TextMetadata2(
+    modifier: Modifier = Modifier,
     text: String,
     color: Color = Color.Unspecified,
     overflow: TextOverflow = TextOverflow.Clip,
     maxLines: Int = Int.MAX_VALUE,
     lineHeight: TextUnit = TextUnit.Unspecified,
     textAlign: TextAlign? = null,
-    modifier: Modifier = Modifier
 ) {
     Text(
         text = text,
