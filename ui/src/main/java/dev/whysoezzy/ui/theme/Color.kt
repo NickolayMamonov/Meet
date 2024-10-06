@@ -2,6 +2,7 @@ package dev.whysoezzy.ui.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 @Immutable
@@ -44,6 +45,19 @@ val MainColorScheme = ColorScheme(
     accentSuccess = Color(0xFF2CC069),
     accentSafe = Color(0xFF7BCBCF)
 )
+
+
+private val PrimaryGradientColors = listOf(
+    Color(0xFFED3CCA), Color(0xFFDF34D2), Color(0xFFD02BD9), Color(0xFFBF22E1),
+    Color(0xFFAE1AE8), Color(0xFF9A10F0), Color(0xFF8306F7), Color(0xFF6600FF)
+)
+private val SecondaryGradientColors = listOf(
+    Color(0xFFFEF1FB), Color(0xFFFDF1FC), Color(0xFFFCF0FC), Color(0xFFFBF0FD),
+    Color(0xFFF9EFFD), Color(0xFFF8EEFE), Color(0xFFF6EEFE), Color(0xFFF4EDFF)
+)
+
+val PrimaryGradient = Brush.linearGradient(colors = PrimaryGradientColors)
+val SecondaryGradient = Brush.linearGradient(colors = SecondaryGradientColors)
 
 val LocalColorScheme = staticCompositionLocalOf {
     MainColorScheme

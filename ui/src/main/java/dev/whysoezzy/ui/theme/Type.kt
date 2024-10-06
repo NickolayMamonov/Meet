@@ -39,27 +39,27 @@ val MainTypographyTextStyle = MainTypography(
     heading1 = TextStyle(
         fontFamily = SFProDisplayFontFamily,
         fontWeight = FontWeight.Bold,
-        fontSize = 32.sp,
-        lineHeight = 38.sp,
+        fontSize = 34.sp,
+        lineHeight = 34.sp,
         letterSpacing = 0.sp
     ),
     heading2 = TextStyle(
         fontFamily = SFProDisplayFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        lineHeight = 28.sp,
+        fontWeight = FontWeight.Normal,
+        fontSize = 22.sp,
+        lineHeight = 26.sp,
         letterSpacing = 0.sp
     ),
     subheading1 = TextStyle(
         fontFamily = SFProDisplayFontFamily,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Normal,
         fontSize = 18.sp,
         lineHeight = 30.sp,
         letterSpacing = 0.sp
     ),
     subheading2 = TextStyle(
         fontFamily = SFProDisplayFontFamily,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
@@ -68,14 +68,14 @@ val MainTypographyTextStyle = MainTypography(
         fontFamily = SFProDisplayFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp,
-        lineHeight = 24.sp,
+        lineHeight = 18.sp,
         letterSpacing = 0.sp
     ),
     bodyText2 = TextStyle(
         fontFamily = SFProDisplayFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        lineHeight = 24.sp,
+        lineHeight = 16.sp,
         letterSpacing = 0.sp
     ),
     metadata1 = TextStyle(
