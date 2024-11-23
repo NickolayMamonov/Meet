@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -42,5 +43,13 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+    implementation(libs.retrofit)
+    implementation(libs.timber)
+    api(libs.retrofit)
+    api(libs.converter.gson)
+    api(libs.kotlinx.serialization.json)
 
 }

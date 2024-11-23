@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.whysoezzy.domain.models.CommunityEventModel
 import dev.whysoezzy.ui.base.MainNetworkIcon
 import dev.whysoezzy.ui.base.text.TextBody1
 import dev.whysoezzy.ui.base.text.TextMetadata1

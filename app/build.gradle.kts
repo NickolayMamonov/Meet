@@ -19,8 +19,8 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "API_BASE_URL", "\"https://api.example.com/\"")
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -39,6 +39,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -83,6 +84,7 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
+    implementation(libs.timber)
 
     testImplementation(libs.junit)
 

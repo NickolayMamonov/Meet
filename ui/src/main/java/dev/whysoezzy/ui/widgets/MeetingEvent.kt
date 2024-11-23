@@ -19,7 +19,6 @@ import dev.whysoezzy.ui.base.MainNetworkIcon
 import dev.whysoezzy.ui.base.text.TextBody1
 import dev.whysoezzy.ui.base.text.TextMetadata1
 import dev.whysoezzy.ui.base.text.TextMetadata2
-import dev.whysoezzy.domain.models.MeetingEventModel
 import dev.whysoezzy.ui.R
 import dev.whysoezzy.ui.theme.MeetTheme
 

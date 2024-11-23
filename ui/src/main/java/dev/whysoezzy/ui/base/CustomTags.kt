@@ -110,7 +110,7 @@ fun CustomTag(
                     .padding(
                         start = 6.dp,
                         end = 6.dp,
-                        top = 2.dp,
+                        top = 3.dp,
                         bottom = 3.dp
                     )
             )

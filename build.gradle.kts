@@ -9,6 +9,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.23.6"
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
+    alias(libs.plugins.ksp) apply false
 }
 
 detekt {

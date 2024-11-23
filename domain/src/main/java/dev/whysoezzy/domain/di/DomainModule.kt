@@ -1,25 +1,25 @@
 package dev.whysoezzy.domain.di
 
-import org.koin.core.module.dsl.factoryOf
+import dev.whysoezzy.domain.usecases.GetAdsUseCase
+import dev.whysoezzy.domain.usecases.GetCommunitiesUseCase
+import dev.whysoezzy.domain.usecases.GetFeaturedMeetingsUseCase
+import dev.whysoezzy.domain.usecases.GetMeetingsByTagsUseCase
+import dev.whysoezzy.domain.usecases.GetTagsUseCase
+import dev.whysoezzy.domain.usecases.GetUpcomingMeetingsUseCase
+import dev.whysoezzy.domain.usecases.SearchMeetingsUseCase
+import dev.whysoezzy.domain.usecases.SubscribeToCommunityUseCase
+import dev.whysoezzy.domain.usecases.UnsubscribeFromCommunityUseCase
 import org.koin.dsl.module
-import dev.whysoezzy.domain.usecases.GetActiveMeetingsUseCase
-import dev.whysoezzy.domain.usecases.GetAllMeetingsUseCase
-import dev.whysoezzy.domain.usecases.GetCommunityDetailsUseCase
-import dev.whysoezzy.domain.usecases.GetCommunityUseCase
-import dev.whysoezzy.domain.usecases.GetEventDetailsUseCase
-import dev.whysoezzy.domain.usecases.GetPassedMeetingsUseCase
-import dev.whysoezzy.domain.usecases.GetPlannedMeetingsUseCase
-import dev.whysoezzy.domain.usecases.GetUserProfileUseCase
-import org.koin.core.module.dsl.singleOf
 
 
-val usecasesModule = module {
-    singleOf(::GetAllMeetingsUseCase)
-    singleOf(::GetActiveMeetingsUseCase)
-    singleOf(::GetEventDetailsUseCase)
-    singleOf(::GetCommunityUseCase)
-    singleOf(::GetCommunityDetailsUseCase)
-    singleOf(::GetUserProfileUseCase)
-    singleOf(::GetPlannedMeetingsUseCase)
-    singleOf(::GetPassedMeetingsUseCase)
+val domainModule = module {
+    single { GetFeaturedMeetingsUseCase(get()) }
+    single { GetUpcomingMeetingsUseCase(get()) }
+    single { SearchMeetingsUseCase(get()) }
+    single { GetMeetingsByTagsUseCase(get()) }
+    single { GetCommunitiesUseCase(get()) }
+    single { SubscribeToCommunityUseCase(get()) }
+    single { UnsubscribeFromCommunityUseCase(get()) }
+    single { GetTagsUseCase(get()) }
+    single { GetAdsUseCase(get()) }
 }

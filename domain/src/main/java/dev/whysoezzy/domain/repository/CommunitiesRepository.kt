@@ -1,10 +1,12 @@
 package dev.whysoezzy.domain.repository
 
+import dev.whysoezzy.domain.models.Community
 import kotlinx.coroutines.flow.Flow
-import dev.whysoezzy.domain.models.CommunityDetailModel
-import dev.whysoezzy.domain.models.CommunityEventModel
 
 interface CommunitiesRepository {
-    fun getCommunities(): Flow<List<CommunityEventModel>>
-    fun getCommunity(name: String): Flow<CommunityDetailModel>
+    suspend fun getAllCommunities(): Flow<List<Community>>
+    suspend fun getFeaturedCommunities(): Flow<List<Community>>
+    suspend fun subscribeToCommunity(communityId: String): Result<Boolean>
+    suspend fun unsubscribeFromCommunity(communityId: String): Result<Boolean>
+    suspend fun getCommunityDetails(communityId: String): Flow<Community>
 }
