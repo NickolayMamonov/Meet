@@ -1,10 +1,12 @@
 package dev.whysoezzy.domain.models
 
 data class Community(
-    val id: String,
+    val id: Long,
     val name: String,
     val description: String,
     val imageUrl: String,
-    val subscribersCount: Int,
-    val isSubscribed: Boolean
+    val tags: List<Tag>,
+    val subscribers: List<User>,
+    val events: List<Meeting>,
+    val lastEvents: List<Meeting>
 )

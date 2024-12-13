@@ -1,19 +1,18 @@
 package dev.whysoezzy.domain.models
 
-import java.time.LocalDateTime
 import java.util.Date
 
 data class Meeting(
-    val id: String,
+    val id: Long,
     val title: String,
     val description: String,
-    val dateTime: Date,
+    val date: Date,
     val location: Location,
-    val organizerId: String,
-    val communityId: String,
     val tags: List<Tag>,
-    val participantsCount: Int,
+    val host: User,
+    val community: Community,
     val maxParticipants: Int,
+    val participants: List<User>,
     val imageUrl: String
 )
 

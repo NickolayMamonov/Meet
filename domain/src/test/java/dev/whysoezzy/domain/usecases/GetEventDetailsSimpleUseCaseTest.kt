@@ -10,7 +10,7 @@ import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertNotNull
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetEventDetailsUseCaseTest {
+class GetEventDetailsSimpleUseCaseTest {
     // at the moment, name is being transferred to the screen, in the future I will redo it to id
     private var useCase: GetEventDetailsUseCase? = null
 

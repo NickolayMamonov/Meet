@@ -1,6 +1,6 @@
 package dev.whysoezzy.domain.usecases
 
-import dev.whysoezzy.domain.repository.stub.MeetingsRepositoryStub
+import dev.whysoezzy.domain.repository.stub.MoreRepositoryStub
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
@@ -11,25 +11,25 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetActiveMeetingsUseCaseTest {
-    private var useCase: GetActiveMeetingsUseCase? = null
+class GetPlannedMeetingsSimpleUseCaseTest {
+    private var useCase: GetPlannedMeetingsUseCase? = null
 
     @Before
     fun setUp() {
-        useCase = GetActiveMeetingsUseCase(MeetingsRepositoryStub())
+        useCase = GetPlannedMeetingsUseCase(MoreRepositoryStub())
     }
 
     @After
-    fun stop(){
+    fun stop() {
         useCase = null
     }
 
     @Test
     fun `invoke should return non-null meeting ids`() = runTest {
         val result = useCase?.invoke()?.toList()
-        val activeMeetings = result?.first()
+        val meetings = result?.first()
 
-        activeMeetings?.forEach { meeting ->
+        meetings?.forEach { meeting ->
             assertNotNull(meeting.id)
         }
     }
@@ -37,9 +37,9 @@ class GetActiveMeetingsUseCaseTest {
     @Test
     fun `invoke should return non-null meeting titles`() = runTest {
         val result = useCase?.invoke()?.toList()
-        val activeMeetings = result?.first()
+        val meetings = result?.first()
 
-        activeMeetings?.forEach { meeting ->
+        meetings?.forEach { meeting ->
             assertNotNull(meeting.title)
         }
     }
@@ -47,9 +47,9 @@ class GetActiveMeetingsUseCaseTest {
     @Test
     fun `invoke should return non-null meeting subTitles`() = runTest {
         val result = useCase?.invoke()?.toList()
-        val activeMeetings = result?.first()
+        val meetings = result?.first()
 
-        activeMeetings?.forEach { meeting ->
+        meetings?.forEach { meeting ->
             assertNotNull(meeting.subTitle)
         }
     }
@@ -57,9 +57,9 @@ class GetActiveMeetingsUseCaseTest {
     @Test
     fun `invoke should return non-null meeting icons`() = runTest {
         val result = useCase?.invoke()?.toList()
-        val activeMeetings = result?.first()
+        val meetings = result?.first()
 
-        activeMeetings?.forEach { meeting ->
+        meetings?.forEach { meeting ->
             assertNotNull(meeting.icon)
         }
     }
@@ -67,11 +67,10 @@ class GetActiveMeetingsUseCaseTest {
     @Test
     fun `invoke should return meetings that are not ended`() = runTest {
         val result = useCase?.invoke()?.toList()
-        val activeMeetings = result?.first()
+        val meetings = result?.first()
 
-        activeMeetings?.forEach { meeting ->
+        meetings?.forEach { meeting ->
             assertFalse(meeting.isEnded)
         }
     }
 }
-

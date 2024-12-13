@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetCommunityDetailsUseCaseTest {
+class GetCommunityDetailsSimpleUseCaseTest {
     // at the moment, name is being transferred to the screen, in the future I will redo it to id
     private var useCase: GetCommunityDetailsUseCase? = null
 

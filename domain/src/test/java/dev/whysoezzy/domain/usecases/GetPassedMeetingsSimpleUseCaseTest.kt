@@ -7,16 +7,16 @@ import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
+import org.junit.jupiter.api.Assertions.assertTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetPlannedMeetingsUseCaseTest {
-    private var useCase: GetPlannedMeetingsUseCase? = null
+class GetPassedMeetingsSimpleUseCaseTest {
+    private var useCase: GetPassedMeetingsUseCase? = null
 
     @Before
     fun setUp() {
-        useCase = GetPlannedMeetingsUseCase(MoreRepositoryStub())
+        useCase = GetPassedMeetingsUseCase(MoreRepositoryStub())
     }
 
     @After
@@ -65,12 +65,13 @@ class GetPlannedMeetingsUseCaseTest {
     }
 
     @Test
-    fun `invoke should return meetings that are not ended`() = runTest {
+    fun `invoke should return meetings that are ended`() = runTest {
         val result = useCase?.invoke()?.toList()
         val meetings = result?.first()
 
         meetings?.forEach { meeting ->
-            assertFalse(meeting.isEnded)
+            assertTrue(meeting.isEnded)
         }
     }
+
 }

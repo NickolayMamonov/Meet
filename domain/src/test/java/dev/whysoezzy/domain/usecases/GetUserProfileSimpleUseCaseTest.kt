@@ -10,7 +10,7 @@ import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertNotNull
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetUserProfileUseCaseTest {
+class GetUserProfileSimpleUseCaseTest {
     private var useCase: GetUserProfileUseCase? = null
 
     @Before

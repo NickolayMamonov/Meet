@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetCommunityUseCaseTest {
+class GetCommunitySimpleUseCaseTest {
     private var useCase: GetCommunityUseCase? = null
 
     @Before

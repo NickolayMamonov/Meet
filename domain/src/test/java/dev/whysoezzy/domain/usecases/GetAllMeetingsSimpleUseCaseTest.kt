@@ -10,7 +10,7 @@ import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class GetAllMeetingsUseCaseTest {
+class GetAllMeetingsSimpleUseCaseTest {
     private var useCase: GetAllMeetingsUseCase? = null
 
     @Before
